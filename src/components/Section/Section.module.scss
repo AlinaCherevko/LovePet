@@ -1,0 +1,20 @@
+@import "../../styles/index.scss";
+.section {
+  padding-top: 114px;
+  padding-bottom: 80px;
+
+  @include media(tablet) {
+    padding-top: 167px;
+  }
+  @include media(desktop) {
+    padding-top: 178px;
+  }
+}
+.title {
+  @include font(28, 28);
+  font-weight: 700;
+
+  @include media(tablet) {
+    @include font(54, 54);
+  }
+}

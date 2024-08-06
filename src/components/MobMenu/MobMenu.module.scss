@@ -1,0 +1,56 @@
+@import "../../styles/index.scss";
+.menu {
+  width: 218px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 28px 20px 40px 20px;
+
+  @include media(tablet) {
+    width: 374px;
+    padding: 39px 32px 40px 32px;
+  }
+
+  &--white {
+    background-color: $_white_color;
+  }
+  &--orange {
+    background-color: $_accent_color;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__navigation {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 280px;
+
+    @include media(tablet) {
+      margin-bottom: 395px;
+    }
+  }
+
+  &__logOut {
+    @include media(tablet) {
+      display: none;
+    }
+  }
+  &__auth {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 178px;
+
+    @include media(tablet) {
+      flex-direction: row;
+      gap: 8px;
+      width: 276px;
+    }
+  }
+}

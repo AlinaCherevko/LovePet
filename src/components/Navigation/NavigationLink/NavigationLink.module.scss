@@ -1,0 +1,40 @@
+@import "../../../styles/index.scss";
+
+.nav-link {
+  @include font(14, 18);
+  font-weight: 500;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 48px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
+
+  @include media(tablet) {
+    @include font(16, 20);
+  }
+  @include media(desktop) {
+  }
+
+  &--white {
+    border-color: $_link_gray;
+    &:hover {
+      border-color: $_accent_color;
+    }
+  }
+  &--orange {
+    color: $_white_color;
+    border-color: $_white_light;
+
+    &:hover {
+      border-color: $_light_border_color;
+    }
+  }
+}

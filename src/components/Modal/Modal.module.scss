@@ -1,0 +1,12 @@
+@import "../../styles/index.scss";
+
+.backdrop {
+  position: fixed;
+  inset: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $_backdrop_color;
+  z-index: 1200;
+  overflow: auto;
+}

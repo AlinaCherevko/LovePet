@@ -1,0 +1,10 @@
+@import "../../styles/index.scss";
+.img {
+  width: 76px;
+  height: 20px;
+
+  @include media(tablet) {
+    width: 105px;
+    height: 28px;
+  }
+}

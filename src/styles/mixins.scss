@@ -1,0 +1,37 @@
+@use "sass:math";
+
+// breakpoints
+$_mobile: 320px;
+$_tablet: 768px;
+$_desktop: 1440px;
+
+// mixins
+@mixin media($_screen) {
+  @if $_screen == mobile {
+    @media screen and (min-width: $_mobile) {
+      @content;
+    }
+  } @else if $_screen == tablet {
+    @media screen and (min-width: $_tablet) {
+      @content;
+    }
+  } @else if $_screen == desktop {
+    @media screen and (min-width: $_desktop) {
+      @content;
+    }
+  }
+}
+
+@mixin font($_fsz, $_lnh) {
+  font-size: #{$_fsz}px;
+
+  $result: math.div($_lnh, $_fsz);
+
+  line-height: math.div(math.round($result * 100), 100);
+}
+
+@mixin button-icon {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}

@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+
+.login {
+  padding-top: 80px;
+  padding-bottom: 20px;
+
+  @include media(tablet) {
+    padding-top: 114px;
+    padding-bottom: 32px;
+  }
+}

@@ -1,0 +1,8 @@
+@import "../../../styles/index.scss";
+.button {
+  @include button-icon;
+
+  @include media(desktop) {
+    display: none;
+  }
+}

@@ -1,0 +1,64 @@
+@import "../../styles/index.scss";
+
+.home {
+  background-color: $_accent_color;
+  color: $_white_color;
+  border-radius: 30px;
+  padding-top: 118px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+
+  @include media(tablet) {
+    padding-top: 178px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 44px;
+  }
+  @include media(desktop) {
+    padding-top: 178px;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-bottom: 32px;
+  }
+
+  &__title {
+    font-weight: 700;
+    @include font(50, 48);
+    margin-bottom: 24px;
+
+    @include media(tablet) {
+      @include font(80, 77);
+      margin-bottom: 32px;
+    }
+    @include media(desktop) {
+      @include font(90, 87);
+    }
+  }
+
+  &__span {
+    color: $_title_accent;
+    font-weight: 700;
+    @include font(50, 48);
+
+    @include media(tablet) {
+      @include font(80, 77);
+    }
+    @include media(desktop) {
+      @include font(90, 87);
+    }
+  }
+  &__description {
+    @include font(14, 18);
+    font-weight: 500;
+    @include media(tablet) {
+      @include font(18, 22);
+    }
+    @include media(desktop) {
+    }
+  }
+
+  &__image {
+    width: 100%;
+  }
+}

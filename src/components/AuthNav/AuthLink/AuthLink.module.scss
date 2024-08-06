@@ -1,0 +1,47 @@
+@import "../../../styles/index.scss";
+
+.auth-link {
+  @include font(14, 18);
+  padding: 12px 41px;
+  max-width: 178px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $_accent_color;
+  font-weight: 500;
+  background-color: $_accent_light;
+  cursor: pointer;
+  border: transparent;
+  border-radius: 30px;
+  transition-property: all;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
+
+  @include media(tablet) {
+    @include font(16, 20);
+    padding: 15px 25px;
+  }
+  @include media(desktop) {
+    height: 50px;
+  }
+
+  &--white {
+    border-color: $_link_gray;
+    &:hover {
+      background-color: $_hover_color;
+    }
+  }
+  &--orange {
+    border: 1px solid $_title_accent;
+    background-color: $_accent_color;
+    color: $_white_color;
+
+    &:hover {
+      background-color: $_accent_light;
+      color: $_accent_color;
+      border: none;
+    }
+  }
+}

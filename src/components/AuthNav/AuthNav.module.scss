@@ -1,0 +1,14 @@
+@import "../../styles/index.scss";
+
+.navigation {
+  display: none;
+
+  @include media(tablet) {
+  }
+
+  @include media(desktop) {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+}
