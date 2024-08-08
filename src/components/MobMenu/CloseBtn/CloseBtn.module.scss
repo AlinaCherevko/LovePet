@@ -1,4 +1,5 @@
 @import "../../../styles/index.scss";
 .button {
+  background-color: transparent;
   @include button-icon;
 }

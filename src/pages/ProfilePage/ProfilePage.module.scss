@@ -1,1 +1,26 @@
 @import "../../styles/index.scss";
+
+.profile {
+  padding-top: 82px;
+
+  @include media(tablet) {
+    padding-top: 114px;
+  }
+
+  @include media(tablet) {
+  }
+
+  &__wrapper {
+    background-color: $_white_color;
+    border-radius: 30px;
+    padding: 18px 20px 40px 20px;
+
+    @include media(tablet) {
+      padding: 40px;
+    }
+
+    @include media(desktop) {
+      width: 520px;
+    }
+  }
+}

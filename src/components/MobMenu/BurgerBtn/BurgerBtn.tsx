@@ -3,7 +3,7 @@ import Icon from "../../Icon/Icon";
 
 import style from "./BurgerBtn.module.scss";
 
-type BurgerBtnProps = {
+export type BurgerBtnProps = {
   onOpen: () => void;
 };
 

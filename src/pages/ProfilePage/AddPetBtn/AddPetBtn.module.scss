@@ -1,0 +1,22 @@
+@import "../../../styles/index.scss";
+
+.user {
+  width: 80px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: $_accent_color;
+  border-radius: 30px;
+
+  @include media(tablet) {
+    width: 118px;
+    height: 40px;
+  }
+  &__text {
+    color: $_white_color;
+    @include font(14, 18);
+    font-weight: 500;
+  }
+}

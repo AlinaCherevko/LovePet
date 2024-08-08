@@ -1,7 +1,7 @@
 @use "sass:math";
 
 // breakpoints
-$_mobile: 320px;
+$_mobile: 375px;
 $_tablet: 768px;
 $_desktop: 1440px;
 
@@ -33,5 +33,4 @@ $_desktop: 1440px;
 @mixin button-icon {
   cursor: pointer;
   border: none;
-  background-color: transparent;
 }

@@ -1,5 +1,11 @@
 @import "../../../styles/index.scss";
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .button {
   width: 40px;
   height: 40px;
@@ -20,5 +26,22 @@
 
   &:hover {
     background-color: $_hover_color;
+  }
+}
+
+.user {
+  width: 80px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background-color: $_accent_color;
+  border-radius: 30px;
+
+  &__text {
+    color: $_white_color;
+    @include font(14, 18);
+    font-weight: 500;
   }
 }

@@ -1,0 +1,60 @@
+@import "../../../styles/index.scss";
+
+.info {
+  &__title {
+    @include font(16, 20);
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    @include media(tablet) {
+      @include font(18, 24);
+    }
+  }
+
+  &__inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include media(tablet) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+  }
+
+  &__inputItem {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    border: 1px solid $_link_gray;
+    border-radius: 30px;
+    @include media(mobile) {
+      width: 295px;
+    }
+
+    @include media(tablet) {
+      width: 305px;
+      height: 52px;
+    }
+
+    @include media(desktop) {
+      width: 440px;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $_accent_color;
+    }
+  }
+  &__text {
+    @include font(14, 18);
+    font-weight: 500;
+    padding-left: 12px;
+
+    @include media(tablet) {
+      @include font(16, 20);
+      padding-left: 16px;
+    }
+  }
+}

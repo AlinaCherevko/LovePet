@@ -1,0 +1,21 @@
+@import "../../../styles/index.scss";
+
+.myPets {
+  margin-top: 40px;
+
+  &__wrapper {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include font(16, 20);
+    font-weight: 700;
+
+    @include media(tablet) {
+      @include font(18, 24);
+    }
+  }
+}

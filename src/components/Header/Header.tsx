@@ -11,7 +11,6 @@ import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 
 const Header: FC = () => {
   const [isVisibleMobMenu, setIsVisibleMobMenu] = useState<boolean>(false);
-
   const onClose = () => {
     setIsVisibleMobMenu(false);
   };
@@ -19,7 +18,7 @@ const Header: FC = () => {
     setIsVisibleMobMenu(true);
   };
 
-  const isAuth = false;
+  const isAuth = true;
   return (
     <section className={style.header}>
       <div className="container">
