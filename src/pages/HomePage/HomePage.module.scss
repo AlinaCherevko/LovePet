@@ -24,9 +24,12 @@
 
   &__title {
     font-weight: 700;
-    @include font(50, 48);
+    @include font(40, 38);
     margin-bottom: 24px;
 
+    @include media(mobile) {
+      @include font(50, 48);
+    }
     @include media(tablet) {
       @include font(80, 77);
       margin-bottom: 32px;
@@ -39,7 +42,11 @@
   &__span {
     color: $_title_accent;
     font-weight: 700;
-    @include font(50, 48);
+    @include font(40, 38);
+
+    @include media(mobile) {
+      @include font(50, 48);
+    }
 
     @include media(tablet) {
       @include font(80, 77);

@@ -3,8 +3,11 @@ import logo from "/img/logo/logo-min.svg";
 import logoWhite from "/img/logo/logo-white.svg";
 import style from "./Logo.module.scss";
 
-const Logo: FC = () => {
-  const isHomePage = false;
+type LogoProps = {
+  isHomePage: boolean;
+};
+
+const Logo: FC<LogoProps> = ({ isHomePage }) => {
   return (
     <div>
       <a href="/">

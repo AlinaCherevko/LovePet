@@ -5,12 +5,18 @@ import style from "./BurgerBtn.module.scss";
 
 export type BurgerBtnProps = {
   onOpen: () => void;
+  isHomePage: boolean;
 };
 
-const BurgerBtn: FC<BurgerBtnProps> = ({ onOpen }) => {
+const BurgerBtn: FC<BurgerBtnProps> = ({ onOpen, isHomePage }) => {
   return (
     <button className={style.button} type="button" onClick={onOpen}>
-      <Icon id="icon-menu" stroke="#262626" width="32px" height="32px" />
+      <Icon
+        id="icon-menu"
+        stroke={isHomePage ? "#ffffff" : "#262626"}
+        width="32px"
+        height="32px"
+      />
     </button>
   );
 };

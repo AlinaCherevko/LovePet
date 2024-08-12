@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import style from "./HomePage.module.scss";
+import HomeImgBlock from "./HomeImgBlock/HomeImgBlock";
 
 const HomePage: FC = () => {
   return (
@@ -14,33 +15,7 @@ const HomePage: FC = () => {
           life with immeasurable joy and tenderness.
         </p>
       </div>
-      <picture>
-        <source
-          srcSet="/img/home/home-desktop-1x-min.png 1x,
-          /img/home/home-desktop-2x-min.png 2x
-        "
-          media="(min-width: 1440px)"
-        />
-        <source
-          srcSet="
-          /img/home/home-tablet-1x-min.png 1x,
-          /img/home/home-tablet-2x-min.png 2x
-        "
-          media="(min-width: 768px)"
-        />
-        <source
-          srcSet="
-          /img/home/home-mob-1x-min.png 1x,
-          /img/home/home-mob-2x-min.png 2x
-        "
-          media="(min-width: 320px)"
-        />
-        <img
-          className={style.home__image}
-          src=" /img/home/home-mob-1x-min.png"
-          alt="home-img"
-        />
-      </picture>
+      <HomeImgBlock />
     </div>
   );
 };

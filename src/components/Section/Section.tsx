@@ -1,18 +1,14 @@
 import { FC, ReactNode } from "react";
 import style from "./Section.module.scss";
 
-type Props = {
-  title: string;
+export type SectionProps = {
   children?: ReactNode;
 };
 
-const Section: FC<Props> = ({ title, children }) => {
+const Section: FC<SectionProps> = ({ children }) => {
   return (
     <section className={style.section}>
-      <div className="container">
-        <h2 className={style.title}>{title}</h2>
-        {children}
-      </div>
+      <div className="container">{children}</div>
     </section>
   );
 };

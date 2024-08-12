@@ -8,4 +8,11 @@
     padding-top: 114px;
     padding-bottom: 32px;
   }
+
+  &__wrapper {
+    @include media(desktop) {
+      display: flex;
+      gap: 32px;
+    }
+  }
 }

@@ -2,21 +2,25 @@ import type { FC } from "react";
 import style from "./Navigation.module.scss";
 import NavigationLink, { ColorTheme } from "./NavigationLink/NavigationLink";
 
-const Navigation: FC = () => {
+type NavProps = {
+  isHomePage: boolean;
+};
+
+const Navigation: FC<NavProps> = ({ isHomePage }) => {
   return (
     <div className={style.navigation}>
       <NavigationLink
-        type={ColorTheme.White}
+        type={isHomePage ? ColorTheme.Orange : ColorTheme.White}
         to={"/news"}
         text="News"
       ></NavigationLink>
       <NavigationLink
-        type={ColorTheme.White}
+        type={isHomePage ? ColorTheme.Orange : ColorTheme.White}
         to={"/notices"}
         text="Find pet"
       ></NavigationLink>
       <NavigationLink
-        type={ColorTheme.White}
+        type={isHomePage ? ColorTheme.Orange : ColorTheme.White}
         to={"/friends"}
         text="Our friends"
       ></NavigationLink>

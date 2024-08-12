@@ -5,6 +5,8 @@
   top: 0;
   right: 0;
   padding: 28px 20px 40px 20px;
+  z-index: 10;
+  overflow: auto;
 
   @include media(tablet) {
     width: 374px;

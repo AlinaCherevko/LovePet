@@ -1,0 +1,9 @@
+@import "../../../styles/index.scss";
+.title {
+  @include font(28, 28);
+  font-weight: 700;
+
+  @include media(tablet) {
+    @include font(54, 54);
+  }
+}

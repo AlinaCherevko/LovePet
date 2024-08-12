@@ -1,0 +1,26 @@
+@import "../../styles/index.scss";
+
+.button {
+  height: 42px;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  @include font(14, 18);
+  font-weight: 700;
+  color: $_white_color;
+  background-color: $_accent_color;
+  transition-property: all;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
+
+  &:hover,
+  &:focus {
+    color: $_accent_color;
+    background-color: $_hover_color;
+  }
+  @include media(tablet) {
+    height: 52px;
+    @include font(16, 20);
+  }
+}
