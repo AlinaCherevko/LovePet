@@ -8,7 +8,7 @@ type NewsProps = {
 
 const NewsItem: FC<NewsProps> = ({ item }) => {
   return (
-    <li key={item._id} className={style.newsItem}>
+    <li className={style.newsItem}>
       <div className={style.newsItem__wrapper}>
         <img
           src={item.imgUrl}

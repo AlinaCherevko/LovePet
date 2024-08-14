@@ -3,7 +3,11 @@ import { INewsState } from "./types";
 import { getNews } from "./newsOperations";
 
 const initialState: INewsState = {
-  news: [],
+  news: {
+    results: [],
+    totalPages: 0,
+    perPage: 0,
+  },
   isLoading: false,
   isError: false,
 };

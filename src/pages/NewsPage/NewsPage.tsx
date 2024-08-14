@@ -6,12 +6,9 @@ import { getNews } from "../../redux/news/newsOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import NewsList from "./NewsList/NewsList";
-import ReactPaginate from "react-paginate";
+import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import style from "./NewsPage.module.scss";
 
-interface IPageClickEvent {
-  selected: number;
-}
 const NewsPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const dispatch: AppDispatch = useDispatch();
@@ -21,7 +18,7 @@ const NewsPage: FC = () => {
     dispatch(getNews(page));
   }, [dispatch, page]);
 
-  const handlePageClick = (e: IPageClickEvent) => {
+  const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
     setPage(e.selected + 1);
   };
   return (

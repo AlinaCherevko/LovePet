@@ -10,7 +10,7 @@ export interface INewsProps {
 const NewsList: FC<INewsProps> = ({ news }) => {
   return (
     <ul className={style.newsList}>
-      {news && news.map((item) => <NewsItem item={item} />)}
+      {news && news.map((item) => <NewsItem key={item._id} item={item} />)}
     </ul>
   );
 };

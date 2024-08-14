@@ -8,7 +8,6 @@ export const getNews = createAsyncThunk(
   async (page: number = 1, thunkAPI) => {
     try {
       const { data } = await axios.get(`/news?page=${page}`);
-      console.log(data);
       return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {
