@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth/authSlise";
 import {
   FLUSH,
@@ -19,11 +19,14 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
+const rootReducer = combineReducers({
+  auth: persistReducer(authPersistConfig, authSlice.reducer),
+  news: newsSlice.reducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    auth: persistReducer(authPersistConfig, authSlice.reducer),
-    news: newsSlice.reducer,
-  },
+  reducer: rootReducer,
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -33,4 +36,5 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export const persistor = persistStore(store);

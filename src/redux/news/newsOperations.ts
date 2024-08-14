@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
+import { axios } from "../auth/authOperations";
 
 export const getNews = createAsyncThunk(
   "news/getNews",
 
-  async (_, thunkAPI) => {
+  async (page: number = 1, thunkAPI) => {
     try {
-      const { data } = await axios.get("/news");
+      const { data } = await axios.get(`/news?page=${page}`);
+      console.log(data);
       return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {

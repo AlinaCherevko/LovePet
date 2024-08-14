@@ -3,7 +3,9 @@ import axios1, { AxiosError } from "axios";
 import { ILogin, IPet, ISignup } from "./types";
 import { RootState } from "../store";
 
-const axios = axios1.create({ baseURL: "https://petlove.b.goit.study/api" });
+export const axios = axios1.create({
+  baseURL: "https://petlove.b.goit.study/api",
+});
 
 const setAuthHeader = (token: string) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

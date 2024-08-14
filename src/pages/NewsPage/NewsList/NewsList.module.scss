@@ -1,0 +1,18 @@
+@import "../../../styles/index.scss";
+
+.newsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include media(tablet) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 32px;
+    column-gap: 24px;
+  }
+  @include media(desktop) {
+    row-gap: 40px;
+    column-gap: 35px;
+  }
+}

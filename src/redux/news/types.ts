@@ -1,3 +1,9 @@
+export interface IResults {
+  results: INews[];
+  totalPages: number;
+  perPage: number;
+}
+
 export interface INews {
   _id: string;
   imgUrl: string;
@@ -9,7 +15,7 @@ export interface INews {
 }
 
 export interface INewsState {
-  news: INews[];
+  news: IResults;
   isLoading: boolean;
   isError: boolean;
 }

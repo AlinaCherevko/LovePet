@@ -1,1 +1,60 @@
 @import "../../styles/index.scss";
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 44px;
+  list-style: none;
+
+  @include media(tablet) {
+    margin-top: 60px;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &.selected .pagination__link {
+      color: $_white_color;
+      background-color: $_accent_color;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $_bg_button;
+    background-color: $_white_color;
+    border-radius: 50%;
+    @include font(14, 18);
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      color: $_white_color;
+      background-color: $_accent_color;
+    }
+  }
+
+  &__prev,
+  &__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $_bg_button;
+    background-color: $_white_color;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.disable {
+      cursor: default;
+      background-color: $_bg_button;
+    }
+  }
+}

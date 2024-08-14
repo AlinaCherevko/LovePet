@@ -19,7 +19,7 @@ export const newsSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(getNews.fulfilled, (state, { payload }) => {
-      state.news = payload.data;
+      state.news = payload;
       state.isError = false;
       state.isLoading = false;
     });
