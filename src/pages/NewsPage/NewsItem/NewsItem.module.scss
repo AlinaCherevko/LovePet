@@ -22,6 +22,7 @@
     width: 100%;
     height: 190px;
     margin-bottom: 20px;
+    object-fit: cover;
     @include media(tablet) {
       height: 226px;
     }

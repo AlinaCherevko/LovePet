@@ -2,12 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { axios } from "../auth/authOperations";
 
+export interface INewsParams {
+  page: number;
+  inputValue?: string;
+}
+
 export const getNews = createAsyncThunk(
   "news/getNews",
 
-  async (page: number = 1, thunkAPI) => {
+  async ({ page = 1, inputValue }: INewsParams, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/news?page=${page}`);
+      const { data } = await axios.get(
+        `/news?page=${page}&keyword=${inputValue}`
+      );
       return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response) {

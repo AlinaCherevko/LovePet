@@ -1,5 +1,24 @@
 @import "../../styles/index.scss";
 
+.wrapper {
+  @include media(desktop) {
+    padding: 0 31px;
+  }
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  @include media(tablet) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+  }
+  @include media(desktop) {
+    margin-bottom: 60px;
+  }
+}
 .pagination {
   display: flex;
   gap: 10px;

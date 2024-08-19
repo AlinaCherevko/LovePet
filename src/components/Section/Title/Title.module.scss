@@ -6,10 +6,11 @@
 
   @include media(tablet) {
     @include font(54, 54);
-    margin-bottom: 44px;
+    //margin-bottom: 44px;
+    margin-bottom: 0;
   }
 
   @include media(desktop) {
-    margin-bottom: 40px;
+    //margin-bottom: 40px;
   }
 }
