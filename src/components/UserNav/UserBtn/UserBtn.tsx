@@ -3,7 +3,7 @@ import Icon from "../../Icon/Icon";
 import style from "./UserBtn.module.scss";
 import { useNavigate } from "react-router-dom";
 
-const UserBtn: FC = () => {
+const BtnIcon: FC = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/profile");
@@ -15,4 +15,4 @@ const UserBtn: FC = () => {
   );
 };
 
-export default UserBtn;
+export default BtnIcon;

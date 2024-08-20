@@ -19,3 +19,8 @@ export interface INewsState {
   isLoading: boolean;
   isError: boolean;
 }
+
+export interface INewsParams {
+  page: number;
+  inputValue?: string;
+}

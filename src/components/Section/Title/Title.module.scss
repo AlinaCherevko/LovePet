@@ -11,6 +11,7 @@
   }
 
   @include media(desktop) {
+    padding: 0 31px;
     //margin-bottom: 40px;
   }
 }

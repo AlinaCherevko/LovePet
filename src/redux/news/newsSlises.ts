@@ -27,7 +27,6 @@ export const newsSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
     });
-
     builder.addCase(getNews.rejected, (state) => {
       state.isError = true;
       state.isLoading = false;

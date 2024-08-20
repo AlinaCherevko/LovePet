@@ -1,11 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { axios } from "../auth/authOperations";
-
-export interface INewsParams {
-  page: number;
-  inputValue?: string;
-}
+import { INewsParams } from "./types";
 
 export const getNews = createAsyncThunk(
   "news/getNews",

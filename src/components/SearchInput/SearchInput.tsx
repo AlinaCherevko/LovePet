@@ -7,9 +7,10 @@ export interface IInput {
   type?: string;
   value: string;
   onChange: (prop: string) => void;
+  placeholder: string;
 }
 
-const SearchInput: FC<IInput> = ({ type, value, onChange }) => {
+const SearchInput: FC<IInput> = ({ type, value, onChange, placeholder }) => {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value;
     onChange(inputValue);
@@ -23,7 +24,7 @@ const SearchInput: FC<IInput> = ({ type, value, onChange }) => {
       <input
         className={className}
         type="text"
-        placeholder="Search"
+        placeholder={placeholder}
         value={value}
         onChange={onInputChange}
       />

@@ -2,6 +2,10 @@
 
 .wrapper {
   position: relative;
+
+  @include media(tablet) {
+    width: 230px;
+  }
 }
 
 .input {
@@ -30,6 +34,11 @@
     height: 48px;
     padding-left: 15px;
     @include font(16, 20);
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid $_accent_color;
   }
 }
 

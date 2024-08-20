@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { newsSlice } from "./news/newsSlises";
+import { noticesSlice } from "./notices/noticesSlise";
 
 const authPersistConfig = {
   key: "auth",
@@ -22,6 +23,7 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authSlice.reducer),
   news: newsSlice.reducer,
+  notices: noticesSlice.reducer,
 });
 
 export const store = configureStore({

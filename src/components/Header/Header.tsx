@@ -11,6 +11,7 @@ import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import { useLocation } from "react-router-dom";
 
 const Header: FC = () => {
+  const isAuth = true;
   const [isHomePage, setIsHomePage] = useState<boolean>(false);
   const location = useLocation();
 
@@ -30,16 +31,24 @@ const Header: FC = () => {
     setIsVisibleMobMenu(true);
   };
 
-  const isAuth = false;
   return (
     <section className={style.header}>
       <div className="container">
-        <div className={style.header__wrapper}>
-          <Logo isHomePage={isHomePage} />
-          <Navigation isHomePage={isHomePage} />
-          {isAuth ? <UserNav /> : <AuthNav />}
-          <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
-        </div>
+        {isHomePage ? (
+          <div className={style.header__wrapper}>
+            <Logo isHomePage={isHomePage} />
+            <Navigation isHomePage={isHomePage} />
+            {isAuth ? <UserNav /> : <AuthNav />}
+            <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+          </div>
+        ) : (
+          <div className={style.header__wrapper2}>
+            <Logo isHomePage={isHomePage} />
+            <Navigation isHomePage={isHomePage} />
+            {isAuth ? <UserNav /> : <AuthNav />}
+            <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+          </div>
+        )}
       </div>
       {isVisibleMobMenu && (
         <MobMenu type={ColorTheme.White} onClose={onClose} />
