@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addNotice,
   getLocations,
   getNotices,
   getNoticesCategories,
   getNoticesSex,
   getNoticesSpecies,
+  getOneNotice,
+  removeNotice,
 } from "./noticesOperations";
 import { INoticesState } from "./types";
 
@@ -14,10 +17,12 @@ const initialState: INoticesState = {
     totalPages: 0,
     perPage: 0,
   },
+  notice: null,
   species: [],
   sex: [],
   categories: [],
   locations: [],
+  favorites: [],
   isLoading: false,
   isError: false,
 };
@@ -45,7 +50,14 @@ export const noticesSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
     });
-
+    //one notice
+    builder.addCase(getOneNotice.pending, isPending);
+    builder.addCase(getOneNotice.rejected, isRejected);
+    builder.addCase(getOneNotice.fulfilled, (state, { payload }) => {
+      state.notice = payload;
+      state.isError = false;
+      state.isLoading = false;
+    });
     //species
     builder.addCase(getNoticesSpecies.pending, isPending);
     builder.addCase(getNoticesSpecies.rejected, isRejected);
@@ -75,6 +87,24 @@ export const noticesSlice = createSlice({
     builder.addCase(getLocations.rejected, isRejected);
     builder.addCase(getLocations.fulfilled, (state, { payload }) => {
       state.locations = payload;
+      state.isError = false;
+      state.isLoading = false;
+    });
+    //add notice
+    builder.addCase(addNotice.pending, isPending);
+    builder.addCase(addNotice.rejected, isRejected);
+    builder.addCase(addNotice.fulfilled, (state, { payload }) => {
+      state.favorites = payload;
+      state.isError = false;
+      state.isLoading = false;
+    });
+    //remove notice
+    builder.addCase(removeNotice.pending, isPending);
+    builder.addCase(removeNotice.rejected, isRejected);
+    builder.addCase(removeNotice.fulfilled, (state, { payload }) => {
+      state.favorites = [...state.favorites].filter(
+        (favorite) => favorite._id !== payload
+      );
       state.isError = false;
       state.isLoading = false;
     });

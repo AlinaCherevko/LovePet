@@ -1,10 +1,10 @@
-import { useEffect, type FC } from "react";
+import { useEffect, useMemo, type FC } from "react";
 import Select, { StylesConfig } from "react-select";
 import style from "./SelectType.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { speciesSelector } from "../../redux/notices/noticesSelectors";
+import { locationsSelector } from "../../redux/notices/noticesSelectors";
 import { AppDispatch } from "../../redux/store";
-import { getNoticesSpecies } from "../../redux/notices/noticesOperations";
+import { getLocations } from "../../redux/notices/noticesOperations";
 import { useMediaQuery } from "react-responsive";
 
 // export interface ISelectType {
@@ -13,30 +13,30 @@ import { useMediaQuery } from "react-responsive";
 //   speciesData?: [];
 // }
 
-interface IOptionType {
-  value: string;
-}
-
 interface IOptions {
   value: string;
   label: string;
 }
 
-const SelectType: FC = () => {
+const SelectLocation: FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const species = useSelector(speciesSelector);
+  const locations = useSelector(locationsSelector);
 
   useEffect(() => {
-    dispatch(getNoticesSpecies());
+    dispatch(getLocations());
   }, [dispatch]);
 
-  const speciesOptions: IOptions[] = species.map((item) => ({
-    value: item,
-    label: item.charAt(0).toUpperCase() + item.slice(1),
-  }));
+  const locationOptions = useMemo(
+    () =>
+      locations.map(({ cityEn, stateEn }) => ({
+        value: cityEn,
+        label: `${cityEn}, ${stateEn}`,
+      })),
+    [locations]
+  );
 
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const customStyles: StylesConfig<IOptionType> = {
+  const customStyles: StylesConfig<IOptions> = {
     placeholder: (provided) => ({
       ...provided,
       color: "#262626",
@@ -48,7 +48,7 @@ const SelectType: FC = () => {
       ...provided,
       backgroundColor: "#ffffff",
       border: "1px solid transparent",
-      width: isMobile ? "240px" : "190px",
+      width: isMobile ? "144px" : "170px",
       height: isMobile ? "42px" : "48px",
       boxShadow: "none",
       borderRadius: "30px",
@@ -90,16 +90,13 @@ const SelectType: FC = () => {
   return (
     <div className={style.filters}>
       <Select
-        className={style.selector}
-        classNamePrefix="selector"
-        //onChange={onSelectChange}
-        name="type"
-        options={speciesOptions}
-        placeholder="By type"
+        options={locationOptions}
+        placeholder="Location"
         styles={customStyles}
+        isClearable
       />
     </div>
   );
 };
 
-export default SelectType;
+export default SelectLocation;

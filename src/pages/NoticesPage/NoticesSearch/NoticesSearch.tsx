@@ -2,6 +2,9 @@ import type { FC } from "react";
 import SearchInput from "../../../components/SearchInput/SearchInput";
 import SelectType from "../../../components/Selects/SelectType";
 import style from "./NoticesSearch.module.scss";
+import SelectGender from "../../../components/Selects/SelectGender";
+import SelectCategory from "../../../components/Selects/SelectCategory";
+import SelectLocation from "../../../components/Selects/SelectLocation";
 
 export interface INoticesSearchProps {
   inputValue: string;
@@ -16,8 +19,11 @@ const NoticesSearch: FC<INoticesSearchProps> = ({ onChange, inputValue }) => {
         onChange={onChange}
         value={inputValue}
       />
-      <div className={style.search__wrapper}></div>
+
+      <SelectCategory />
+      <SelectGender />
       <SelectType />
+      <SelectLocation />
     </div>
   );
 };

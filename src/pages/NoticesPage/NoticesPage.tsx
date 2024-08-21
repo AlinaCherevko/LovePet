@@ -16,8 +16,6 @@ const NoticesPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { results, totalPages } = useSelector(noticesSelector);
 
-  console.log(results, totalPages);
-
   useEffect(() => {
     dispatch(getNotices({ page, inputValue }));
   }, [dispatch, page, inputValue]);

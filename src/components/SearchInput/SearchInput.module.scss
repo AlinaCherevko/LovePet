@@ -13,7 +13,7 @@
   height: 42px;
   border-radius: 30px;
   padding-left: 12px;
-  border: none;
+  border: 1px solid transparent;
   @include font(14, 18);
 
   &::placeholder {

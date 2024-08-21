@@ -27,12 +27,21 @@ export interface INoticesResults {
   perPage: number;
 }
 
+export interface ILocation {
+  cityEn: string | "";
+  countyEn: string;
+  stateEn: string;
+  useCounty: string;
+  _id: string;
+}
 export interface INoticesState {
   notices: INoticesResults;
+  notice: INotices | null;
   species: string[];
   sex: string[];
   categories: string[];
-  locations: string[];
+  locations: ILocation[];
+  favorites: INotices[];
   isLoading: boolean;
   isError: boolean;
 }
