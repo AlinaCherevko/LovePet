@@ -1,11 +1,11 @@
 import { StylesConfig } from "react-select";
 import { useMediaQuery } from "react-responsive";
 
-interface IOptionType {
-  value: string;
-}
+// interface IOptionType {
+//   value: string;
+// }
 
-export const useSelectStyles = (): StylesConfig<IOptionType> => {
+export const useSelectStyles = (): StylesConfig => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return {

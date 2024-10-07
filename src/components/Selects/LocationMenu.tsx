@@ -1,15 +1,13 @@
 import { type FC } from "react";
-import { components, GroupBase, MenuListProps } from "react-select";
+import { components, MenuListProps } from "react-select";
 import { FixedSizeList as List } from "react-window";
 
-interface IOptionType {
-  value: string;
-  label: string;
-}
+// interface IOptionType {
+//   value: string;
+//   label: string;
+// }
 
-const MenuList: FC<
-  MenuListProps<IOptionType, boolean, GroupBase<IOptionType>>
-> = (props) => {
+const MenuList: FC<MenuListProps> = (props) => {
   const { options, children, maxHeight, getValue } = props;
   const height = 45;
   const [value] = getValue();
