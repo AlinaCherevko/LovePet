@@ -12,7 +12,12 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AddPetPage from "./pages/AddPetPage/AddPetPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
+//import { useDispatch } from "react-redux";
+//import { AppDispatch } from "./redux/store";
+
 function App() {
+  //const dispatch: AppDispatch = useDispatch();
+
   useEffect(() => {}, []);
 
   return (

@@ -1,7 +1,10 @@
 import { useEffect, useState, type FC } from "react";
 import Title from "../../components/Section/Title/Title";
 import Section from "../../components/Section/Section";
-import { getNotices } from "../../redux/notices/noticesOperations";
+import {
+    //getLocations,
+  getNotices,
+} from "../../redux/notices/noticesOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { noticesSelector } from "../../redux/notices/noticesSelectors";
 import { AppDispatch } from "../../redux/store";
@@ -19,6 +22,10 @@ const NoticesPage: FC = () => {
   useEffect(() => {
     dispatch(getNotices({ page, inputValue }));
   }, [dispatch, page, inputValue]);
+
+  // useEffect(() => {
+  //   dispatch(getLocations);
+  // }, [dispatch]);
 
   const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
     setPage(e.selected + 1);
