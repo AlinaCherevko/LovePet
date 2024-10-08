@@ -11,7 +11,7 @@ const ProfilePage: FC = () => {
       <div className="container">
         <div className={style.profile__wrapper}>
           <EditBtn />
-          <Avatar />
+          <Avatar id="icon-user" />
           <UserInfo />
           <MyPets />
         </div>

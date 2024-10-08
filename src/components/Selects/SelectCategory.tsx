@@ -6,7 +6,7 @@ import { categoriesSelector } from "../../redux/notices/noticesSelectors";
 import { AppDispatch } from "../../redux/store";
 import { getNoticesCategories } from "../../redux/notices/noticesOperations";
 
-import { useSelectStyles } from "../../constants/selectors";
+import { useSelectStyles } from "../../constants/hooks";
 
 interface IOptions {
   value: string;

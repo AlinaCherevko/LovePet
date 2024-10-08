@@ -1,18 +1,21 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import style from "./RegisterForm.module.scss";
 import Title from "../../../components/Section/Title/Title";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import ButtonForm from "../../../components/Button/ButtonForm";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
+import { IFormInput } from "../types";
+import { signup } from "../../../redux/auth/authOperations";
 
-interface IFormInput {
-  name: string;
-  email: string;
-  password: string;
-  confirmedPassword: string;
-}
+import style from "./RegisterForm.module.scss";
+import { useValidNavigate } from "../../../constants/hooks";
+
 const RegisterForm: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
+  useValidNavigate();
   const {
     register,
     handleSubmit,
@@ -24,8 +27,10 @@ const RegisterForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(errors);
-    console.log(data);
+    dispatch(
+      signup({ name: data.name, email: data.email, password: data.password })
+    );
+
     reset();
   };
   const isNameValid = !errors.name && getValues("name");

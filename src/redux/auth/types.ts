@@ -33,3 +33,15 @@ export interface IPet {
   birthday: string;
   sex: string;
 }
+
+export interface IRegData {
+  name: string;
+  email: string;
+  token: string;
+}
+export interface IRefresh {
+  _id: string;
+  name: string;
+  email: string;
+  token: string;
+}

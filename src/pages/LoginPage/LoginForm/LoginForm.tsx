@@ -1,10 +1,14 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import style from "./LoginForm.module.scss";
 import Title from "../../../components/Section/Title/Title";
 import { Link } from "react-router-dom";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import classNames from "classnames";
+import { logIn } from "../../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
+import { useValidNavigate } from "../../../constants/hooks";
+import style from "./LoginForm.module.scss";
 
 interface IFormInput {
   email: string;
@@ -12,6 +16,10 @@ interface IFormInput {
 }
 
 const LoginForm: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
+  useValidNavigate();
+
   const {
     register,
     handleSubmit,
@@ -23,8 +31,8 @@ const LoginForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(errors);
-    console.log(data);
+    dispatch(logIn({ email: data.email, password: data.password }));
+
     reset();
   };
 

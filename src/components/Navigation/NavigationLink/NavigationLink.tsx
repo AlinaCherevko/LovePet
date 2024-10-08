@@ -7,6 +7,7 @@ export type NavProps = {
   type: ColorTheme;
   to?: string;
   text: string;
+  onClick?: () => void;
 };
 export enum ColorTheme {
   White = "white",

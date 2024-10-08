@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { genderSelector } from "../../redux/notices/noticesSelectors";
 import { AppDispatch } from "../../redux/store";
 import { getNoticesSex } from "../../redux/notices/noticesOperations";
-import { useSelectStyles } from "../../constants/selectors";
+import { useSelectStyles } from "../../constants/hooks";
 
 import style from "./SelectType.module.scss";
 

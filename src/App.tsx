@@ -12,15 +12,22 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AddPetPage from "./pages/AddPetPage/AddPetPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
-//import { useDispatch } from "react-redux";
-//import { AppDispatch } from "./redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "./redux/store";
+import { refreshUser } from "./redux/auth/authOperations";
+import { selectRefreshing } from "./redux/auth/authSelectors";
 
 function App() {
-  //const dispatch: AppDispatch = useDispatch();
+  const isRefreshing = useSelector(selectRefreshing);
+  const dispatch: AppDispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <div>Loading...</div>
+  ) : (
     <Suspense>
       <Routes>
         <Route path="/" element={<MainLayout />}>

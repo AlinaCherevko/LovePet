@@ -2,7 +2,7 @@ import { useEffect, useMemo, type FC } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import { locationsSelector } from "../../redux/notices/noticesSelectors";
-import { useSelectStyles } from "../../constants/selectors";
+import { useSelectStyles } from "../../constants/hooks";
 
 import MenuList from "./LocationMenu";
 import { getLocations } from "../../redux/notices/noticesOperations";

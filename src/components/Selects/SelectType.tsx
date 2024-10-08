@@ -6,7 +6,7 @@ import { speciesSelector } from "../../redux/notices/noticesSelectors";
 import { AppDispatch } from "../../redux/store";
 import { getNoticesSpecies } from "../../redux/notices/noticesOperations";
 
-import { useSelectStyles } from "../../constants/selectors";
+import { useSelectStyles } from "../../constants/hooks";
 
 // export interface ISelectType {
 //   selectValue?: string;

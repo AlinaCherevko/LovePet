@@ -4,7 +4,7 @@ import { NavProps } from "../../Navigation/NavigationLink/NavigationLink";
 import classNames from "classnames";
 import style from "./AuthLink.module.scss";
 
-const AuthLink: FC<NavProps> = ({ type, to, text }) => {
+const AuthLink: FC<NavProps> = ({ type, to, text, onClick }) => {
   const className = classNames(style["auth-link"], style[`auth-link--${type}`]);
   return (
     <>
@@ -13,7 +13,9 @@ const AuthLink: FC<NavProps> = ({ type, to, text }) => {
           {text}
         </NavLink>
       ) : (
-        <a className={className}>{text}</a>
+        <a className={className} onClick={onClick}>
+          {text}{" "}
+        </a>
       )}
     </>
   );

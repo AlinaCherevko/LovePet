@@ -9,11 +9,15 @@ import style from "./Header.module.scss";
 import BurgerBtn from "../MobMenu/BurgerBtn/BurgerBtn";
 import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectIsAuth } from "../../redux/auth/authSelectors";
 
 const Header: FC = () => {
-  const isAuth = true;
-  const [isHomePage, setIsHomePage] = useState<boolean>(false);
+  const isAuth = useSelector(selectIsAuth);
   const location = useLocation();
+  console.log(isAuth);
+  const [isHomePage, setIsHomePage] = useState<boolean>(false);
+  const [isVisibleMobMenu, setIsVisibleMobMenu] = useState<boolean>(false);
 
   useEffect(() => {
     if (location.pathname === "/home" || location.pathname === "/") {
@@ -23,7 +27,6 @@ const Header: FC = () => {
     }
   }, [location.pathname]);
 
-  const [isVisibleMobMenu, setIsVisibleMobMenu] = useState<boolean>(false);
   const onClose = () => {
     setIsVisibleMobMenu(false);
   };

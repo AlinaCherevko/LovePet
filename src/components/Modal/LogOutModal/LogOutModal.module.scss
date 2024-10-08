@@ -1,0 +1,48 @@
+@import "../../../styles/index.scss";
+
+.modal {
+  background-color: $_white_color;
+  text-align: center;
+  border-radius: 30px;
+
+  @include media(mobile) {
+    width: 335px;
+    height: 270px;
+    padding: 40px 28px;
+  }
+  @include media(tablet) {
+    width: 448px;
+    height: 364px;
+    padding: 80px;
+  }
+  &__img {
+    height: 44px;
+    width: 44px;
+  }
+  &__fake {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: $_accent_light;
+    margin-bottom: 20px;
+  }
+  &__title {
+    @include font(20, 20);
+    font-weight: 700;
+    margin-bottom: 28px;
+
+    @include media(tablet) {
+      @include font(24, 28);
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 8px;
+  }
+}

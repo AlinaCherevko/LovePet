@@ -3,11 +3,12 @@ import style from "./ButtonForm.module.scss";
 
 export type ButtonProps = {
   text: string;
+  onClick?: () => void;
 };
 
-const ButtonForm: FC<ButtonProps> = ({ text }) => {
+const ButtonForm: FC<ButtonProps> = ({ text, onClick }) => {
   return (
-    <button className={style.button} type="submit">
+    <button className={style.button} type="submit" onClick={onClick}>
       {text}
     </button>
   );
