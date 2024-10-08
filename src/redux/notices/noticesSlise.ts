@@ -1,13 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  addNotice,
   getLocations,
   getNotices,
   getNoticesCategories,
   getNoticesSex,
   getNoticesSpecies,
   getOneNotice,
-  removeNotice,
 } from "./noticesOperations";
 import { INoticesState } from "./types";
 
@@ -90,24 +88,24 @@ export const noticesSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
     });
-    //add notice
-    builder.addCase(addNotice.pending, isPending);
-    builder.addCase(addNotice.rejected, isRejected);
-    builder.addCase(addNotice.fulfilled, (state, { payload }) => {
-      state.favorites = payload;
-      state.isError = false;
-      state.isLoading = false;
-    });
-    //remove notice
-    builder.addCase(removeNotice.pending, isPending);
-    builder.addCase(removeNotice.rejected, isRejected);
-    builder.addCase(removeNotice.fulfilled, (state, { payload }) => {
-      state.favorites = [...state.favorites].filter(
-        (favorite) => favorite._id !== payload
-      );
-      state.isError = false;
-      state.isLoading = false;
-    });
+    // //add notice
+    // builder.addCase(addNotice.pending, isPending);
+    // builder.addCase(addNotice.rejected, isRejected);
+    // builder.addCase(addNotice.fulfilled, (state, { payload }) => {
+    //   state.favorites = payload;
+    //   state.isError = false;
+    //   state.isLoading = false;
+    // });
+    // //remove notice
+    // builder.addCase(removeNotice.pending, isPending);
+    // builder.addCase(removeNotice.rejected, isRejected);
+    // builder.addCase(removeNotice.fulfilled, (state, { payload }) => {
+    //   state.favorites = [...state.favorites].filter(
+    //     (favorite) => favorite._id !== payload
+    //   );
+    //   state.isError = false;
+    //   state.isLoading = false;
+    // });
   },
 });
 

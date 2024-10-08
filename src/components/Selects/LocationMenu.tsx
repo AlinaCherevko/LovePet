@@ -8,7 +8,8 @@ import { FixedSizeList as List } from "react-window";
 // }
 
 const MenuList: FC<MenuListProps> = (props) => {
-  const { options, children, maxHeight, getValue } = props;
+  const { options, children, getValue } = props;
+  const maxHeight = 200;
   const height = 45;
   const [value] = getValue();
   const initialOffset = options.indexOf(value) * height;

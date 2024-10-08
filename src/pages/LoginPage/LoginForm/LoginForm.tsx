@@ -1,13 +1,15 @@
-import { type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Title from "../../../components/Section/Title/Title";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import classNames from "classnames";
 import { logIn } from "../../../redux/auth/authOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
-import { useValidNavigate } from "../../../constants/hooks";
+import { selectError, selectIsAuth } from "../../../redux/auth/authSelectors";
+import { toast } from "react-toastify";
+
 import style from "./LoginForm.module.scss";
 
 interface IFormInput {
@@ -16,9 +18,23 @@ interface IFormInput {
 }
 
 const LoginForm: FC = () => {
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth);
+  const error = useSelector(selectError);
 
-  useValidNavigate();
+  useEffect(() => {
+    if (!isFirstRender) {
+      if (isAuth) {
+        toast.success("User successfully logIn");
+        navigate("/profile");
+      }
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  }, [error, navigate, isAuth]);
 
   const {
     register,
@@ -31,6 +47,7 @@ const LoginForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    setIsFirstRender(false);
     dispatch(logIn({ email: data.email, password: data.password }));
 
     reset();

@@ -1,10 +1,5 @@
 import { StylesConfig } from "react-select";
 import { useMediaQuery } from "react-responsive";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectError, selectIsAuth } from "../redux/auth/authSelectors";
 
 export const useSelectStyles = (): StylesConfig => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -59,20 +54,4 @@ export const useSelectStyles = (): StylesConfig => {
       },
     }),
   };
-};
-
-export const useValidNavigate = () => {
-  const navigate = useNavigate();
-  const isAuth = useSelector(selectIsAuth);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    if (isAuth) {
-      toast.success("User successfully login");
-      navigate("/profile");
-    }
-    if (error) {
-      toast.error(error as string);
-    }
-  }, [error, navigate, isAuth]);
 };

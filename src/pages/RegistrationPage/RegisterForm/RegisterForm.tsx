@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Title from "../../../components/Section/Title/Title";
 import classNames from "classnames";
@@ -8,14 +8,35 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { IFormInput } from "../types";
 import { signup } from "../../../redux/auth/authOperations";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectError, selectIsAuth } from "../../../redux/auth/authSelectors";
 
 import style from "./RegisterForm.module.scss";
-import { useValidNavigate } from "../../../constants/hooks";
+
+//import { schemaReg } from "../../../shemas/shemas";
+//import { yupResolver } from "@hookform/resolvers/yup";
 
 const RegisterForm: FC = () => {
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector(selectIsAuth);
+  const error = useSelector(selectError);
 
-  useValidNavigate();
+  useEffect(() => {
+    if (!isFirstRender) {
+      if (isAuth) {
+        toast.success("User successfully signUp");
+        navigate("/profile");
+      }
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  }, [error, navigate, isAuth]);
+
   const {
     register,
     handleSubmit,
@@ -23,10 +44,12 @@ const RegisterForm: FC = () => {
     formState: { errors, isValidating },
     reset,
   } = useForm<IFormInput>({
+    //resolver: yupResolver(schemaReg),
     mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    setIsFirstRender(false);
     dispatch(
       signup({ name: data.name, email: data.email, password: data.password })
     );

@@ -7,14 +7,15 @@ import CloseBtn from "./CloseBtn/CloseBtn";
 
 import style from "./MobMenu.module.scss";
 import classNames from "classnames";
+import { selectIsAuth } from "../../redux/auth/authSelectors";
+import { useSelector } from "react-redux";
 
 export type MenuProps = {
   onClose: () => void;
   type?: string;
 };
 const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
-  const isAuth = false;
-
+  const isAuth = useSelector(selectIsAuth);
   const className = classNames(style["menu"], style[`menu--${type}`]);
   return (
     <div className={className}>
