@@ -1,24 +1,17 @@
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import style from "./ProfilePage.module.scss";
 import EditBtn from "./EditBtn/EditBtn";
 import Avatar from "./Avatar/Avatar";
 import UserInfo from "./UserInfo/UserInfo";
 import MyPets from "./MyPets/MyPets";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/authSelectors";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "../../redux/auth/authSelectors";
 import Modal from "../../components/Modal/Modal";
 import UserModal from "../../components/Modal/UserModal/UserModal";
 
 const ProfilePage: FC = () => {
-  const [url, setUrl] = useState<string>("");
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
-
-  useEffect(() => {
-    const blob = new Blob([user.avatar], { type: "image/png" });
-    setUrl(URL.createObjectURL(blob));
-    console.log(url);
-  }, [user.avatar]);
 
   const handleUserModalClick = () => {
     setIsVisibleUserModal(true);
@@ -34,7 +27,7 @@ const ProfilePage: FC = () => {
         <div className="container">
           <div className={style.profile__wrapper}>
             <EditBtn handleUserModalClick={handleUserModalClick} />
-            <Avatar id="icon-user" url={url} />
+            <Avatar id="icon-user" />
             <UserInfo />
             <MyPets />
           </div>
@@ -42,7 +35,7 @@ const ProfilePage: FC = () => {
       </section>
       {isVisibleUserModal && (
         <Modal onClose={onClose}>
-          <UserModal onClose={onClose} url={url} />
+          <UserModal onClose={onClose} />
         </Modal>
       )}
     </>

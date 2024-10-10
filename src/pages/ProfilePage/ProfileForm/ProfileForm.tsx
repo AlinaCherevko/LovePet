@@ -11,6 +11,7 @@ import { selectUser } from "../../../redux/auth/authSelectors";
 import { AppDispatch } from "../../../redux/store";
 import { IUpdateReq, updateProfile } from "../../../redux/auth/authOperations";
 import style from "./ProfileForm.module.scss";
+import { uploadToCloudinary } from "../../../services/services";
 
 type ProfileFormProps = {
   setFile?: (file: File) => void;
@@ -19,9 +20,9 @@ type ProfileFormProps = {
 
 const ProfileForm: FC<ProfileFormProps> = () => {
   const [imageUrl, setImageUrl] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const dispatch: AppDispatch = useDispatch();
   const user = useSelector(selectUser);
-  //console.log(user);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -41,18 +42,20 @@ const ProfileForm: FC<ProfileFormProps> = () => {
     },
   });
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       const selectedFile = files[0];
-      console.log(selectedFile);
 
-      const blob = URL.createObjectURL(selectedFile);
-
-      console.log(blob);
-      const url = `https://${selectedFile.name}`;
+      setFile(selectedFile);
+      const url: string | null = await uploadToCloudinary(selectedFile);
       console.log(url);
-      setImageUrl(url);
+      if (url) {
+        setImageUrl(url);
+        console.log(imageUrl);
+      } else {
+        console.error("Failed attempt to load file");
+      }
     }
   };
 
@@ -61,29 +64,27 @@ const ProfileForm: FC<ProfileFormProps> = () => {
   };
 
   const onSubmit: SubmitHandler<IUpdateReq> = (data) => {
-    let newData: Partial<IUpdateReq> = {};
-    if (data.name !== "") {
-      newData = { ...newData, name: data.name };
+    console.log(data);
+    let formData = {};
+
+    if (data.name) {
+      formData = { ...formData, name: data.name };
     }
-    if (data.email !== "") {
-      newData = { ...newData, email: data.email };
+    if (data.email) {
+      formData = { ...formData, email: data.email };
     }
-    if (data.avatar !== "") {
-      newData = { ...newData, avatar: imageUrl };
+    if (file) {
+      formData = { ...formData, avatar: data.avatar };
     }
-    if (data.phone !== "") {
-      newData = { ...newData, phone: data.phone };
+    if (data.phone) {
+      formData = { ...formData, phone: data.phone };
     }
 
-    console.log(newData);
-    if (Object.keys(newData).length > 0) {
-      dispatch(updateProfile(newData));
+    if (Object.keys(formData).length > 0) {
+      dispatch(updateProfile(formData));
       setImageUrl("");
       reset();
-      //onClose();
     }
-
-    //onClose();
   };
 
   const isNameValid = !errors.name && getValues("name");

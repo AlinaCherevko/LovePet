@@ -114,7 +114,9 @@ export const updateProfile = createAsyncThunk<
   { rejectValue: string }
 >("auth/updateProfile", async (credentials, thunkAPI) => {
   try {
+    console.log(credentials);
     const { data } = await axios.patch("/users/current/edit", credentials);
+    console.log(data);
     return data;
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {

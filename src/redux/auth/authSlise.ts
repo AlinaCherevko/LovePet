@@ -10,7 +10,6 @@ import {
 
 const initialState: IState = {
   user: { name: "", email: "", phone: "", avatar: "" },
-  //blob: "",
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -82,6 +81,7 @@ export const authSlice = createSlice({
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
       state.user.phone = payload.phone;
+      // state.blob = localStorage.getItem("blob");
       state.token = payload.token;
       state.isLoggedIn = true;
       state.isRefreshing = false;
@@ -96,6 +96,7 @@ export const authSlice = createSlice({
     builder.addCase(updateProfile.pending, handleAuthPending);
     builder.addCase(updateProfile.rejected, handleAuthRejected);
     builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
+      console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.phone = payload.phone;
@@ -107,4 +108,4 @@ export const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

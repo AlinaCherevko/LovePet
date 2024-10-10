@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { authSlice } from "./auth/authSlise";
+import { authReducer } from "./auth/authSlise";
 import {
   FLUSH,
   PAUSE,
@@ -21,7 +21,7 @@ const authPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, authSlice.reducer),
+  auth: persistReducer(authPersistConfig, authReducer),
   news: newsSlice.reducer,
   notices: noticesSlice.reducer,
 });
