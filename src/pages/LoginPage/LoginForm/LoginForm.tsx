@@ -12,6 +12,9 @@ import { toast } from "react-toastify";
 
 import style from "./LoginForm.module.scss";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaLog } from "../../../shemas/shemas";
+
 interface IFormInput {
   email: string;
   password: string;
@@ -43,6 +46,7 @@ const LoginForm: FC = () => {
     formState: { errors, isValidating },
     reset,
   } = useForm<IFormInput>({
+    resolver: yupResolver(schemaLog),
     mode: "onChange",
   });
 
@@ -71,13 +75,7 @@ const LoginForm: FC = () => {
                 [style.form__inputSuccess]: isEmailValid && !isValidating,
               })}
               placeholder="Email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                  message: "Enter a valid email",
-                },
-              })}
+              {...register("email")}
             />
             {errors.email && (
               <p className={style.form__error}>{errors.email?.message}</p>
@@ -93,13 +91,7 @@ const LoginForm: FC = () => {
                 [style.form__inputSuccess]: isPasswordValid && !isValidating,
               })}
               placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 7,
-                  message: "Password must be at least 7 characters",
-                },
-              })}
+              {...register("password")}
             />
             {errors.password && (
               <p className={style.form__error}>{errors.password?.message}</p>

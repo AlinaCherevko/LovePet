@@ -17,7 +17,7 @@ import { noticesSlice } from "./notices/noticesSlise";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["user", "token"],
 };
 
 const rootReducer = combineReducers({

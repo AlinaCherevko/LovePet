@@ -15,8 +15,8 @@ import { selectError, selectIsAuth } from "../../../redux/auth/authSelectors";
 
 import style from "./RegisterForm.module.scss";
 
-//import { schemaReg } from "../../../shemas/shemas";
-//import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaReg } from "../../../shemas/shemas";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const RegisterForm: FC = () => {
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
@@ -44,7 +44,7 @@ const RegisterForm: FC = () => {
     formState: { errors, isValidating },
     reset,
   } = useForm<IFormInput>({
-    //resolver: yupResolver(schemaReg),
+    resolver: yupResolver(schemaReg),
     mode: "onChange",
   });
 
@@ -77,13 +77,7 @@ const RegisterForm: FC = () => {
                 [style.form__inputSuccess]: isNameValid && !isValidating,
               })}
               placeholder="Name"
-              {...register("name", {
-                required: "Name is required",
-                minLength: {
-                  value: 2,
-                  message: "Name must be at least 2 characters",
-                },
-              })}
+              {...register("name")}
             />
             {errors.name && (
               <p className={style.form__error}>{errors.name?.message}</p>
@@ -96,13 +90,7 @@ const RegisterForm: FC = () => {
                 [style.form__inputSuccess]: isEmailValid && !isValidating,
               })}
               placeholder="Email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-                  message: "Enter a valid email",
-                },
-              })}
+              {...register("email")}
             />
             {errors.email && (
               <p className={style.form__error}>{errors.email?.message}</p>
@@ -118,13 +106,7 @@ const RegisterForm: FC = () => {
                 [style.form__inputSuccess]: isPasswordValid && !isValidating,
               })}
               placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 7,
-                  message: "Password must be at least 7 characters",
-                },
-              })}
+              {...register("password")}
             />
             {errors.password && (
               <p className={style.form__error}>{errors.password?.message}</p>
@@ -141,11 +123,7 @@ const RegisterForm: FC = () => {
                   isConfirmedPasswordValid && !isValidating,
               })}
               placeholder="Confirm password"
-              {...register("confirmedPassword", {
-                required: "Password is required",
-                validate: (value) =>
-                  value === getValues("password") || "Passwords do not match",
-              })}
+              {...register("confirmedPassword")}
             />
             {errors.confirmedPassword && (
               <p className={style.form__error}>

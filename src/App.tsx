@@ -18,6 +18,7 @@ import { refreshUser } from "./redux/auth/authOperations";
 import { selectRefreshing } from "./redux/auth/authSelectors";
 
 function App() {
+  // const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectRefreshing);
   const dispatch: AppDispatch = useDispatch();
 

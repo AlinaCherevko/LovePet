@@ -1,5 +1,6 @@
 export interface IState {
   user: IUser;
+  //blob: string | null;
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
@@ -44,4 +45,6 @@ export interface IRefresh {
   name: string;
   email: string;
   token: string;
+  avatar: string;
+  phone: string;
 }

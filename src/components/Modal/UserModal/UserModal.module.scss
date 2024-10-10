@@ -1,0 +1,27 @@
+@import "../../../styles/index.scss";
+
+.modal {
+  background-color: $_white_color;
+  text-align: center;
+  border-radius: 30px;
+
+  @include media(mobile) {
+    width: 335px;
+    height: 473px;
+    padding: 40px 20px;
+  }
+  @include media(tablet) {
+    width: 480px;
+    height: 580px;
+    padding: 45px;
+  }
+  &__title {
+    @include font(20, 20);
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    @include media(tablet) {
+      @include font(24, 28);
+    }
+  }
+}

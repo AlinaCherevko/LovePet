@@ -15,7 +15,7 @@ import { selectIsAuth } from "../../redux/auth/authSelectors";
 const Header: FC = () => {
   const isAuth = useSelector(selectIsAuth);
   const location = useLocation();
-  console.log(isAuth);
+  //console.log(isAuth);
   const [isHomePage, setIsHomePage] = useState<boolean>(false);
   const [isVisibleMobMenu, setIsVisibleMobMenu] = useState<boolean>(false);
 

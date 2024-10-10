@@ -1,9 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IState } from "./types";
-import { logIn, logOut, refreshUser, signup } from "./authOperations";
+import {
+  logIn,
+  logOut,
+  refreshUser,
+  signup,
+  updateProfile,
+} from "./authOperations";
 
 const initialState: IState = {
   user: { name: "", email: "", phone: "", avatar: "" },
+  //blob: "",
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -47,6 +54,8 @@ export const authSlice = createSlice({
     builder.addCase(logIn.pending, handleAuthPending);
     builder.addCase(logIn.rejected, handleAuthRejected);
     builder.addCase(logIn.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.user.name = payload.name;
       state.user.email = payload.email;
       state.token = payload.token;
       state.isLoggedIn = true;
@@ -68,8 +77,11 @@ export const authSlice = createSlice({
       state.isRefreshing = true;
     });
     builder.addCase(refreshUser.fulfilled, (state, { payload }) => {
+      console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
+      state.user.avatar = payload.avatar;
+      state.user.phone = payload.phone;
       state.token = payload.token;
       state.isLoggedIn = true;
       state.isRefreshing = false;
@@ -81,12 +93,17 @@ export const authSlice = createSlice({
       state.error = payload;
     });
     // profile
-    // builder.addCase(updateProfile.pending, handleAuthPending);
-    // builder.addCase(updateProfile.rejected, handleAuthRejected);
-    // builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
-    //   state.user = { ...state.user, ...payload.user };
-    //   state.error = "";
-    // });
+    builder.addCase(updateProfile.pending, handleAuthPending);
+    builder.addCase(updateProfile.rejected, handleAuthRejected);
+    builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
+      state.user.name = payload.name;
+      state.user.email = payload.email;
+      state.user.phone = payload.phone;
+      state.user.avatar = payload.avatar;
+      state.token = payload.token;
+      state.isLoggedIn = true;
+      state.error = "";
+    });
   },
 });
 

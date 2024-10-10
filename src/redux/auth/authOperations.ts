@@ -81,7 +81,7 @@ export const refreshUser = createAsyncThunk<
   }
   try {
     setAuthHeader(persistedToken);
-    const { data } = await axios.get("/users/current");
+    const { data } = await axios.get("/users/current/full");
     return data;
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {
@@ -91,21 +91,38 @@ export const refreshUser = createAsyncThunk<
   }
 });
 
-// //update
-// export const updateProfile = createAsyncThunk(
-//   "auth/updateProfile",
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const { data } = await axios.patch("/users/current/edit", credentials);
-//       return data;
-//     } catch (error: unknown) {
-//       if (error instanceof AxiosError && error.response) {
-//         const errorMessage = error.response.data.message;
-//         return thunkAPI.rejectWithValue(errorMessage);
-//       }
-//     }
-//   }
-// );
+interface IUpdate {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  phone: string;
+  token: string;
+}
+
+export interface IUpdateReq {
+  name?: string | null;
+  email?: string | null;
+  avatar?: string | null;
+  phone?: string | null;
+}
+
+//update
+export const updateProfile = createAsyncThunk<
+  IUpdate,
+  IUpdateReq,
+  { rejectValue: string }
+>("auth/updateProfile", async (credentials, thunkAPI) => {
+  try {
+    const { data } = await axios.patch("/users/current/edit", credentials);
+    return data;
+  } catch (error: unknown) {
+    if (error instanceof AxiosError && error.response) {
+      const errorMessage = error.response.data.message;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+});
 
 // //add pet
 // export const addPet = createAsyncThunk(

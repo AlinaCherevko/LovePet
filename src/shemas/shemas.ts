@@ -15,10 +15,11 @@ export const schemaReg = yup
 
     password: yup
       .string()
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-      )
+      .min(7, "Password must be at least 7 characters long")
+      //   .matches(
+      //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      //     "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      //   )
       .required("Password is required"),
 
     confirmedPassword: yup
@@ -40,10 +41,43 @@ export const schemaLog = yup
 
     password: yup
       .string()
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-      )
+      .min(7, "Password must be at least 7 characters long")
+      //   .matches(
+      //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      //     "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      //   )
       .required("Password is required"),
   })
   .required();
+
+// export const schemaUser = yup.object({
+//   name: yup.string(),
+//   //.required("Name is required"),
+
+//   email: yup.string().email("Invalid email format"),
+//   //.required("Email is required"),
+
+//   avatar: yup
+//     .string()
+//     .matches(
+//       /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+//       "Avatar should be valid url"
+//     ),
+
+//   phone: yup.string().matches(/^\+38\d{10}$/, "Phone number is not valid"),
+// });
+export const schemaUser = yup.object({
+  name: yup.string().nullable(),
+  email: yup.string().email("Invalid email format").nullable(),
+  avatar: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+      "Avatar should be valid url"
+    )
+    .nullable(),
+  phone: yup
+    .string()
+    .matches(/^\+38\d{10}$/, "Phone number is not valid")
+    .nullable(),
+});
