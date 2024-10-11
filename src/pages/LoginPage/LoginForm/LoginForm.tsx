@@ -101,7 +101,7 @@ const LoginForm: FC = () => {
             )}
           </div>
         </div>
-        <ButtonForm text="LOG IN" />
+        <ButtonForm text="LOG IN" type="submit" />
       </form>
       <div className={style.linkWrapper}>
         <p className={style.linkWrapper__text}>Don’t have an account?</p>

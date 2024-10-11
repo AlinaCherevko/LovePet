@@ -1,8 +1,6 @@
 @import "../../../styles/index.scss";
 
 .fakePhoto {
-  width: 80px;
-  height: 80px;
   background-color: $_accent_light;
   border-radius: 50%;
   display: flex;
@@ -10,15 +8,40 @@
   align-items: center;
   margin: 0 auto;
   margin-bottom: 12px;
-  //margin-top: 20px;
 
-  @include media(tablet) {
-    width: 86px;
-    height: 86px;
-  }
-  &__img {
+  &--small {
     width: 80px;
     height: 80px;
+
+    @include media(tablet) {
+      width: 86px;
+      height: 86px;
+    }
+  }
+
+  &--medium {
+    width: 94px;
+    height: 94px;
+
+    @include media(tablet) {
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+  &--big {
+    width: 120px;
+    height: 120px;
+
+    @include media(tablet) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  &__img {
+    width: inherit;
+    height: inherit;
     border-radius: 50%;
   }
 }

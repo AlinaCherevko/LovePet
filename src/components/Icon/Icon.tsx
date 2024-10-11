@@ -1,18 +1,23 @@
 import type { FC } from "react";
-import style from "./Icon.module.scss";
 import sprite from "/symbol-defs.svg";
+import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
+import classNames from "classnames";
+
+import style from "./Icon.module.scss";
+
 type IconProps = {
   id: string;
   fill?: string;
   stroke?: string;
   width?: number | string;
   height?: number | string;
+  type?: ColorTheme;
 };
 
-const Icon: FC<IconProps> = ({ id, fill, stroke, width, height }) => {
+const Icon: FC<IconProps> = ({ id, fill, stroke, width, height, type }) => {
   return (
     <svg
-      className={style.svg}
+      className={classNames(style.svg, style[`svg--${type}`])}
       fill={fill}
       stroke={stroke}
       width={width}

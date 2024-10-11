@@ -1,0 +1,88 @@
+@import "../../../styles/index.scss";
+
+.modal {
+  width: 100%;
+  height: auto;
+  background-color: $_white_color;
+  text-align: center;
+  border-radius: 30px;
+
+  @include media(mobile) {
+    width: 335px;
+    //height: 446px;
+    padding: 40px 28px;
+  }
+
+  @include media(tablet) {
+    width: 473px;
+    //height: 476px;
+    padding: 40px 72px;
+  }
+
+  &__title {
+    @include font(16, 20);
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    @include media(tablet) {
+      @include font(18, 24);
+      margin-top: 16px;
+    }
+  }
+  &__popularity {
+    @include font(14, 18);
+    font-weight: 500;
+    margin-top: 10px;
+
+    @include media(tablet) {
+      @include font(14, 20);
+    }
+  }
+  &__comment {
+    @include font(14, 18);
+    font-weight: 500;
+    margin-bottom: 40px;
+
+    @include media(tablet) {
+      margin-bottom: 32px;
+    }
+  }
+  &__btnWrapper {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  gap: 27px;
+  margin-bottom: 18px;
+  margin-top: 24px;
+
+  @include media(mobile) {
+    gap: 16px;
+  }
+
+  @include media(tablet) {
+    margin-bottom: 18px;
+    margin-top: 20px;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text {
+    @include font(10, 14);
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: $_placeholder_color;
+  }
+  &__afterText {
+    @include font(12, 14);
+    font-weight: 500;
+  }
+}

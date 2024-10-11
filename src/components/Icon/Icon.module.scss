@@ -1,3 +1,17 @@
 .svg {
   display: inline-block;
+
+  &--white {
+    stroke: #ffffff;
+    &:hover {
+      stroke: #f6b83d;
+    }
+  }
+  &--orange {
+    stroke: #f6b83d;
+
+    &:hover {
+      stroke: #ffffff;
+    }
+  }
 }

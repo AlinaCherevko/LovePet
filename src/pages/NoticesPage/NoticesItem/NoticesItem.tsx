@@ -1,17 +1,30 @@
-import type { FC } from "react";
-import style from "./NoticesItem.module.scss";
+import { useState, type FC } from "react";
 import { INotices } from "../../../redux/notices/types";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import Icon from "../../../components/Icon/Icon";
+import Modal from "../../../components/Modal/Modal";
+import NoticesModal from "../NoticesModal/NoticesModal";
+
+import style from "./NoticesItem.module.scss";
 
 type NoticesProps = {
   item: INotices;
 };
 
 const NoticesItem: FC<NoticesProps> = ({ item }) => {
+  // const user = useSelector(selectUser);
+  const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
+
+  const handleUserModalClick = () => {
+    setIsVisibleUserModal(true);
+  };
+
+  const onClose = () => {
+    setIsVisibleUserModal(false);
+  };
+
   return (
     <>
-      {" "}
       <li className={style.noticesItem}>
         <div className={style.noticesItem__wrapper}>
           <div>
@@ -51,7 +64,11 @@ const NoticesItem: FC<NoticesProps> = ({ item }) => {
             <p className={style.noticesItem__comment}>{item.comment}</p>
           </div>
           <div className={style.buttonWrapper}>
-            <ButtonForm text="Learn more" />
+            <ButtonForm
+              text="Learn more"
+              onClick={handleUserModalClick}
+              type="button"
+            />
             <button className={style.button} type="button">
               <Icon
                 id="icon-heart"
@@ -64,6 +81,11 @@ const NoticesItem: FC<NoticesProps> = ({ item }) => {
           </div>
         </div>
       </li>
+      {isVisibleUserModal && (
+        <Modal onClose={onClose}>
+          <NoticesModal onClose={onClose} item={item} />
+        </Modal>
+      )}
     </>
   );
 };

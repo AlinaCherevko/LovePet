@@ -135,7 +135,7 @@ const RegisterForm: FC = () => {
             )}
           </div>
         </div>
-        <ButtonForm text="REGISTRATION" />
+        <ButtonForm text="REGISTRATION" type="submit" />
       </form>
       <div className={style.linkWrapper}>
         <p className={style.linkWrapper__text}>Already have an account?</p>

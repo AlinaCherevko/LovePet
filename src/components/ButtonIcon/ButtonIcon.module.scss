@@ -4,6 +4,7 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 12px;
   height: 42px;
   width: 100%;
@@ -11,18 +12,35 @@
   border: none;
   @include font(12, 16);
   font-weight: 700;
-  color: $_dark_color;
+  color: $_accent_color;
   background-color: $_accent_light;
   transition-property: all;
   transition-duration: $_transition_duration;
   transition-timing-function: $_cubic_bezier;
   transition-delay: $_transition_delay;
 
-  &:hover,
-  &:focus {
-    //color: $_accent_color;
-    background-color: $_hover_color;
+  &--white {
+    border-color: $_link_gray;
+    &:hover {
+      background-color: $_hover_color;
+    }
   }
+  &--orange {
+    border: 1px solid $_title_accent;
+    background-color: $_accent_color;
+    color: $_white_color;
+
+    &:hover {
+      background-color: $_accent_light;
+      color: $_accent_color;
+      border: none;
+    }
+
+    &:hover .svg--orange {
+      stroke: #f6b83d;
+    }
+  }
+
   @include media(tablet) {
     height: 52px;
     @include font(16, 20);
@@ -30,5 +48,27 @@
 
   &__text {
     margin-right: 8px;
+  }
+}
+
+.svg {
+  display: inline-block;
+  fill: transparent;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
+
+  &--orange {
+    stroke: #ffffff;
+    // &:hover {
+    //   stroke: #f6b83d;
+    // }
+  }
+  &--white {
+    stroke: #f6b83d;
+
+    // &:hover {
+    //   stroke: #ffffff;
+    // }
   }
 }

@@ -12,6 +12,7 @@ import { AppDispatch } from "../../../redux/store";
 import { IUpdateReq, updateProfile } from "../../../redux/auth/authOperations";
 import style from "./ProfileForm.module.scss";
 import { uploadToCloudinary } from "../../../services/services";
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 
 type ProfileFormProps = {
   setFile?: (file: File) => void;
@@ -126,15 +127,14 @@ const ProfileForm: FC<ProfileFormProps> = () => {
               />
             </div>
             <div className={style.form__inputWrapper}>
-              <ButtonIcon text="Upload photo" onClick={onFakeInputClick}>
-                <Icon
-                  id="icon-cloud-upload"
-                  stroke="#f6b83d"
-                  fill="transparent"
-                  width="18px"
-                  height="18px"
-                />
-              </ButtonIcon>
+              <ButtonIcon
+                id="icon-cloud-upload"
+                width="18px"
+                height="18px"
+                type={ColorTheme.White}
+                text="Upload photo"
+                onClick={onFakeInputClick}
+              ></ButtonIcon>
             </div>
           </div>
           {/* ----------name------------- */}
@@ -186,7 +186,7 @@ const ProfileForm: FC<ProfileFormProps> = () => {
             )}
           </div>
         </div>
-        <ButtonForm text="Go to profile" />
+        <ButtonForm text="Go to profile" type="submit" />
       </form>
     </div>
   );
