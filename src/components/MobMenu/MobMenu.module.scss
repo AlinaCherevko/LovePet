@@ -40,7 +40,7 @@
 
   &__logOut {
     @include media(tablet) {
-      display: none;
+      //display: none;
     }
   }
   &__auth {

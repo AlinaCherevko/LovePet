@@ -18,7 +18,10 @@ const Modal: FC<ModalProps> = ({ onClose, children }) => {
       if (e.key !== "Escape") {
         return;
       }
-      onClose();
+
+      setTimeout(() => {
+        onClose();
+      }, 300);
     };
 
     document.addEventListener("keydown", closeModalByEsc);
@@ -33,7 +36,9 @@ const Modal: FC<ModalProps> = ({ onClose, children }) => {
     if (e.target !== e.currentTarget) {
       return;
     }
-    onClose();
+    setTimeout(() => {
+      onClose();
+    }, 300);
   };
 
   return createPortal(

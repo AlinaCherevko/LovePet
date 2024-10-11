@@ -7,7 +7,6 @@ import CloseBtn from "./CloseBtn/CloseBtn";
 import classNames from "classnames";
 import { selectIsAuth } from "../../redux/auth/authSelectors";
 import { useSelector } from "react-redux";
-
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
 import Modal from "../Modal/Modal";
 import style from "./MobMenu.module.scss";
@@ -21,11 +20,15 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
   const [isVisibleLogOutModal, setIsVisibleLogOutModal] = useState(false);
 
   const handleLogOutClick = () => {
-    setIsVisibleLogOutModal(true);
+    setTimeout(() => {
+      setIsVisibleLogOutModal(true);
+    }, 500);
   };
 
   const onCloseLogOutModal = () => {
-    setIsVisibleLogOutModal(false);
+    setTimeout(() => {
+      setIsVisibleLogOutModal(false);
+    }, 500);
     onClose();
   };
 

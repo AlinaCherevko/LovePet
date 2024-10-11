@@ -1,20 +1,34 @@
 import { useState, type FC } from "react";
 import AuthLink from "../AuthNav/AuthLink/AuthLink";
 import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
-import style from "./UserNav.module.scss";
-import BtnIcon from "./UserBtn/UserBtn";
 import Modal from "../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
+import style from "./UserNav.module.scss";
+import ButtonIcon from "../ButtonIcon/ButtonIcon";
+import { BtnIconSizes } from "../ButtonIcon/types";
 
 const UserNav: FC = () => {
+  const navigate = useNavigate();
+
   const [isVisibleLogOutModal, setIsVisibleLogOutModal] = useState(false);
 
   const handleLogOutClick = () => {
-    setIsVisibleLogOutModal(true);
+    setTimeout(() => {
+      setIsVisibleLogOutModal(true);
+    }, 500);
   };
 
   const onClose = () => {
-    setIsVisibleLogOutModal(false);
+    setTimeout(() => {
+      setIsVisibleLogOutModal(false);
+    }, 500);
+  };
+
+  const handleClickNavigate = () => {
+    setTimeout(() => {
+      navigate("/profile");
+    }, 300);
   };
 
   return (
@@ -25,7 +39,15 @@ const UserNav: FC = () => {
           type={ColorTheme.White}
           text="LOG OUT"
         ></AuthLink>
-        <BtnIcon />
+        <ButtonIcon
+          type={ColorTheme.White}
+          id="icon-user"
+          onClick={handleClickNavigate}
+          width="18px"
+          height="18px"
+          size={BtnIconSizes.Small}
+        />
+        {/* <BtnIcon id="icon-user" onClick={handleClickNavigate} /> */}
       </div>
       {isVisibleLogOutModal && (
         <Modal onClose={onClose}>

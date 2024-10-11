@@ -15,19 +15,22 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "./redux/store";
 import { refreshUser } from "./redux/auth/authOperations";
-import { selectRefreshing } from "./redux/auth/authSelectors";
+import { selectIsAuth, selectRefreshing } from "./redux/auth/authSelectors";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Loader from "./components/Loader/Loader";
 
 function App() {
-  // const isAuth = useSelector(selectIsAuth);
+  const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectRefreshing);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+  }, [dispatch, isAuth]);
 
   return isRefreshing ? (
-    <div>Loading...</div>
+    <Loader />
   ) : (
     <Suspense>
       <Routes>
@@ -36,10 +39,38 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/notices" element={<NoticesPage />} />
           <Route path="/friends" element={<FriendsPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/add-pet" element={<AddPetPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute>
+                <AddPetPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute>
+                <RegistrationPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

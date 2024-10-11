@@ -28,10 +28,14 @@ const Header: FC = () => {
   }, [location.pathname]);
 
   const onClose = () => {
-    setIsVisibleMobMenu(false);
+    setTimeout(() => {
+      setIsVisibleMobMenu(false);
+    }, 300);
   };
   const onOpen = () => {
-    setIsVisibleMobMenu(true);
+    setTimeout(() => {
+      setIsVisibleMobMenu(true);
+    }, 300);
   };
 
   return (

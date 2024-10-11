@@ -1,6 +1,4 @@
 import { useState, type FC } from "react";
-import style from "./ProfilePage.module.scss";
-import EditBtn from "./EditBtn/EditBtn";
 import Avatar from "./Avatar/Avatar";
 import UserInfo from "./UserInfo/UserInfo";
 import MyPets from "./MyPets/MyPets";
@@ -9,17 +7,25 @@ import { selectUser } from "../../redux/auth/authSelectors";
 import Modal from "../../components/Modal/Modal";
 import UserModal from "../../components/Modal/UserModal/UserModal";
 import { AvatarSizes } from "./Avatar/types";
+import ButtonIcon from "../../components/ButtonIcon/ButtonIcon";
+import { ColorTheme } from "../../components/Navigation/NavigationLink/NavigationLink";
+import { BtnIconSizes } from "../../components/ButtonIcon/types";
+import style from "./ProfilePage.module.scss";
 
 const ProfilePage: FC = () => {
   const user = useSelector(selectUser);
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
 
   const handleUserModalClick = () => {
-    setIsVisibleUserModal(true);
+    setTimeout(() => {
+      setIsVisibleUserModal(true);
+    }, 500);
   };
 
   const onClose = () => {
-    setIsVisibleUserModal(false);
+    setTimeout(() => {
+      setIsVisibleUserModal(false);
+    }, 500);
   };
 
   return (
@@ -27,7 +33,25 @@ const ProfilePage: FC = () => {
       <section className={style.profile}>
         <div className="container">
           <div className={style.profile__wrapper}>
-            <EditBtn handleUserModalClick={handleUserModalClick} />
+            <div className={style.profile__btnWrapper}>
+              <ButtonIcon
+                type={ColorTheme.Orange}
+                text="User"
+                id="icon-user"
+                width="18px"
+                height="18px"
+                size={BtnIconSizes.Medium}
+              />
+              <ButtonIcon
+                type={ColorTheme.White}
+                onClick={handleUserModalClick}
+                id="icon-edit"
+                width="18px"
+                height="18px"
+                size={BtnIconSizes.Small}
+              />
+            </div>
+
             <Avatar
               id="icon-user"
               size={AvatarSizes.Medium}

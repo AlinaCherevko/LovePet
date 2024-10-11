@@ -17,9 +17,13 @@ const LogOutModal: FC<LogBtnProps> = ({ onClose }) => {
 
   const handleLogOut = () => {
     dispatch(logOut());
+
     toast.success("Logged out");
     navigate("/");
-    onClose();
+
+    setTimeout(() => {
+      onClose();
+    }, 500);
   };
 
   return (

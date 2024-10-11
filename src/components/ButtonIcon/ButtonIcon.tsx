@@ -3,14 +3,16 @@ import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import classNames from "classnames";
 import style from "./ButtonIcon.module.scss";
 import sprite from "/symbol-defs.svg";
+import { BtnIconSizes } from "./types";
 
 export type ButtonIconProps = {
-  text: string;
+  text?: string;
   onClick?: () => void;
   type: ColorTheme;
   id?: string;
   width?: string;
   height?: string;
+  size?: BtnIconSizes;
 };
 
 const ButtonIcon: FC<ButtonIconProps> = ({
@@ -20,10 +22,15 @@ const ButtonIcon: FC<ButtonIconProps> = ({
   id,
   width,
   height,
+  size,
 }) => {
   return (
     <button
-      className={classNames(style.button, style[`button--${type}`])}
+      className={classNames(
+        style.button,
+        style[`button--${type}`],
+        style[`button--${size}`]
+      )}
       type="button"
       onClick={onClick}
     >

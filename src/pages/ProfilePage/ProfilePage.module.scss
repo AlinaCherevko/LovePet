@@ -9,6 +9,11 @@
 
   @include media(tablet) {
   }
+  &__btnWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &__wrapper {
     background-color: $_white_color;

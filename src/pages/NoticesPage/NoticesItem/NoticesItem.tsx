@@ -16,11 +16,15 @@ const NoticesItem: FC<NoticesProps> = ({ item }) => {
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
 
   const handleUserModalClick = () => {
-    setIsVisibleUserModal(true);
+    setTimeout(() => {
+      setIsVisibleUserModal(true);
+    }, 300);
   };
 
   const onClose = () => {
-    setIsVisibleUserModal(false);
+    setTimeout(() => {
+      setIsVisibleUserModal(false);
+    }, 300);
   };
 
   return (
