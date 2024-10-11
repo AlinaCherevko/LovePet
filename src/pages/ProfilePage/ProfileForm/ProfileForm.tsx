@@ -5,14 +5,13 @@ import { schemaUser } from "../../../shemas/shemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import classNames from "classnames";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
-import Icon from "../../../components/Icon/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/auth/authSelectors";
 import { AppDispatch } from "../../../redux/store";
 import { IUpdateReq, updateProfile } from "../../../redux/auth/authOperations";
-import style from "./ProfileForm.module.scss";
 import { uploadToCloudinary } from "../../../services/services";
 import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
+import style from "./ProfileForm.module.scss";
 
 type ProfileFormProps = {
   setFile?: (file: File) => void;
