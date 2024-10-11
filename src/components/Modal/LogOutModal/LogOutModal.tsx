@@ -34,8 +34,8 @@ const LogOutModal: FC<LogBtnProps> = ({ onClose }) => {
       </div>
       <h2 className={style.modal__title}>Already leaving?</h2>
       <div className={style.modal__wrapper}>
-        <ButtonForm onClick={handleLogOut} text="Yes" />
-        <ButtonForm onClick={onClose} text="Cancel" />
+        <ButtonForm onClick={handleLogOut} text="Yes" type="button" />
+        <ButtonForm onClick={onClose} text="Cancel" type="button" />
       </div>
     </div>
   );

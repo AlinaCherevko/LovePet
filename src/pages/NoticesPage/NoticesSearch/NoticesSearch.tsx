@@ -61,7 +61,7 @@ const NoticesSearch: FC<INoticesSearchProps> = ({ onChange, inputValue }) => {
       <SelectEl options={speciesOptions} placeholder="By Type" />
       <SelectEl
         options={locationOptions}
-        placeholder="Location"
+        placeholder="By Location"
         //components={{ MenuList }}
       />
     </div>
