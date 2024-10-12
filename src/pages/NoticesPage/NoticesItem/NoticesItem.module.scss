@@ -102,9 +102,17 @@
   border: none;
   background-color: $_accent_light;
   padding: 0;
+  display: inline-block;
+  fill: transparent;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
 
   @include media(tablet) {
     width: 52px;
     height: 52px;
+  }
+  &:hover {
+    background-color: $_hover_color;
   }
 }

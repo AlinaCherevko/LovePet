@@ -4,9 +4,8 @@ import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
+import Icon from "../Icon/Icon";
 import style from "./UserNav.module.scss";
-import ButtonIcon from "../ButtonIcon/ButtonIcon";
-import { BtnIconSizes } from "../ButtonIcon/types";
 
 const UserNav: FC = () => {
   const navigate = useNavigate();
@@ -39,15 +38,19 @@ const UserNav: FC = () => {
           type={ColorTheme.White}
           text="LOG OUT"
         ></AuthLink>
-        <ButtonIcon
-          type={ColorTheme.White}
-          id="icon-user"
+        <button
+          className={style.navigation__button}
+          type="button"
           onClick={handleClickNavigate}
-          width="18px"
-          height="18px"
-          size={BtnIconSizes.Small}
-        />
-        {/* <BtnIcon id="icon-user" onClick={handleClickNavigate} /> */}
+        >
+          <Icon
+            id="icon-user"
+            stroke="#f6b83d"
+            fill="transparent"
+            width="20px"
+            height="20px"
+          />
+        </button>
       </div>
       {isVisibleLogOutModal && (
         <Modal onClose={onClose}>

@@ -21,12 +21,17 @@ const NewsPage: FC = () => {
     dispatch(getNews({ page, inputValue }));
   }, [dispatch, page, inputValue]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [inputValue]);
+
   const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
     setPage(e.selected + 1);
   };
 
   const onChange = (value: string) => {
     setInputValue(value);
+    //setPage(1);
   };
 
   return (
@@ -48,6 +53,7 @@ const NewsPage: FC = () => {
             <Pagination
               handlePageClick={handlePageClick}
               totalPages={totalPages}
+              page={page}
             />
           </>
         ) : (

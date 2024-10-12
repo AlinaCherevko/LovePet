@@ -12,7 +12,6 @@ type NoticesProps = {
 };
 
 const NoticesItem: FC<NoticesProps> = ({ item }) => {
-  // const user = useSelector(selectUser);
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
 
   const handleUserModalClick = () => {

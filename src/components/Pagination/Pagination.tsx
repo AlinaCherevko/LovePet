@@ -5,8 +5,9 @@ import style from "./Pagination.module.scss";
 export interface IPagination {
   handlePageClick: ReactPaginateProps["onPageChange"];
   totalPages: number;
+  page?: number;
 }
-const Pagination: FC<IPagination> = ({ handlePageClick, totalPages }) => {
+const Pagination: FC<IPagination> = ({ handlePageClick, totalPages, page }) => {
   return (
     <ReactPaginate
       breakLabel="..."
@@ -24,6 +25,7 @@ const Pagination: FC<IPagination> = ({ handlePageClick, totalPages }) => {
       nextClassName={style.pagination__next}
       activeClassName={style.selected}
       disabledClassName={style.disable}
+      forcePage={(page ?? 1) - 1}
     />
   );
 };

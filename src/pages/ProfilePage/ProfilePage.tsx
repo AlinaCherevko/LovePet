@@ -10,6 +10,7 @@ import { AvatarSizes } from "./Avatar/types";
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon";
 import { ColorTheme } from "../../components/Navigation/NavigationLink/NavigationLink";
 import { BtnIconSizes } from "../../components/ButtonIcon/types";
+import Icon from "../../components/Icon/Icon";
 import style from "./ProfilePage.module.scss";
 
 const ProfilePage: FC = () => {
@@ -42,14 +43,27 @@ const ProfilePage: FC = () => {
                 height="18px"
                 size={BtnIconSizes.Medium}
               />
-              <ButtonIcon
+              <button
+                onClick={handleUserModalClick}
+                className={style.profile__button}
+                type="button"
+              >
+                <Icon
+                  id="icon-edit"
+                  stroke="#f6b83d"
+                  fill="transparent"
+                  width="20px"
+                  height="20px"
+                />
+              </button>
+              {/* <ButtonIcon
                 type={ColorTheme.White}
                 onClick={handleUserModalClick}
                 id="icon-edit"
                 width="18px"
                 height="18px"
                 size={BtnIconSizes.Small}
-              />
+              /> */}
             </div>
 
             <Avatar

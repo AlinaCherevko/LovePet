@@ -27,6 +27,10 @@ const NoticesPage: FC = () => {
   }, [dispatch, page, inputValue]);
 
   useEffect(() => {
+    setPage(1);
+  }, [inputValue]);
+
+  useEffect(() => {
     dispatch(getLocations());
   }, [dispatch]);
 
@@ -60,6 +64,7 @@ const NoticesPage: FC = () => {
           <Pagination
             handlePageClick={handlePageClick}
             totalPages={totalPages}
+            page={page}
           />
         </>
       ) : (
