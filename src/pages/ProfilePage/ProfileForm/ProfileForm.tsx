@@ -16,10 +16,10 @@ import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 
 type ProfileFormProps = {
   setFile?: (file: File) => void;
-  onClose?: () => void;
+  onClose: () => void;
 };
 
-const ProfileForm: FC<ProfileFormProps> = () => {
+const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -85,6 +85,7 @@ const ProfileForm: FC<ProfileFormProps> = () => {
       dispatch(updateProfile(formData));
       setImageUrl("");
       reset();
+      onClose();
     }
   };
 
