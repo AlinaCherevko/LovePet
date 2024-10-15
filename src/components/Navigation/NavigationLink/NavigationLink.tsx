@@ -8,22 +8,25 @@ export type NavProps = {
   to?: string;
   text: string;
   onClick?: () => void;
+  href?: string | undefined | null;
 };
 export enum ColorTheme {
   White = "white",
   Orange = "orange",
 }
 
-const NavigationLink: FC<NavProps> = ({ type, to, text }) => {
+const NavigationLink: FC<NavProps> = ({ type, to, text, onClick }) => {
   const className = classNames(style["nav-link"], style[`nav-link--${type}`]);
   return (
     <>
       {to ? (
-        <NavLink to={to} className={className}>
+        <NavLink to={to} className={className} onClick={onClick}>
           {text}
         </NavLink>
       ) : (
-        <a className={className}>{text}</a>
+        <a className={className} onClick={onClick}>
+          {text}
+        </a>
       )}
     </>
   );

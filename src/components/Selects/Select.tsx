@@ -4,20 +4,31 @@ import style from "./SelectType.module.scss";
 import MenuList from "./LocationMenu";
 import { useSelectStyles } from "../../hooks/hooks";
 
-interface ISelect {
-  options: Array<{ value: string; label: string }>;
-  placeholder: string;
-  onSelectChange?: (value: string) => void;
-}
+type Option = { value: string; label: string };
 
-const SelectEl: FC<ISelect> = ({ options, placeholder }) => {
+type ISelect = {
+  options: Array<Option>;
+  placeholder: string;
+  setSelectValue: (value: string) => void;
+};
+
+const SelectEl: FC<ISelect> = ({ options, placeholder, setSelectValue }) => {
+  const onSelectChange = (newValue: Option | unknown) => {
+    console.log(newValue);
+
+    if (newValue && typeof newValue === "object" && "value" in newValue) {
+      const selectedOption = newValue as Option;
+      setSelectValue(selectedOption.value);
+    }
+  };
+
   return (
     <div className={style.filters}>
       <Select
         components={{ MenuList }}
         className={style.selector}
         classNamePrefix="selector"
-        //onChange={onSelectChange}
+        onChange={onSelectChange}
         name="type"
         options={options}
         placeholder={placeholder}
@@ -28,3 +39,6 @@ const SelectEl: FC<ISelect> = ({ options, placeholder }) => {
 };
 
 export default SelectEl;
+
+// actionMeta: ActionMeta<Option>
+// selectedOptions: SingleValue<{ value: string; label: string }>

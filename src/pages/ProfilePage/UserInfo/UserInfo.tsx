@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import style from "./UserInfo.module.scss";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../redux/auth/authSelectors";
+import style from "./UserInfo.module.scss";
 
 const UserInfo: FC = () => {
   const user = useSelector(selectUser);

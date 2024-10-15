@@ -1,23 +1,27 @@
 import { useEffect, type FC } from "react";
 import Icon from "../../../components/Icon/Icon";
-import style from "./Avatar.module.scss";
 import { AvatarSizes } from "./types";
 import classNames from "classnames";
+import style from "./Avatar.module.scss";
 
 export type AvatarProps = {
   id: string;
   size: AvatarSizes;
   url: string;
+  onClick?: () => void;
 };
 
-const Avatar: FC<AvatarProps> = ({ id, size, url }) => {
+const Avatar: FC<AvatarProps> = ({ id, size, url, onClick }) => {
   //const user = useSelector(selectUser);
 
   useEffect(() => {}, []);
 
   return (
     <>
-      <div className={classNames(style.fakePhoto, style[`fakePhoto--${size}`])}>
+      <div
+        onClick={onClick}
+        className={classNames(style.fakePhoto, style[`fakePhoto--${size}`])}
+      >
         {url ? (
           <img src={url} className={style.fakePhoto__img} alt="user-avatar" />
         ) : (

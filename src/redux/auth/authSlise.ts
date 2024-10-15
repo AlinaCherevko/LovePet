@@ -4,6 +4,7 @@ import {
   logIn,
   logOut,
   refreshUser,
+  refreshUserFull,
   signup,
   updateProfile,
 } from "./authOperations";
@@ -14,6 +15,8 @@ const initialState: IState = {
   isLoggedIn: false,
   isRefreshing: false,
   isAuthLoading: false,
+  noticesFavorites: [],
+  noticesViewed: [],
   error: "",
 };
 
@@ -41,7 +44,7 @@ export const authSlice = createSlice({
     builder.addCase(signup.pending, handleAuthPending);
     builder.addCase(signup.rejected, handleAuthRejected);
     builder.addCase(signup.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      //console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.token = payload.token;
@@ -53,7 +56,7 @@ export const authSlice = createSlice({
     builder.addCase(logIn.pending, handleAuthPending);
     builder.addCase(logIn.rejected, handleAuthRejected);
     builder.addCase(logIn.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      //console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.token = payload.token;
@@ -71,7 +74,29 @@ export const authSlice = createSlice({
       state.isAuthLoading = initialState.isAuthLoading;
       state.error = initialState.error;
     });
-    //refresh
+    //current full
+    // builder.addCase(refreshUserFull.pending, (state) => {
+    //   //state.isRefreshing = true;
+    // });
+    builder.addCase(refreshUserFull.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.user.name = payload.name;
+      state.user.email = payload.email;
+      state.user.avatar = payload.avatar;
+      state.user.phone = payload.phone;
+      state.token = payload.token;
+      state.noticesFavorites = payload.noticesFavorites;
+      state.noticesViewed = payload.noticesViewed;
+      state.isLoggedIn = true;
+      // state.isRefreshing = false;
+      state.error = "";
+    });
+    builder.addCase(refreshUserFull.rejected, (state, { payload }) => {
+      //state.isRefreshing = false;
+      state.error = payload;
+    });
+
+    //current
     builder.addCase(refreshUser.pending, (state) => {
       state.isRefreshing = true;
     });
@@ -81,17 +106,17 @@ export const authSlice = createSlice({
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
       state.user.phone = payload.phone;
-      // state.blob = localStorage.getItem("blob");
       state.token = payload.token;
+      state.noticesFavorites = payload.noticesFavorites;
       state.isLoggedIn = true;
       state.isRefreshing = false;
       state.error = "";
     });
     builder.addCase(refreshUser.rejected, (state, { payload }) => {
       state.isRefreshing = false;
-      //console.log(payload);
       state.error = payload;
     });
+
     // profile
     builder.addCase(updateProfile.pending, handleAuthPending);
     builder.addCase(updateProfile.rejected, handleAuthRejected);

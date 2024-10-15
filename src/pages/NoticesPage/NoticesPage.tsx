@@ -15,20 +15,44 @@ import NoticesList from "./NoticesList/NoticesList";
 import Pagination from "../../components/Pagination/Pagination";
 import { ReactPaginateProps } from "react-paginate";
 import NoticesSearch from "./NoticesSearch/NoticesSearch";
+import { SizeItem } from "./types";
 
 const NoticesPage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
+  const [locationValue, setLocationValue] = useState<string>("");
+  const [speciesValue, setSpeciesValue] = useState<string>("");
+  const [categoryValue, setCategoryValue] = useState<string>("");
+  //const [genderValue, setGenderValue] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const dispatch: AppDispatch = useDispatch();
+
   const { results, totalPages } = useSelector(noticesSelector);
 
+  console.log(results);
+
   useEffect(() => {
-    dispatch(getNotices({ page, inputValue }));
-  }, [dispatch, page, inputValue]);
+    dispatch(
+      getNotices({
+        page,
+        inputValue,
+        locationValue,
+        speciesValue,
+        categoryValue,
+      })
+    );
+  }, [
+    dispatch,
+    page,
+    inputValue,
+    speciesValue,
+    categoryValue,
+    //genderValue,
+    locationValue,
+  ]);
 
   useEffect(() => {
     setPage(1);
-  }, [inputValue]);
+  }, [inputValue, speciesValue, categoryValue, locationValue]);
 
   useEffect(() => {
     dispatch(getLocations());
@@ -48,6 +72,11 @@ const NoticesPage: FC = () => {
 
   const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
     setPage(e.selected + 1);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const onChange = (value: string) => {
@@ -57,10 +86,16 @@ const NoticesPage: FC = () => {
   return (
     <Section>
       <Title text="Find your favorite pet" />
-      <NoticesSearch inputValue={inputValue} onChange={onChange} />
+      <NoticesSearch
+        inputValue={inputValue}
+        onChange={onChange}
+        setLocationValue={setLocationValue}
+        setSpeciesValue={setSpeciesValue}
+        setCategoryValue={setCategoryValue}
+      />
       {results.length > 0 ? (
         <>
-          <NoticesList notices={results} />
+          <NoticesList notices={results} type={SizeItem.Big} />
           <Pagination
             handlePageClick={handlePageClick}
             totalPages={totalPages}

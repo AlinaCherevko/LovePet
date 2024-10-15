@@ -1,0 +1,31 @@
+@import "../../../styles/index.scss";
+
+.detailsWrapper {
+  padding-top: 40px;
+
+  @include media(desktop) {
+    padding-top: 0;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.29;
+    font-weight: 500;
+
+    @include media(tablet) {
+      font-size: 16px;
+    }
+    @include media(desktop) {
+      padding-left: 32px;
+    }
+  }
+}
+.linkWrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @include media(desktop) {
+    padding-left: 31px;
+  }
+}

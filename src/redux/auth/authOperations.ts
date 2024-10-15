@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios1, { AxiosError } from "axios";
-import { ILogin, IRefresh, IRegData, ISignup } from "./types";
+import { ILogin, IRefresh, IRefreshFull, IRegData, ISignup } from "./types";
 import { RootState } from "../store";
 
 export const axios = axios1.create({
   baseURL: "https://petlove.b.goit.study/api",
 });
 
-const setAuthHeader = (token: string) => {
+export const setAuthHeader = (token: string) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
-const clearAuthHeader = () => {
+export const clearAuthHeader = () => {
   axios.defaults.headers.common["Authorization"] = "";
 };
 
@@ -68,7 +68,30 @@ export const logOut = createAsyncThunk<
   }
 });
 
-//refresh
+//get current full
+export const refreshUserFull = createAsyncThunk<
+  IRefreshFull,
+  undefined,
+  { rejectValue: string }
+>("auth/refreshFull", async (_, thunkAPI) => {
+  const state = thunkAPI.getState() as RootState;
+  const persistedToken = state.auth.token;
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue("Failed to fetch user");
+  }
+  try {
+    setAuthHeader(persistedToken);
+    const { data } = await axios.get("/users/current/full");
+    return data;
+  } catch (error: unknown) {
+    if (error instanceof AxiosError && error.response) {
+      const errorMessage = error.response.data.message;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+});
+
+//get current
 export const refreshUser = createAsyncThunk<
   IRefresh,
   undefined,
@@ -81,7 +104,7 @@ export const refreshUser = createAsyncThunk<
   }
   try {
     setAuthHeader(persistedToken);
-    const { data } = await axios.get("/users/current/full");
+    const { data } = await axios.get("/users/current");
     return data;
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {

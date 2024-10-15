@@ -5,10 +5,19 @@
 
   @include media(tablet) {
     padding-top: 114px;
+    padding-bottom: 80px;
   }
 
-  @include media(tablet) {
+  @include media(desktop) {
+    padding-bottom: 64px;
   }
+
+  &__wrap {
+    @include media(desktop) {
+      display: flex;
+    }
+  }
+
   &__btnWrapper {
     display: flex;
     align-items: center;
@@ -26,6 +35,7 @@
 
     @include media(desktop) {
       width: 520px;
+      height: 674px;
     }
   }
   &__button {

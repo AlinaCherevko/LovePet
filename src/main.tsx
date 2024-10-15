@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { ToastContainer } from "react-toastify";
@@ -14,10 +13,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <React.StrictMode>
-          <App />
-          <ToastContainer />
-        </React.StrictMode>
+        <App />
+        <ToastContainer />
       </BrowserRouter>
     </PersistGate>
   </Provider>

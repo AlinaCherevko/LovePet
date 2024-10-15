@@ -12,11 +12,9 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectError, selectIsAuth } from "../../../redux/auth/authSelectors";
-
-import style from "./RegisterForm.module.scss";
-
 import { schemaReg } from "../../../shemas/shemas";
 import { yupResolver } from "@hookform/resolvers/yup";
+import style from "./RegisterForm.module.scss";
 
 const RegisterForm: FC = () => {
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);

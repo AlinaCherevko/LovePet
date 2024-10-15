@@ -11,19 +11,24 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AddPetPage from "./pages/AddPetPage/AddPetPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "./redux/store";
-import { refreshUser } from "./redux/auth/authOperations";
+import { refreshUser, refreshUserFull } from "./redux/auth/authOperations";
 import { selectIsAuth, selectRefreshing } from "./redux/auth/authSelectors";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
+import { favoritesSelector } from "./redux/notices/noticesSelectors";
 
 function App() {
   const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectRefreshing);
   const dispatch: AppDispatch = useDispatch();
+  const favoritesArr = useSelector(favoritesSelector);
+
+  useEffect(() => {
+    dispatch(refreshUserFull());
+  }, [dispatch, isAuth, favoritesArr]);
 
   useEffect(() => {
     dispatch(refreshUser());

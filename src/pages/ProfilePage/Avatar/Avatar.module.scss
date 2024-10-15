@@ -8,6 +8,7 @@
   align-items: center;
   margin: 0 auto;
   margin-bottom: 12px;
+  cursor: pointer;
 
   &--small {
     width: 80px;
@@ -20,8 +21,8 @@
   }
 
   &--medium {
-    width: 94px;
-    height: 94px;
+    width: 120px;
+    height: 120px;
 
     @include media(tablet) {
       width: 110px;
@@ -30,12 +31,22 @@
   }
 
   &--big {
-    width: 120px;
-    height: 120px;
+    width: 94px;
+    height: 94px;
 
     @include media(tablet) {
       width: 150px;
       height: 150px;
+    }
+  }
+
+  &--tiny {
+    width: 42px;
+    height: 42px;
+
+    @include media(tablet) {
+      width: 52px;
+      height: 52px;
     }
   }
 

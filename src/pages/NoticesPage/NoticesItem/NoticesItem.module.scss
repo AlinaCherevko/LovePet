@@ -3,16 +3,25 @@
 .noticesItem {
   width: 100%;
   background-color: $_white_color;
-  padding: 24px;
+  padding: 14px 18px;
   border-radius: 16px;
 
   @include media(tablet) {
     width: 342px;
     height: 444px;
   }
-  @include media(desktop) {
-    width: 363px;
+
+  &--big {
+    @include media(desktop) {
+      width: 363px;
+    }
   }
+  &--small {
+    @include media(desktop) {
+      width: 320px;
+    }
+  }
+
   &__wrapper {
     height: 100%;
     display: flex;

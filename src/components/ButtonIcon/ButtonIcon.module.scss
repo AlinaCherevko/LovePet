@@ -56,7 +56,7 @@
     &:hover {
       background-color: $_accent_light;
       color: $_accent_color;
-      border: none;
+      border: 1px solid $_accent_light;
     }
 
     &:hover .svg--orange {

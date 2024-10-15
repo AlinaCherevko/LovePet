@@ -11,6 +11,7 @@ import ButtonIcon from "../../components/ButtonIcon/ButtonIcon";
 import { ColorTheme } from "../../components/Navigation/NavigationLink/NavigationLink";
 import { BtnIconSizes } from "../../components/ButtonIcon/types";
 import Icon from "../../components/Icon/Icon";
+import FavoriteTabs from "./Favorite/Favorite";
 import style from "./ProfilePage.module.scss";
 
 const ProfilePage: FC = () => {
@@ -33,46 +34,40 @@ const ProfilePage: FC = () => {
     <>
       <section className={style.profile}>
         <div className="container">
-          <div className={style.profile__wrapper}>
-            <div className={style.profile__btnWrapper}>
-              <ButtonIcon
-                type={ColorTheme.Orange}
-                text="User"
-                id="icon-user"
-                width="18px"
-                height="18px"
-                size={BtnIconSizes.Medium}
-              />
-              <button
-                onClick={handleUserModalClick}
-                className={style.profile__button}
-                type="button"
-              >
-                <Icon
-                  id="icon-edit"
-                  stroke="#f6b83d"
-                  fill="transparent"
-                  width="20px"
-                  height="20px"
+          <div className={style.profile__wrap}>
+            <div className={style.profile__wrapper}>
+              <div className={style.profile__btnWrapper}>
+                <ButtonIcon
+                  type={ColorTheme.Orange}
+                  text="User"
+                  id="icon-user"
+                  width="18px"
+                  height="18px"
+                  size={BtnIconSizes.Medium}
                 />
-              </button>
-              {/* <ButtonIcon
-                type={ColorTheme.White}
-                onClick={handleUserModalClick}
-                id="icon-edit"
-                width="18px"
-                height="18px"
-                size={BtnIconSizes.Small}
-              /> */}
+                <button
+                  onClick={handleUserModalClick}
+                  className={style.profile__button}
+                  type="button"
+                >
+                  <Icon
+                    id="icon-edit"
+                    stroke="#f6b83d"
+                    fill="transparent"
+                    width="20px"
+                    height="20px"
+                  />
+                </button>
+              </div>
+              <Avatar
+                id="icon-user"
+                size={AvatarSizes.Medium}
+                url={user.avatar}
+              />
+              <UserInfo />
+              <MyPets />
             </div>
-
-            <Avatar
-              id="icon-user"
-              size={AvatarSizes.Medium}
-              url={user.avatar}
-            />
-            <UserInfo />
-            <MyPets />
+            <FavoriteTabs />
           </div>
         </div>
       </section>

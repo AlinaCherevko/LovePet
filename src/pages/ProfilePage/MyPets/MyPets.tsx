@@ -6,8 +6,10 @@ import Modal from "../../../components/Modal/Modal";
 import LogOutModal from "../../../components/Modal/LogOutModal/LogOutModal";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
+import { useNavigate } from "react-router-dom";
 
 const MyPets: FC = () => {
+  const navigate = useNavigate();
   const [isVisibleLogOutModal, setIsVisibleLogOutModal] = useState(false);
 
   const handleLogOutClick = () => {
@@ -22,6 +24,10 @@ const MyPets: FC = () => {
     }, 500);
   };
 
+  const handleAddPetClick = () => {
+    navigate("/add-pet");
+  };
+
   return (
     <>
       <div className={style.myPets}>
@@ -34,6 +40,7 @@ const MyPets: FC = () => {
             size={BtnIconSizes.Medium}
             width="18px"
             height="18px"
+            onClick={handleAddPetClick}
           />
         </div>
 

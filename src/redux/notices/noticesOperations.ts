@@ -1,16 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { INoticesParams } from "./types";
-import { axios } from "../auth/authOperations";
+import { axios, setAuthHeader } from "../auth/authOperations";
+import { RootState } from "../store";
 
 //get all notices
 export const getNotices = createAsyncThunk(
   "notices/getNotices",
 
-  async ({ page = 1, inputValue }: INoticesParams, thunkAPI) => {
+  async (
+    {
+      page = 1,
+      inputValue,
+      categoryValue,
+      speciesValue,
+      locationValue,
+    }: //genderValue,
+    INoticesParams,
+    thunkAPI
+  ) => {
     try {
       const { data } = await axios.get(
-        `/notices?page=${page}&keyword=${inputValue}`
+        `/notices?page=${page}&keyword=${inputValue}&category=${categoryValue}&species=${speciesValue}&locationId=${locationValue}`
       );
       //console.log(data);
 
@@ -120,12 +131,24 @@ export const getLocations = createAsyncThunk(
 );
 
 // add one notice
-export const addNotice = createAsyncThunk(
+export const addNotice = createAsyncThunk<
+  string[],
+  string,
+  { rejectValue: string }
+>(
   "notices/addNotice",
 
-  async (id: string, thunkAPI) => {
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Token is missing");
+    }
+
     try {
-      const { data } = await axios.get(`/notices/favorites/add/${id}`);
+      setAuthHeader(persistedToken);
+      const { data } = await axios.post(`/notices/favorites/add/${id}`);
       console.log(data);
 
       return data;
@@ -139,12 +162,24 @@ export const addNotice = createAsyncThunk(
 );
 
 // remove one notice
-export const removeNotice = createAsyncThunk(
+export const removeNotice = createAsyncThunk<
+  string[],
+  string,
+  { rejectValue: string }
+>(
   "notices/removeNotice",
 
-  async (id: string, thunkAPI) => {
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Token is missing");
+    }
+
     try {
-      const { data } = await axios.get(`/notices/favorites/remove/${id}`);
+      setAuthHeader(persistedToken);
+      const { data } = await axios.delete(`/notices/favorites/remove/${id}`);
       console.log(data);
 
       return data;

@@ -3,7 +3,7 @@ import SearchInput from "../../../components/SearchInput/SearchInput";
 import { useSelector } from "react-redux";
 import {
   categoriesSelector,
-  genderSelector,
+  //genderSelector,
   locationsSelector,
   speciesSelector,
 } from "../../../redux/notices/noticesSelectors";
@@ -15,22 +15,31 @@ import style from "./NoticesSearch.module.scss";
 export interface INoticesSearchProps {
   inputValue: string;
   onChange: (prop: string) => void;
+  setLocationValue: (value: string) => void;
+  setSpeciesValue: (value: string) => void;
+  setCategoryValue: (value: string) => void;
 }
 interface IOptions {
   value: string;
   label: string;
 }
 
-const NoticesSearch: FC<INoticesSearchProps> = ({ onChange, inputValue }) => {
+const NoticesSearch: FC<INoticesSearchProps> = ({
+  onChange,
+  inputValue,
+  setLocationValue,
+  setSpeciesValue,
+  setCategoryValue,
+}) => {
   const species = useSelector(speciesSelector);
   const categories = useSelector(categoriesSelector);
-  const genders = useSelector(genderSelector);
+  //const genders = useSelector(genderSelector);
   const locations = useSelector(locationsSelector);
 
-  const gendersOptions: IOptions[] = genders.map((item) => ({
-    value: item,
-    label: item.charAt(0).toUpperCase() + item.slice(1),
-  }));
+  // const gendersOptions: IOptions[] = genders.map((item) => ({
+  //   value: item,
+  //   label: item.charAt(0).toUpperCase() + item.slice(1),
+  // }));
   const categoriesOptions: IOptions[] = categories.map((item) => ({
     value: item,
     label: item.charAt(0).toUpperCase() + item.slice(1),
@@ -56,12 +65,25 @@ const NoticesSearch: FC<INoticesSearchProps> = ({ onChange, inputValue }) => {
         value={inputValue}
       />
 
-      <SelectEl options={categoriesOptions} placeholder="Category" />
-      <SelectEl options={gendersOptions} placeholder="By Gender" />
-      <SelectEl options={speciesOptions} placeholder="By Type" />
+      <SelectEl
+        options={categoriesOptions}
+        placeholder="Category"
+        setSelectValue={setCategoryValue}
+      />
+      {/* <SelectEl
+        options={gendersOptions}
+        placeholder="By Gender"
+        setSelectValue={}
+      /> */}
+      <SelectEl
+        options={speciesOptions}
+        placeholder="By Type"
+        setSelectValue={setSpeciesValue}
+      />
       <SelectEl
         options={locationOptions}
         placeholder="By Location"
+        setSelectValue={setLocationValue}
         //components={{ MenuList }}
       />
     </div>

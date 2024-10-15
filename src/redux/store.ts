@@ -1,14 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/authSlise";
 import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
+  //FLUSH,
+  //PAUSE,
+  //PERSIST,
   persistReducer,
   persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
+  //PURGE,
+  //REGISTER,
+  //REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { newsSlice } from "./news/newsSlises";
@@ -20,10 +20,16 @@ const authPersistConfig = {
   whitelist: ["user", "token"],
 };
 
+const noticesPersistConfig = {
+  key: "notices",
+  storage,
+  whitelist: ["favorites"],
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   news: newsSlice.reducer,
-  notices: noticesSlice.reducer,
+  notices: persistReducer(noticesPersistConfig, noticesSlice.reducer),
 });
 
 export const store = configureStore({
@@ -31,9 +37,10 @@ export const store = configureStore({
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
+      // serializableCheck: {
+      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      // },
     }),
 });
 

@@ -4,9 +4,11 @@
   &__title {
     @include font(16, 20);
     font-weight: 700;
+    margin-top: 30px;
     margin-bottom: 20px;
 
     @include media(tablet) {
+      margin-top: 28px;
       @include font(18, 24);
     }
   }

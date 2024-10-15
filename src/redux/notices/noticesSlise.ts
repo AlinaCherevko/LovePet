@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addNotice,
   getLocations,
   getNotices,
   getNoticesCategories,
   getNoticesSex,
   getNoticesSpecies,
   getOneNotice,
+  removeNotice,
 } from "./noticesOperations";
 import { INoticesState } from "./types";
 
@@ -13,7 +15,7 @@ const initialState: INoticesState = {
   notices: {
     results: [],
     totalPages: 0,
-    perPage: 0,
+    //perPage: 0,
   },
   notice: null,
   species: [],
@@ -44,7 +46,8 @@ export const noticesSlice = createSlice({
     builder.addCase(getNotices.pending, isPending);
     builder.addCase(getNotices.rejected, isRejected);
     builder.addCase(getNotices.fulfilled, (state, { payload }) => {
-      state.notices = payload;
+      state.notices.results = payload.results;
+      state.notices.totalPages = payload.totalPages;
       state.isError = false;
       state.isLoading = false;
     });
@@ -88,24 +91,25 @@ export const noticesSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
     });
-    // //add notice
-    // builder.addCase(addNotice.pending, isPending);
-    // builder.addCase(addNotice.rejected, isRejected);
-    // builder.addCase(addNotice.fulfilled, (state, { payload }) => {
-    //   state.favorites = payload;
-    //   state.isError = false;
-    //   state.isLoading = false;
-    // });
-    // //remove notice
-    // builder.addCase(removeNotice.pending, isPending);
-    // builder.addCase(removeNotice.rejected, isRejected);
-    // builder.addCase(removeNotice.fulfilled, (state, { payload }) => {
-    //   state.favorites = [...state.favorites].filter(
-    //     (favorite) => favorite._id !== payload
-    //   );
-    //   state.isError = false;
-    //   state.isLoading = false;
-    // });
+    //add notice
+    builder.addCase(addNotice.pending, isPending);
+    builder.addCase(addNotice.rejected, isRejected);
+    builder.addCase(addNotice.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.favorites = payload;
+      state.isError = false;
+      state.isLoading = false;
+    });
+    //remove notice
+    builder.addCase(removeNotice.pending, isPending);
+    builder.addCase(removeNotice.rejected, isRejected);
+    builder.addCase(removeNotice.fulfilled, (state, { payload }) => {
+      //console.log(payload);
+      //console.log(state.favorites);
+      state.favorites = payload;
+      state.isError = false;
+      state.isLoading = false;
+    });
   },
 });
 

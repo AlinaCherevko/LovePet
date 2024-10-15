@@ -1,6 +1,10 @@
 export interface INoticesParams {
   page: number;
   inputValue: string;
+  categoryValue: string;
+  speciesValue: string;
+  locationValue: string;
+  //genderValue: string;
 }
 
 export interface INotices {
@@ -24,7 +28,7 @@ export interface INotices {
 export interface INoticesResults {
   results: INotices[];
   totalPages: number;
-  perPage: number;
+  //perPage: number;
 }
 
 export interface ILocation {
@@ -41,7 +45,8 @@ export interface INoticesState {
   sex: string[];
   categories: string[];
   locations: ILocation[];
-  favorites: INotices[];
+  favorites: string[];
+  //favorites: INotices[];
   isLoading: boolean;
   isError: boolean;
 }

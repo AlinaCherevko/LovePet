@@ -1,3 +1,5 @@
+import { INotices } from "../notices/types";
+
 export interface IState {
   user: IUser;
   //blob: string | null;
@@ -6,6 +8,8 @@ export interface IState {
   isRefreshing: boolean;
   isAuthLoading: boolean;
   error: string | null | unknown;
+  noticesViewed: INotices[];
+  noticesFavorites: INotices[];
 }
 
 export interface IUser {
@@ -40,6 +44,17 @@ export interface IRegData {
   email: string;
   token: string;
 }
+export interface IRefreshFull {
+  _id: string;
+  name: string;
+  email: string;
+  token: string;
+  avatar: string;
+  phone: string;
+  noticesViewed: INotices[];
+  noticesFavorites: INotices[];
+}
+
 export interface IRefresh {
   _id: string;
   name: string;
@@ -47,4 +62,5 @@ export interface IRefresh {
   token: string;
   avatar: string;
   phone: string;
+  noticesFavorites: INotices[];
 }
