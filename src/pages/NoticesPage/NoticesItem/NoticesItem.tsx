@@ -16,6 +16,7 @@ import { favoritesSelector } from "../../../redux/notices/noticesSelectors";
 import { SizeItem } from "../types";
 import classNames from "classnames";
 import style from "./NoticesItem.module.scss";
+import AttentionModal from "../../../components/Modal/AttentionModal/AttentionModal";
 
 type NoticesProps = {
   item: INotices;
@@ -123,12 +124,16 @@ const NoticesItem: FC<NoticesProps> = ({ item, type }) => {
       </li>
       {isVisibleUserModal && (
         <Modal onClose={onClose}>
-          <NoticesModal
-            onClose={onClose}
-            item={item}
-            inFavorite={inFavorite}
-            toggleFavorite={toggleFavorite}
-          />
+          {isAuth ? (
+            <NoticesModal
+              onClose={onClose}
+              item={item}
+              inFavorite={inFavorite}
+              toggleFavorite={toggleFavorite}
+            />
+          ) : (
+            <AttentionModal />
+          )}
         </Modal>
       )}
     </>

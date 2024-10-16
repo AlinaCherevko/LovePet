@@ -1,0 +1,63 @@
+@import "../../../styles/index.scss";
+
+.modal {
+  background-color: $_white_color;
+  text-align: center;
+  border-radius: 30px;
+
+  @include media(mobile) {
+    width: 335px;
+    height: 394px;
+    padding: 40px 20px;
+  }
+  @include media(tablet) {
+    width: 466px;
+    height: 434px;
+    padding: 60px;
+  }
+
+  &__btn {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  &__img {
+    height: 44px;
+    width: 44px;
+  }
+  &__fake {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: $_accent_light;
+    margin-bottom: 20px;
+  }
+  &__title {
+    @include font(20, 20);
+    font-weight: 700;
+    color: $_accent_color;
+    margin-bottom: 20px;
+
+    @include media(tablet) {
+      @include font(24, 28);
+    }
+  }
+
+  &__text {
+    @include font(14, 18);
+    margin-bottom: 24px;
+  }
+  @include media(tablet) {
+    margin-bottom: 28px;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 8px;
+  }
+}

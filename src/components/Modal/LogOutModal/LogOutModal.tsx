@@ -3,9 +3,9 @@ import ButtonForm from "../../Button/ButtonForm";
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../redux/auth/authOperations";
-import style from "./LogOutModal.module.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import style from "./LogOutModal.module.scss";
 
 export type LogBtnProps = {
   onClose: () => void;

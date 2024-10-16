@@ -1,0 +1,68 @@
+@import "../../../styles/index.scss";
+
+.friendsItem {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  background-color: $_white_color;
+  padding: 40px 25px;
+
+  @include media(mobile) {
+    width: 335px;
+    height: 184px;
+  }
+
+  @include media(tablet) {
+    width: 342px;
+    height: 196px;
+  }
+
+  @include media(desktop) {
+    width: 371px;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 14px;
+  }
+
+  &__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  &__title {
+    @include font(16, 20);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  &__text {
+    @include font(14, 18);
+  }
+  &__span {
+    @include font(14, 18);
+    color: $_placeholder_color;
+  }
+
+  &__item {
+    display: flex;
+    gap: 2px;
+  }
+}
+
+.hours {
+  width: 90px;
+  height: 32px;
+  background-color: $_accent_light;
+  border-radius: 30px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  @include media(tablet) {
+    height: 34px;
+  }
+}
