@@ -3,10 +3,35 @@
 .navigation {
   display: none;
 
-  @include media(desktop) {
+  @include media(tablet) {
     display: flex;
     flex-direction: row;
     gap: 8px;
+  }
+
+  @include media(desktop) {
+  }
+
+  &__text {
+    display: none;
+
+    @include media(tablet) {
+      display: flex;
+    }
+
+    &_white {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: $_accent_light;
+    }
+    &_black {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
   }
 
   &__button {

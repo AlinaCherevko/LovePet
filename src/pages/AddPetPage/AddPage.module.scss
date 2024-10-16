@@ -1,1 +1,18 @@
 @import "../../styles/index.scss";
+
+.add {
+  padding-top: 80px;
+  padding-bottom: 20px;
+
+  @include media(tablet) {
+    padding-top: 114px;
+    padding-bottom: 32px;
+  }
+
+  &__wrapper {
+    @include media(desktop) {
+      display: flex;
+      gap: 32px;
+    }
+  }
+}

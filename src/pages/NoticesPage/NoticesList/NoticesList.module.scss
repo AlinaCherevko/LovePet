@@ -17,7 +17,13 @@
   }
 
   &--small {
-    padding-right: 0;
-    column-gap: 24px;
+    @include media(tablet) {
+      column-gap: 20px;
+    }
+
+    @include media(desktop) {
+      padding-right: 0;
+      column-gap: 24px;
+    }
   }
 }

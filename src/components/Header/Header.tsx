@@ -4,18 +4,20 @@ import Navigation from "../Navigation/Navigation";
 import UserNav from "../UserNav/UserNav";
 import AuthNav from "../AuthNav/AuthNav";
 import MobMenu from "../MobMenu/MobMenu";
-
-import style from "./Header.module.scss";
 import BurgerBtn from "../MobMenu/BurgerBtn/BurgerBtn";
 import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsAuth } from "../../redux/auth/authSelectors";
+import { selectIsAuth, selectUser } from "../../redux/auth/authSelectors";
+import Avatar from "../../pages/ProfilePage/Avatar/Avatar";
+import { AvatarSizes } from "../../pages/ProfilePage/Avatar/types";
+import style from "./Header.module.scss";
 
 const Header: FC = () => {
   const isAuth = useSelector(selectIsAuth);
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
   const location = useLocation();
-  //console.log(isAuth);
   const [isHomePage, setIsHomePage] = useState<boolean>(false);
   const [isVisibleMobMenu, setIsVisibleMobMenu] = useState<boolean>(false);
 
@@ -38,29 +40,55 @@ const Header: FC = () => {
     }, 300);
   };
 
+  const handleClickNavigate = () => {
+    setTimeout(() => {
+      navigate("/profile");
+    }, 300);
+  };
+
   return (
-    <section className={style.header}>
+    <header className={style.header}>
       <div className="container">
         {isHomePage ? (
           <div className={style.header__wrapper}>
             <Logo isHomePage={isHomePage} />
             <Navigation isHomePage={isHomePage} />
-            {isAuth ? <UserNav /> : <AuthNav />}
-            <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+            <div className={style.header__mobWrapper}>
+              {isAuth ? <UserNav isHomePage={isHomePage} /> : <AuthNav />}
+              <div className={style.header__avatar}>
+                <Avatar
+                  size={AvatarSizes.Tiny}
+                  id="icon-user"
+                  url={user.avatar}
+                  onClick={handleClickNavigate}
+                />
+              </div>
+              <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+            </div>
           </div>
         ) : (
           <div className={style.header__wrapper2}>
             <Logo isHomePage={isHomePage} />
             <Navigation isHomePage={isHomePage} />
-            {isAuth ? <UserNav /> : <AuthNav />}
-            <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+            <div className={style.header__mobWrapper}>
+              {isAuth ? <UserNav /> : <AuthNav />}
+              <div className={style.header__avatar}>
+                <Avatar
+                  size={AvatarSizes.Tiny}
+                  id="icon-user"
+                  url={user.avatar}
+                  onClick={handleClickNavigate}
+                />
+              </div>
+              <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
+            </div>
           </div>
         )}
       </div>
       {isVisibleMobMenu && (
         <MobMenu type={ColorTheme.White} onClose={onClose} />
       )}
-    </section>
+    </header>
   );
 };
 

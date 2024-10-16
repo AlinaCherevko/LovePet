@@ -5,9 +5,7 @@ import type { FC } from "react";
 const MainLayout: FC = () => {
   return (
     <>
-      <header>
-        <Header />
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>

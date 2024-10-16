@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/authSelectors";
-import style from "./UserNav.module.scss";
 import Avatar from "../../pages/ProfilePage/Avatar/Avatar";
 import { AvatarSizes } from "../../pages/ProfilePage/Avatar/types";
+import style from "./UserNav.module.scss";
 
-const UserNav: FC = () => {
+export type UserNavProps = {
+  isHomePage?: boolean;
+};
+
+const UserNav: FC<UserNavProps> = ({ isHomePage }) => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
@@ -48,6 +52,17 @@ const UserNav: FC = () => {
           url={user.avatar}
           onClick={handleClickNavigate}
         />
+        {user.name && (
+          <p
+            className={
+              isHomePage
+                ? style.navigation__text_white
+                : style.navigation__text_black
+            }
+          >
+            {user.name}
+          </p>
+        )}
       </div>
       {isVisibleLogOutModal && (
         <Modal onClose={onClose}>
