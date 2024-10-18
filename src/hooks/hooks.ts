@@ -1,24 +1,33 @@
 import { StylesConfig } from "react-select";
 import { useMediaQuery } from "react-responsive";
 
-export const useSelectStyles = (withBorder: boolean = false): StylesConfig => {
+export const useSelectStyles = (
+  initialStatePetSelect: boolean = true,
+  hasError: boolean = false,
+  isSuccess: boolean = false
+): StylesConfig => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return {
     placeholder: (provided) => ({
       ...provided,
-      color: withBorder ? "rgba(38, 38, 38, 0.7)" : "#262626",
-      fontWeight: withBorder ? "500" : "400",
+      color: initialStatePetSelect ? "rgba(38, 38, 38, 0.7)" : "#262626",
+      fontWeight: initialStatePetSelect ? "500" : "400",
       fontSize: isMobile ? "14px" : "16px",
       lineHeight: isMobile ? "18px" : "20px",
     }),
     control: (provided) => ({
       ...provided,
       backgroundColor: "#ffffff",
-      border: withBorder
+      border: initialStatePetSelect
+        ? "1px solid rgba(38, 38, 38, 0.15)"
+        : isSuccess
+        ? "1px solid #08aa83"
+        : hasError
+        ? "1px solid #ef2447"
+        : initialStatePetSelect
         ? "1px solid rgba(38, 38, 38, 0.15)"
         : "1px solid transparent",
-      // border: "1px solid transparent",
       width: isMobile ? "144px" : "170px",
       height: isMobile ? "42px" : "48px",
       boxShadow: "none",

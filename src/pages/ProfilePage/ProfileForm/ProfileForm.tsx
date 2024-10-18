@@ -20,7 +20,6 @@ type ProfileFormProps = {
 };
 
 const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
-  const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const dispatch: AppDispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -30,6 +29,8 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
     register,
     handleSubmit,
     getValues,
+    setValue,
+    trigger,
     formState: { errors, isValidating },
     reset,
   } = useForm<IUpdateReq>({
@@ -52,8 +53,8 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
       const url: string | null = await uploadToCloudinary(selectedFile);
       console.log(url);
       if (url) {
-        setImageUrl(url);
-        console.log(imageUrl);
+        setValue("avatar", url);
+        trigger("avatar");
       } else {
         console.error("Failed attempt to load file");
       }
@@ -74,16 +75,17 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
     if (data.email) {
       formData = { ...formData, email: data.email };
     }
-    if (file) {
+    if (data.avatar || file) {
       formData = { ...formData, avatar: data.avatar };
     }
+
     if (data.phone) {
       formData = { ...formData, phone: data.phone };
     }
 
     if (Object.keys(formData).length > 0) {
       dispatch(updateProfile(formData));
-      setImageUrl("");
+
       reset();
       onClose();
     }
@@ -99,7 +101,6 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.form__wrapper}>
           <div className={style.form__avatarWrapper}>
-            {/* ----------avatar------------- */}
             <div className={style.form__inputWrapper}>
               <input
                 className={classNames(style.form__input, {
@@ -108,7 +109,6 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
                 })}
                 placeholder="Avatar"
                 {...register("avatar")}
-                value={imageUrl}
               />
               {errors.avatar && (
                 <p className={style.form__error}>{errors.avatar?.message}</p>
@@ -118,7 +118,6 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
               )}
             </div>
 
-            {/* ----------file------------- */}
             <div className={style.form__inputWrapper}>
               <input
                 type="file"
@@ -139,7 +138,7 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
               ></ButtonIcon>
             </div>
           </div>
-          {/* ----------name------------- */}
+
           <div className={style.form__inputWrapper}>
             <input
               className={classNames(style.form__input, {
@@ -152,8 +151,11 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
             {errors.name && (
               <p className={style.form__error}>{errors.name?.message}</p>
             )}
+            {isNameValid && !isValidating && (
+              <p className={style.form__success}>Valid name format</p>
+            )}
           </div>
-          {/* ----------email------------- */}
+
           <div className={style.form__inputWrapper}>
             <input
               className={classNames(style.form__input, {
@@ -170,7 +172,7 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
               <p className={style.form__success}>Valid email format</p>
             )}
           </div>
-          {/* ----------phone------------- */}
+
           <div className={style.form__inputWrapper}>
             <input
               className={classNames(style.form__input, {

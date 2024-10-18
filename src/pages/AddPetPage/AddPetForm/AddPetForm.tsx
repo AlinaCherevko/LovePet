@@ -1,4 +1,4 @@
-import { useRef, useState, type FC } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 import Title from "../../../components/Section/Title/Title";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import classNames from "classnames";
@@ -20,7 +20,6 @@ import style from "./AddPetForm.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RadioBtnGroup from "../RadioBtnGroup/RadioBtnGroup";
 import { useSelectStyles } from "../../../hooks/hooks";
-import { selectPets } from "../../../redux/auth/authSelectors";
 import { useNavigate } from "react-router-dom";
 
 export interface IAddPet {
@@ -49,16 +48,16 @@ const AddPetForm: FC<AddPetProps> = ({
   onFakeFemaleClick,
   onFakeOthersClick,
 }) => {
-  const [imageUrl, setImageUrl] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [initialState, setInitialState] = useState(true);
+  const [hasSuccess, setHasSuccess] = useState(false);
+  const [imgUrl, setImgUrl] = useState("");
   const [gender, setGender] = useState("");
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const pets = useSelector(selectPets);
   const species = useSelector(speciesSelector);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const selectStyles = useSelectStyles(true);
-
-  console.log(pets);
+  const selectStyles = useSelectStyles(initialState, hasError, hasSuccess);
 
   const speciesOptions: IOptions[] = species.map((item) => ({
     value: item,
@@ -86,10 +85,9 @@ const AddPetForm: FC<AddPetProps> = ({
       const url: string | null = await uploadToCloudinary(selectedFile);
 
       if (url) {
-        setImageUrl(url);
+        setImgUrl(url);
         setValue("imageUrl", url);
         trigger("imageUrl");
-        console.log(imageUrl);
       } else {
         console.error("Failed attempt to load file");
       }
@@ -121,18 +119,17 @@ const AddPetForm: FC<AddPetProps> = ({
   };
 
   const onSubmit: SubmitHandler<IAddPet> = (data) => {
-    console.log(data);
     const formData = {
       name: data.name,
       title: data.title,
       species: data.species,
       sex: gender,
-      imgURL: imageUrl,
+      imgURL: imgUrl || data.imageUrl || "",
       birthday: data.birthday,
     };
 
     dispatch(addPet(formData));
-    setImageUrl("");
+    setImgUrl("");
     reset();
     navigate("/profile");
   };
@@ -141,6 +138,18 @@ const AddPetForm: FC<AddPetProps> = ({
   const isTitleValid = !errors.title && getValues("title");
   const isImageUrlValid = !errors.imageUrl && getValues("imageUrl");
   const isBirthdayValid = !errors.birthday && getValues("birthday");
+
+  useEffect(() => {
+    if (errors.species) {
+      setHasError(true);
+      setHasSuccess(false);
+      setInitialState(false);
+    }
+    if (!errors.species) {
+      setHasError(false);
+      setHasSuccess(true);
+    }
+  }, [errors.species]);
 
   return (
     <div className={style.formWrapper}>
@@ -153,7 +162,7 @@ const AddPetForm: FC<AddPetProps> = ({
       {errors.sex && (
         <p className={style.form__errorGender}>{errors.sex?.message}</p>
       )}
-      <Avatar id="icon-footprint" size={AvatarSizes.Small} url={imageUrl} />
+      <Avatar id="icon-footprint" size={AvatarSizes.Small} url={imgUrl} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.form__wrapper}>
           <div className={style.form__inputRadioWrapper}>
@@ -175,7 +184,7 @@ const AddPetForm: FC<AddPetProps> = ({
               type="radio"
               {...register("sex")}
               ref={othersBtnRef}
-              value="multiply"
+              value="multiple"
               onChange={onOthersBtnChange}
             />
           </div>
@@ -189,7 +198,6 @@ const AddPetForm: FC<AddPetProps> = ({
                 })}
                 placeholder="ImageUrl"
                 {...register("imageUrl")}
-                value={imageUrl}
               />
               {errors.imageUrl && (
                 <p className={style.form__error}>{errors.imageUrl?.message}</p>
@@ -231,6 +239,9 @@ const AddPetForm: FC<AddPetProps> = ({
             />
             {errors.name && (
               <p className={style.form__error}>{errors.name?.message}</p>
+            )}
+            {isNameValid && !isValidating && (
+              <p className={style.form__success}>Valid name format</p>
             )}
           </div>
 

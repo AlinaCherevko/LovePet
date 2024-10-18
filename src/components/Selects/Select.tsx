@@ -36,7 +36,6 @@ const SelectEl: FC<ISelect> = ({
   return (
     <div className={style.filters}>
       <Select
-        //components={{ MenuList }}
         className={style.selector}
         classNamePrefix="selector"
         onChange={onSelectChange}
@@ -44,7 +43,6 @@ const SelectEl: FC<ISelect> = ({
         options={options}
         placeholder={placeholder}
         styles={selectStyles}
-        // styles={useSelectStyles()}
         isClearable={isClearable}
         value={options.find((option) => option.value === value) || null}
       />

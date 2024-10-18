@@ -45,6 +45,9 @@ export const noticesSlice = createSlice({
     addToViewed(state, { payload }) {
       state.viewed.push(payload);
     },
+    removeViewed(state) {
+      state.viewed = [];
+    },
   },
   extraReducers(builder) {
     //notices
@@ -120,4 +123,4 @@ export const noticesSlice = createSlice({
 
 export default noticesSlice.reducer;
 
-export const { addToViewed } = noticesSlice.actions;
+export const { addToViewed, removeViewed } = noticesSlice.actions;

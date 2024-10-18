@@ -46,7 +46,6 @@ export const authSlice = createSlice({
     builder.addCase(signup.pending, handleAuthPending);
     builder.addCase(signup.rejected, handleAuthRejected);
     builder.addCase(signup.fulfilled, (state, { payload }) => {
-      //console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.token = payload.token;
@@ -58,7 +57,6 @@ export const authSlice = createSlice({
     builder.addCase(logIn.pending, handleAuthPending);
     builder.addCase(logIn.rejected, handleAuthRejected);
     builder.addCase(logIn.fulfilled, (state, { payload }) => {
-      //console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.token = payload.token;
@@ -76,12 +74,9 @@ export const authSlice = createSlice({
       state.isAuthLoading = initialState.isAuthLoading;
       state.error = initialState.error;
     });
+
     //current full
-    // builder.addCase(refreshUserFull.pending, (state) => {
-    //   //state.isRefreshing = true;
-    // });
     builder.addCase(refreshUserFull.fulfilled, (state, { payload }) => {
-      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
@@ -89,12 +84,11 @@ export const authSlice = createSlice({
       state.token = payload.token;
       state.noticesFavorites = payload.noticesFavorites;
       state.noticesViewed = payload.noticesViewed;
+      state.pets = payload.pets;
       state.isLoggedIn = true;
-      // state.isRefreshing = false;
       state.error = "";
     });
     builder.addCase(refreshUserFull.rejected, (state, { payload }) => {
-      //state.isRefreshing = false;
       state.error = payload;
     });
 
@@ -103,7 +97,6 @@ export const authSlice = createSlice({
       state.isRefreshing = true;
     });
     builder.addCase(refreshUser.fulfilled, (state, { payload }) => {
-      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
@@ -123,7 +116,6 @@ export const authSlice = createSlice({
     builder.addCase(updateProfile.pending, handleAuthPending);
     builder.addCase(updateProfile.rejected, handleAuthRejected);
     builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
-      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.phone = payload.phone;
