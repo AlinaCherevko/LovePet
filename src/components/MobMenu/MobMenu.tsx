@@ -32,7 +32,11 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
     onClose();
   };
 
-  const className = classNames(style["menu"], style[`menu--${type}`]);
+  const className = classNames(
+    style["menu"],
+    style[`menu--${type}`],
+    isVisibleLogOutModal ? style["menu--open"] : ""
+  );
   return (
     <>
       <div className={className}>

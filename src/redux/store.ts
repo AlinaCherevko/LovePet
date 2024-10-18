@@ -18,13 +18,13 @@ import { friendsSlice } from "./friends/friendsSlices";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["user", "token"],
+  whitelist: ["user", "token", "pets"],
 };
 
 const noticesPersistConfig = {
   key: "notices",
   storage,
-  whitelist: ["favorites"],
+  whitelist: ["favorites", "viewed"],
 };
 
 const rootReducer = combineReducers({

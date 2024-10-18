@@ -23,6 +23,7 @@ const initialState: INoticesState = {
   categories: [],
   locations: [],
   favorites: [],
+  viewed: [],
   isLoading: false,
   isError: false,
 };
@@ -40,7 +41,11 @@ export const noticesSlice = createSlice({
   name: "notices",
   initialState,
 
-  reducers: {},
+  reducers: {
+    addToViewed(state, { payload }) {
+      state.viewed.push(payload);
+    },
+  },
   extraReducers(builder) {
     //notices
     builder.addCase(getNotices.pending, isPending);
@@ -114,3 +119,5 @@ export const noticesSlice = createSlice({
 });
 
 export default noticesSlice.reducer;
+
+export const { addToViewed } = noticesSlice.actions;

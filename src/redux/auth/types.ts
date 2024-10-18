@@ -1,8 +1,8 @@
+import { AddResItemPet } from "../../pages/AddPetPage/AddPetItem/types";
 import { INotices } from "../notices/types";
 
 export interface IState {
   user: IUser;
-  //blob: string | null;
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
@@ -10,6 +10,7 @@ export interface IState {
   error: string | null | unknown;
   noticesViewed: INotices[];
   noticesFavorites: INotices[];
+  pets: AddResItemPet[];
 }
 
 export interface IUser {
@@ -53,6 +54,7 @@ export interface IRefreshFull {
   phone: string;
   noticesViewed: INotices[];
   noticesFavorites: INotices[];
+  pets: AddResItemPet[];
 }
 
 export interface IRefresh {

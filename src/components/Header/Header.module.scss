@@ -38,7 +38,13 @@
 
   &__mobWrapper {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 16px;
+    height: 40px;
+
+    @include media(tablet) {
+      height: 50px;
+      align-items: center;
+    }
   }
 }

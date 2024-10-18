@@ -8,7 +8,7 @@ export type SectionProps = {
 const Section: FC<SectionProps> = ({ children }) => {
   return (
     <section className={style.section}>
-      <div className="container">{children}</div>
+      <div className={style.container}>{children}</div>
     </section>
   );
 };

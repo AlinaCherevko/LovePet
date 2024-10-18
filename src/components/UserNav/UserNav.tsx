@@ -23,13 +23,13 @@ const UserNav: FC<UserNavProps> = ({ isHomePage }) => {
   const handleLogOutClick = () => {
     setTimeout(() => {
       setIsVisibleLogOutModal(true);
-    }, 500);
+    }, 300);
   };
 
   const onClose = () => {
     setTimeout(() => {
       setIsVisibleLogOutModal(false);
-    }, 500);
+    }, 300);
   };
 
   const handleClickNavigate = () => {

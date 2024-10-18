@@ -3,6 +3,7 @@
 .newsList {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 24px;
 
   @include media(tablet) {
@@ -14,6 +15,6 @@
   @include media(desktop) {
     row-gap: 40px;
     column-gap: 35px;
-    padding: 0 31px;
+    // padding: 0 31px;
   }
 }

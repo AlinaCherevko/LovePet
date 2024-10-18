@@ -1,0 +1,102 @@
+@import "../../../styles/index.scss";
+
+.item {
+  width: 100%;
+  height: auto;
+  border: 1px solid $_pets_cards;
+  border-radius: 20px;
+  padding: 16px 46px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+
+  @include media(mobile) {
+    width: 295px;
+    height: 132px;
+  }
+
+  @include media(tablet) {
+    width: 305px;
+    height: 149px;
+  }
+  @include media(desktop) {
+    width: 440px;
+    height: 130px;
+    padding: 20px 62px 20px 20px;
+    gap: 25px;
+  }
+
+  &__img {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+
+    @include media(desktop) {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  &__title {
+    @include font(14, 18);
+    font-weight: 700;
+    margin-bottom: 8px;
+
+    @include media(tablet) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: $_accent_light;
+  padding: 0;
+  display: inline-block;
+  fill: transparent;
+  transition-duration: $_transition_duration;
+  transition-timing-function: $_cubic_bezier;
+  transition-delay: $_transition_delay;
+
+  @include media(tablet) {
+    width: 38px;
+    height: 38px;
+  }
+  &:hover {
+    background-color: $_hover_color;
+  }
+}
+
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  @include media(mobile) {
+    gap: 16px;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text {
+    @include font(10, 14);
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: $_placeholder_color;
+  }
+  &__afterText {
+    @include font(12, 14);
+    font-weight: 500;
+  }
+}

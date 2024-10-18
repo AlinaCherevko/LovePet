@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IState } from "./types";
 import {
+  addPet,
+  deletePet,
   logIn,
   logOut,
   refreshUser,
@@ -17,6 +19,7 @@ const initialState: IState = {
   isAuthLoading: false,
   noticesFavorites: [],
   noticesViewed: [],
+  pets: [],
   error: "",
 };
 
@@ -30,7 +33,6 @@ const handleAuthRejected = (
   action: PayloadAction<string | undefined>
 ) => {
   state.isAuthLoading = false;
-  console.log(action);
   state.error = action.payload;
 };
 
@@ -79,7 +81,7 @@ export const authSlice = createSlice({
     //   //state.isRefreshing = true;
     // });
     builder.addCase(refreshUserFull.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
@@ -101,7 +103,7 @@ export const authSlice = createSlice({
       state.isRefreshing = true;
     });
     builder.addCase(refreshUser.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
@@ -121,12 +123,32 @@ export const authSlice = createSlice({
     builder.addCase(updateProfile.pending, handleAuthPending);
     builder.addCase(updateProfile.rejected, handleAuthRejected);
     builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.phone = payload.phone;
       state.user.avatar = payload.avatar;
       state.token = payload.token;
+      state.isLoggedIn = true;
+      state.error = "";
+    });
+
+    //addPet
+    builder.addCase(addPet.pending, handleAuthPending);
+    builder.addCase(addPet.rejected, handleAuthRejected);
+    builder.addCase(addPet.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.pets = payload.pets;
+      state.isLoggedIn = true;
+      state.error = "";
+    });
+
+    //remove pet
+    builder.addCase(deletePet.pending, handleAuthPending);
+    builder.addCase(deletePet.rejected, handleAuthRejected);
+    builder.addCase(deletePet.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.pets = payload.pets;
       state.isLoggedIn = true;
       state.error = "";
     });

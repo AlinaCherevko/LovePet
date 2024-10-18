@@ -23,7 +23,7 @@ const LogOutModal: FC<LogBtnProps> = ({ onClose }) => {
 
     setTimeout(() => {
       onClose();
-    }, 500);
+    }, 300);
   };
 
   return (

@@ -7,3 +7,4 @@ export const selectRefreshing = (state: RootState) => state.auth.isRefreshing;
 export const selectFavorites = (state: RootState) =>
   state.auth.noticesFavorites;
 export const selectViewed = (state: RootState) => state.auth.noticesViewed;
+export const selectPets = (state: RootState) => state.auth.pets;

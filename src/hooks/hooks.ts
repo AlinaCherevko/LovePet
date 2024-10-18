@@ -1,21 +1,24 @@
 import { StylesConfig } from "react-select";
 import { useMediaQuery } from "react-responsive";
 
-export const useSelectStyles = (): StylesConfig => {
+export const useSelectStyles = (withBorder: boolean = false): StylesConfig => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return {
     placeholder: (provided) => ({
       ...provided,
-      color: "#262626",
+      color: withBorder ? "rgba(38, 38, 38, 0.7)" : "#262626",
+      fontWeight: withBorder ? "500" : "400",
       fontSize: isMobile ? "14px" : "16px",
       lineHeight: isMobile ? "18px" : "20px",
-      fontWeight: "400",
     }),
     control: (provided) => ({
       ...provided,
       backgroundColor: "#ffffff",
-      border: "1px solid transparent",
+      border: withBorder
+        ? "1px solid rgba(38, 38, 38, 0.15)"
+        : "1px solid transparent",
+      // border: "1px solid transparent",
       width: isMobile ? "144px" : "170px",
       height: isMobile ? "42px" : "48px",
       boxShadow: "none",

@@ -1,6 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios1, { AxiosError } from "axios";
-import { ILogin, IRefresh, IRefreshFull, IRegData, ISignup } from "./types";
+import {
+  ILogin,
+  IPet,
+  IRefresh,
+  IRefreshFull,
+  IRegData,
+  ISignup,
+} from "./types";
 import { RootState } from "../store";
 
 export const axios = axios1.create({
@@ -149,33 +156,36 @@ export const updateProfile = createAsyncThunk<
   }
 });
 
-// //add pet
-// export const addPet = createAsyncThunk(
-//   "auth/addPet",
-//   async (petsData: IPet, thunkAPI) => {
-//     try {
-//       const { data } = await axios.post("/users/current/pets/add", petsData);
-//       return data;
-//     } catch (error: unknown) {
-//       if (error instanceof AxiosError && error.response) {
-//         const errorMessage = error.response.data.message;
-//         return thunkAPI.rejectWithValue(errorMessage);
-//       }
-//     }
-//   }
-// );
+//add pet
+export const addPet = createAsyncThunk<
+  IRefreshFull,
+  IPet,
+  { rejectValue: string }
+>("auth/addPet", async (petsData, thunkAPI) => {
+  try {
+    const { data } = await axios.post("/users/current/pets/add", petsData);
+    return data;
+  } catch (error: unknown) {
+    if (error instanceof AxiosError && error.response) {
+      const errorMessage = error.response.data.message;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+});
 
-// //delete pet
-// export const deletePet = createAsyncThunk(
-//   "auth/deletePet",
-//   async (id: string, thunkAPI) => {
-//     try {
-//       await axios.delete(`/users/current/pets/remove/${id}`);
-//     } catch (error: unknown) {
-//       if (error instanceof AxiosError && error.response) {
-//         const errorMessage = error.response.data.message;
-//         return thunkAPI.rejectWithValue(errorMessage);
-//       }
-//     }
-//   }
-// );
+//delete pet
+export const deletePet = createAsyncThunk<
+  IRefreshFull,
+  string,
+  { rejectValue: string }
+>("auth/deletePet", async (id, thunkAPI) => {
+  try {
+    const { data } = await axios.delete(`/users/current/pets/remove/${id}`);
+    return data;
+  } catch (error: unknown) {
+    if (error instanceof AxiosError && error.response) {
+      const errorMessage = error.response.data.message;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+});

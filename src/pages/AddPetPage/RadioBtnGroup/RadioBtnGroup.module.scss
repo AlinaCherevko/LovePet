@@ -1,0 +1,60 @@
+@import "../../../styles/index.scss";
+
+.form {
+  &__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+    @include media(tablet) {
+      width: 40px;
+      height: 40px;
+    }
+
+    &__pink {
+      background-color: $_pink_bcg;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid $_pink_color;
+      }
+    }
+
+    &__blue {
+      background-color: $_blue_bcg;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid $_blue_color;
+      }
+    }
+
+    &__beige {
+      background-color: $_accent_light;
+
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid $_accent_color;
+      }
+    }
+  }
+
+  &__btnWrap {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    margin-top: 24px;
+
+    @include media(tablet) {
+      margin-top: 40px;
+      margin-bottom: -12px;
+    }
+  }
+}

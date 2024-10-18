@@ -15,6 +15,7 @@
   &__wrap {
     @include media(desktop) {
       display: flex;
+      gap: 30px;
     }
   }
 
@@ -35,7 +36,6 @@
 
     @include media(desktop) {
       width: 520px;
-      height: 674px;
     }
   }
   &__button {

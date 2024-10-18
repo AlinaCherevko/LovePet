@@ -1,0 +1,8 @@
+@import "../../../styles/index.scss";
+
+.img {
+  @include media(desktop) {
+    width: 592px;
+    height: 654px;
+  }
+}

@@ -12,34 +12,50 @@ import {
   removeNotice,
 } from "../../../redux/notices/noticesOperations";
 import { toast } from "react-toastify";
-import { favoritesSelector } from "../../../redux/notices/noticesSelectors";
+import {
+  favoritesSelector,
+  viewedSelector,
+} from "../../../redux/notices/noticesSelectors";
 import { SizeItem } from "../types";
 import classNames from "classnames";
 import style from "./NoticesItem.module.scss";
 import AttentionModal from "../../../components/Modal/AttentionModal/AttentionModal";
+import { addToViewed } from "../../../redux/notices/noticesSlise";
 
 type NoticesProps = {
   item: INotices;
   type: SizeItem;
+  isNoticesPage?: boolean;
+  isViewedPage?: boolean;
 };
 
-const NoticesItem: FC<NoticesProps> = ({ item, type }) => {
+const NoticesItem: FC<NoticesProps> = ({
+  item,
+  type,
+  isNoticesPage,
+  isViewedPage,
+}) => {
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const favorites = useSelector(favoritesSelector);
-
-  console.log(favorites);
+  const viewed = useSelector(viewedSelector);
 
   const inFavorite =
     favorites &&
     favorites.length > 0 &&
     favorites.some((favorite) => favorite === item._id);
 
+  const isViewed =
+    viewed && viewed.length > 0 && viewed.some((el) => el._id === item._id);
+
   const handleUserModalClick = () => {
     setTimeout(() => {
       setIsVisibleUserModal(true);
     }, 300);
+    if (!isViewed) {
+      dispatch(addToViewed(item));
+    }
   };
 
   const onClose = () => {
@@ -106,19 +122,27 @@ const NoticesItem: FC<NoticesProps> = ({ item, type }) => {
               onClick={handleUserModalClick}
               type="button"
             />
-            <button
-              className={style.button}
-              type="button"
-              onClick={toggleFavorite}
-            >
-              <Icon
-                id={inFavorite ? "icon-trash" : "icon-heart"}
-                stroke="#f6b83d"
-                fill="transparent"
-                width="20px"
-                height="20px"
-              />
-            </button>
+            {!isViewedPage && (
+              <button
+                className={style.button}
+                type="button"
+                onClick={toggleFavorite}
+              >
+                <Icon
+                  id={
+                    isNoticesPage
+                      ? inFavorite
+                        ? "icon-trash"
+                        : "icon-heart"
+                      : "icon-trash"
+                  }
+                  stroke="#f6b83d"
+                  fill="transparent"
+                  width="20px"
+                  height="20px"
+                />
+              </button>
+            )}
           </div>
         </div>
       </li>

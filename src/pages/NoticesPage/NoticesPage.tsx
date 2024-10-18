@@ -2,10 +2,8 @@ import { useEffect, useState, type FC } from "react";
 import Title from "../../components/Section/Title/Title";
 import Section from "../../components/Section/Section";
 import {
-  getLocations,
   getNotices,
   getNoticesCategories,
-  getNoticesSex,
   getNoticesSpecies,
 } from "../../redux/notices/noticesOperations";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,12 +17,13 @@ import { SizeItem } from "./types";
 
 const NoticesPage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [locationValue, setLocationValue] = useState<string>("");
   const [speciesValue, setSpeciesValue] = useState<string>("");
   const [categoryValue, setCategoryValue] = useState<string>("");
-  //const [genderValue, setGenderValue] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const dispatch: AppDispatch = useDispatch();
+
+  const isNoticesPage = true;
+  const isViewedPage = false;
 
   const { results, totalPages } = useSelector(noticesSelector);
 
@@ -35,28 +34,15 @@ const NoticesPage: FC = () => {
       getNotices({
         page,
         inputValue,
-        locationValue,
         speciesValue,
         categoryValue,
       })
     );
-  }, [
-    dispatch,
-    page,
-    inputValue,
-    speciesValue,
-    categoryValue,
-    //genderValue,
-    locationValue,
-  ]);
+  }, [dispatch, page, inputValue, speciesValue, categoryValue]);
 
   useEffect(() => {
     setPage(1);
-  }, [inputValue, speciesValue, categoryValue, locationValue]);
-
-  useEffect(() => {
-    dispatch(getLocations());
-  }, [dispatch]);
+  }, [inputValue, speciesValue, categoryValue]);
 
   useEffect(() => {
     dispatch(getNoticesSpecies());
@@ -64,10 +50,6 @@ const NoticesPage: FC = () => {
 
   useEffect(() => {
     dispatch(getNoticesCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getNoticesSex());
   }, [dispatch]);
 
   const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
@@ -89,13 +71,17 @@ const NoticesPage: FC = () => {
       <NoticesSearch
         inputValue={inputValue}
         onChange={onChange}
-        setLocationValue={setLocationValue}
         setSpeciesValue={setSpeciesValue}
         setCategoryValue={setCategoryValue}
       />
       {results.length > 0 ? (
         <>
-          <NoticesList notices={results} type={SizeItem.Big} />
+          <NoticesList
+            notices={results}
+            type={SizeItem.Big}
+            isNoticesPage={isNoticesPage}
+            isViewedPage={isViewedPage}
+          />
           <Pagination
             handlePageClick={handlePageClick}
             totalPages={totalPages}

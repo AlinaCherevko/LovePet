@@ -11,8 +11,8 @@ import { AppDispatch } from "../../../redux/store";
 import { IUpdateReq, updateProfile } from "../../../redux/auth/authOperations";
 import { uploadToCloudinary } from "../../../services/services";
 import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
-import style from "./ProfileForm.module.scss";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
+import style from "./ProfileForm.module.scss";
 
 type ProfileFormProps = {
   setFile?: (file: File) => void;

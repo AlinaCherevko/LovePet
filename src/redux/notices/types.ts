@@ -3,7 +3,7 @@ export interface INoticesParams {
   inputValue: string;
   categoryValue: string;
   speciesValue: string;
-  locationValue: string;
+  //locationValue: string;
   //genderValue: string;
 }
 
@@ -46,6 +46,7 @@ export interface INoticesState {
   categories: string[];
   locations: ILocation[];
   favorites: string[];
+  viewed: INotices[];
   //favorites: INotices[];
   isLoading: boolean;
   isError: boolean;

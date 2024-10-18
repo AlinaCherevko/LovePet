@@ -1,44 +1,55 @@
-import { type FC } from "react";
-import Select from "react-select";
+import { FC, useState } from "react";
+import Select, { StylesConfig } from "react-select";
 import style from "./SelectType.module.scss";
-import MenuList from "./LocationMenu";
-import { useSelectStyles } from "../../hooks/hooks";
 
 type Option = { value: string; label: string };
 
 type ISelect = {
   options: Array<Option>;
   placeholder: string;
-  setSelectValue: (value: string) => void;
+  onChange: (value: string) => void;
+  value?: string;
+  selectStyles?: StylesConfig;
 };
 
-const SelectEl: FC<ISelect> = ({ options, placeholder, setSelectValue }) => {
-  const onSelectChange = (newValue: Option | unknown) => {
+const SelectEl: FC<ISelect> = ({
+  options,
+  placeholder,
+  onChange,
+  value,
+  selectStyles,
+}) => {
+  const [isClearable, setIsClearable] = useState(true);
+
+  const onSelectChange = (newValue: unknown) => {
+    setIsClearable(!isClearable);
     console.log(newValue);
 
     if (newValue && typeof newValue === "object" && "value" in newValue) {
       const selectedOption = newValue as Option;
-      setSelectValue(selectedOption.value);
+      onChange(selectedOption.value);
+    } else {
+      onChange("");
     }
   };
 
   return (
     <div className={style.filters}>
       <Select
-        components={{ MenuList }}
+        //components={{ MenuList }}
         className={style.selector}
         classNamePrefix="selector"
         onChange={onSelectChange}
         name="type"
         options={options}
         placeholder={placeholder}
-        styles={useSelectStyles()}
+        styles={selectStyles}
+        // styles={useSelectStyles()}
+        isClearable={isClearable}
+        value={options.find((option) => option.value === value) || null}
       />
     </div>
   );
 };
 
 export default SelectEl;
-
-// actionMeta: ActionMeta<Option>
-// selectedOptions: SingleValue<{ value: string; label: string }>

@@ -21,13 +21,13 @@ const ProfilePage: FC = () => {
   const handleUserModalClick = () => {
     setTimeout(() => {
       setIsVisibleUserModal(true);
-    }, 500);
+    }, 300);
   };
 
   const onClose = () => {
     setTimeout(() => {
       setIsVisibleUserModal(false);
-    }, 500);
+    }, 300);
   };
 
   return (

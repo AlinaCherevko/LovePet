@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import style from "./AddImgBlock.module.scss";
 
 const AddImgBlock: FC = () => {
   return (
@@ -23,7 +24,11 @@ const AddImgBlock: FC = () => {
 "
         media="(min-width: 320px)"
       />
-      <img src=" /img/add-pet/add-mob-1x.png" alt="add-img" />
+      <img
+        className={style.img}
+        src=" /img/add-pet/add-mob-1x.png"
+        alt="add-img"
+      />
     </picture>
   );
 };

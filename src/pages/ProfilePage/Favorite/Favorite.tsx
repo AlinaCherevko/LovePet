@@ -4,17 +4,15 @@ import { useSelector } from "react-redux";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
 import NoticesList from "../../NoticesPage/NoticesList/NoticesList";
 import { SizeItem } from "../../NoticesPage/types";
-import {
-  selectFavorites,
-  selectViewed,
-} from "../../../redux/auth/authSelectors";
+import { selectFavorites } from "../../../redux/auth/authSelectors";
 import style from "./Favorite.module.scss";
+import { viewedSelector } from "../../../redux/notices/noticesSelectors";
 
 const FavoriteTabs: FC = () => {
   const [activeTab, setActiveTab] = useState("favorite");
 
   const favorites = useSelector(selectFavorites);
-  const viewed = useSelector(selectViewed);
+  const viewed = useSelector(viewedSelector);
 
   return (
     <>
@@ -46,7 +44,11 @@ const FavoriteTabs: FC = () => {
           )
         ) : activeTab === "viewed" ? (
           viewed.length > 0 ? (
-            <NoticesList notices={viewed} type={SizeItem.Small} />
+            <NoticesList
+              notices={viewed}
+              type={SizeItem.Small}
+              isViewedPage={true}
+            />
           ) : (
             <p className={style.detailsWrapper__text}>
               Oops, looks like there aren't any furries on our viewed page yet.

@@ -7,12 +7,10 @@ type FriendsProps = {
 };
 
 const FriendsItem: FC<FriendsProps> = ({ item }) => {
-  //console.log(item.workDays[0].from);
-
   return (
     <li className={style.friendsItem}>
       <div className={style.hours}>
-        {/* <p>{item.workDays[0].from ? item.workDays[0].from : "Day and night"}</p> */}
+        <p className={style.hours__time}>09:00 - 20:00</p>
       </div>
       <div className={style.friendsItem__wrapper}>
         <img

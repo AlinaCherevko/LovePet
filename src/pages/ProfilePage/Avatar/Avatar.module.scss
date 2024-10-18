@@ -41,8 +41,8 @@
   }
 
   &--tiny {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
 
     @include media(tablet) {
       width: 50px;

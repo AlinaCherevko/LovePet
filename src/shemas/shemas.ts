@@ -50,22 +50,6 @@ export const schemaLog = yup
   })
   .required();
 
-// export const schemaUser = yup.object({
-//   name: yup.string(),
-//   //.required("Name is required"),
-
-//   email: yup.string().email("Invalid email format"),
-//   //.required("Email is required"),
-
-//   avatar: yup
-//     .string()
-//     .matches(
-//       /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-//       "Avatar should be valid url"
-//     ),
-
-//   phone: yup.string().matches(/^\+38\d{10}$/, "Phone number is not valid"),
-// });
 export const schemaUser = yup.object({
   name: yup.string().nullable(),
   email: yup.string().email("Invalid email format").nullable(),
@@ -80,4 +64,22 @@ export const schemaUser = yup.object({
     .string()
     .matches(/^\+38\d{10}$/, "Phone number is not valid")
     .nullable(),
+});
+
+export const schemaPet = yup.object({
+  name: yup.string().required("Name is a required field"),
+  title: yup.string().required("Title is a required field"),
+  species: yup.string().required("Species is a required field"),
+  sex: yup.string().required("Gender is a required field"),
+  imageUrl: yup
+    .string()
+    .matches(
+      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+      "Avatar should be valid url"
+    )
+    .nullable(),
+  birthday: yup
+    .string()
+    .matches(/^\d{4}-\d{2}-\d{2}$/, "Date is not valid")
+    .required(),
 });

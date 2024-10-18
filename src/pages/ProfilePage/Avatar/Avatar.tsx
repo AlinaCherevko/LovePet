@@ -7,13 +7,11 @@ import style from "./Avatar.module.scss";
 export type AvatarProps = {
   id: string;
   size: AvatarSizes;
-  url: string;
+  url?: string;
   onClick?: () => void;
 };
 
 const Avatar: FC<AvatarProps> = ({ id, size, url, onClick }) => {
-  //const user = useSelector(selectUser);
-
   useEffect(() => {}, []);
 
   return (

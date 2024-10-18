@@ -125,6 +125,7 @@
     @include font(12, 14);
     font-weight: 500;
     color: $_placeholder_color;
+    margin-right: 6px;
 
     @include media(tablet) {
       @include font(14, 20);

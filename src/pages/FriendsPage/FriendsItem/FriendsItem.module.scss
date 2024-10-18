@@ -54,15 +54,24 @@
 }
 
 .hours {
-  width: 90px;
+  position: absolute;
+  width: fit-content;
+  padding: 0 8px;
   height: 32px;
   background-color: $_accent_light;
   border-radius: 30px;
-  position: absolute;
   top: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include media(tablet) {
     height: 34px;
+  }
+
+  &__time {
+    @include font(14, 18);
+    color: $_accent_color;
   }
 }

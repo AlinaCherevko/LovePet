@@ -9,19 +9,12 @@ export const getNotices = createAsyncThunk(
   "notices/getNotices",
 
   async (
-    {
-      page = 1,
-      inputValue,
-      categoryValue,
-      speciesValue,
-      locationValue,
-    }: //genderValue,
-    INoticesParams,
+    { page = 1, inputValue, categoryValue, speciesValue }: INoticesParams,
     thunkAPI
   ) => {
     try {
       const { data } = await axios.get(
-        `/notices?page=${page}&keyword=${inputValue}&category=${categoryValue}&species=${speciesValue}&locationId=${locationValue}`
+        `/notices?page=${page}&keyword=${inputValue}&category=${categoryValue}&species=${speciesValue}`
       );
       //console.log(data);
 

@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-import style from "./MyPets.module.scss";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
 import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import Modal from "../../../components/Modal/Modal";
@@ -7,6 +6,8 @@ import LogOutModal from "../../../components/Modal/LogOutModal/LogOutModal";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 import { useNavigate } from "react-router-dom";
+import AddPetList from "../../AddPetPage/AddPetList/AddPetList";
+import style from "./MyPets.module.scss";
 
 const MyPets: FC = () => {
   const navigate = useNavigate();
@@ -15,13 +16,13 @@ const MyPets: FC = () => {
   const handleLogOutClick = () => {
     setTimeout(() => {
       setIsVisibleLogOutModal(true);
-    }, 500);
+    }, 300);
   };
 
   const onClose = () => {
     setTimeout(() => {
       setIsVisibleLogOutModal(false);
-    }, 500);
+    }, 300);
   };
 
   const handleAddPetClick = () => {
@@ -43,6 +44,8 @@ const MyPets: FC = () => {
             onClick={handleAddPetClick}
           />
         </div>
+
+        <AddPetList />
 
         <AuthLink
           onClick={handleLogOutClick}

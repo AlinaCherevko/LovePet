@@ -27,11 +27,15 @@ const NewsPage: FC = () => {
 
   const handlePageClick: ReactPaginateProps["onPageChange"] = (e) => {
     setPage(e.selected + 1);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const onChange = (value: string) => {
     setInputValue(value);
-    //setPage(1);
   };
 
   return (

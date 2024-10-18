@@ -1,0 +1,12 @@
+@import "../../../styles/index.scss";
+.addList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+
+  @include media(tablet) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

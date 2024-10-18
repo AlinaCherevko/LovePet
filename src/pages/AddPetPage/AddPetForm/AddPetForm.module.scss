@@ -1,18 +1,19 @@
 @import "../../../styles/index.scss";
 
 .formWrapper {
-  padding: 20px;
+  padding: 28px 20px;
   background-color: $_white_color;
   border-radius: 30px;
   margin-top: 10px;
+  position: relative;
 
   @include media(tablet) {
-    padding: 71px 140px;
+    padding: 40px 136px;
     margin-top: 16px;
   }
   @include media(desktop) {
     margin-top: 0;
-    padding: 108px 84px;
+    padding: 60px 80px;
     width: 592px;
   }
 
@@ -33,6 +34,66 @@
   @include media(tablet) {
     margin-top: 32px;
   }
+  &__inputRadioWrapper {
+    display: none;
+  }
+
+  &__icon {
+    fill: transparent;
+    stroke: $_dark_color;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    @include media(tablet) {
+      top: 16px;
+      right: 16px;
+    }
+  }
+
+  &__selectWrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+    @include media(tablet) {
+      width: 40px;
+      height: 40px;
+    }
+
+    &__pink {
+      background-color: $_pink_bcg;
+    }
+
+    &__blue {
+      background-color: $_blue_bcg;
+    }
+
+    &__beige {
+      background-color: $_accent_light;
+    }
+  }
+
+  &__btnWrap {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    margin-top: 24px;
+
+    @include media(tablet) {
+      margin-top: 40px;
+      margin-bottom: -12px;
+    }
+  }
 
   &__input {
     width: 100%;
@@ -43,6 +104,10 @@
     height: 42px;
     border: 1px solid $_link_gray;
     border-radius: 30px;
+
+    &_none {
+      display: none;
+    }
 
     &::placeholder {
       padding-left: 12px;
@@ -61,7 +126,6 @@
       border-color: $_accent_color;
     }
     @include media(tablet) {
-      width: 424px;
       height: 52px;
       padding: 16px;
       @include font(16, 20);
@@ -79,16 +143,19 @@
   &__inputWrapper {
     position: relative;
   }
-
+  &__avatarWrapper {
+    display: flex;
+    gap: 8px;
+  }
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: 10px;
+    margin-bottom: 21px;
 
     @include media(tablet) {
       gap: 16px;
-      margin-bottom: 64px;
+      margin-bottom: 40px;
     }
   }
 
@@ -102,6 +169,21 @@
     }
   }
 
+  &__errorGender {
+    top: 112px;
+    position: absolute;
+    @include font(10, 12);
+    font-weight: 500;
+    color: $_error_color;
+    @include media(tablet) {
+      @include font(12, 14);
+      top: 175px;
+    }
+    @include media(desktop) {
+      top: 192px;
+    }
+  }
+
   &__success {
     position: absolute;
     @include font(10, 12);
@@ -109,35 +191,6 @@
     color: $_success_color;
     @include media(tablet) {
       @include font(12, 14);
-    }
-  }
-}
-.linkWrapper {
-  display: flex;
-  margin-top: 12px;
-  justify-content: center;
-
-  @include media(tablet) {
-    margin-top: 16px;
-  }
-
-  &__text {
-    @include font(12, 14);
-    font-weight: 500;
-    color: $_placeholder_color;
-    margin-right: 6px;
-
-    @include media(tablet) {
-      @include font(14, 20);
-    }
-  }
-  &__link {
-    @include font(12, 14);
-    font-weight: 600;
-    color: $_accent_color;
-
-    @include media(tablet) {
-      @include font(14, 20);
     }
   }
 }

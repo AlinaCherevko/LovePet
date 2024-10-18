@@ -3,6 +3,7 @@
 .noticesList {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
 
   @include media(tablet) {
@@ -13,7 +14,7 @@
   @include media(desktop) {
     column-gap: 32px;
     row-gap: 40px;
-    padding: 0 31px;
+    // padding: 0 31px;
   }
 
   &--small {
