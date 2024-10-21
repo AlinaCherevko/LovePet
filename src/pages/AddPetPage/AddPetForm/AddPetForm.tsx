@@ -20,8 +20,11 @@ import RadioBtnGroup from "../RadioBtnGroup/RadioBtnGroup";
 import { useSelectStyles } from "../../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { AddPetProps, IAddPet } from "./types";
+
 import { IOptions } from "../../NoticesPage/NoticesSearch/types";
 import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
+import { toast } from "react-toastify";
+import { selectError } from "../../../redux/auth/authSelectors";
 
 const AddPetForm: FC<AddPetProps> = ({
   maleBtnRef,
@@ -39,6 +42,7 @@ const AddPetForm: FC<AddPetProps> = ({
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const species = useSelector(speciesSelector);
+  const error = useSelector(selectError);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const selectStyles = useSelectStyles(initialState, hasError, hasSuccess);
 
@@ -72,7 +76,7 @@ const AddPetForm: FC<AddPetProps> = ({
         setValue("imageUrl", url);
         trigger("imageUrl");
       } else {
-        console.error("Failed attempt to load file");
+        toast.error("Failed attempt to load file");
       }
     }
   };
@@ -95,7 +99,6 @@ const AddPetForm: FC<AddPetProps> = ({
   };
 
   const onOthersBtnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setValue("sex", e.target.value);
     setGender(e.target.value);
     trigger("sex");
@@ -115,6 +118,10 @@ const AddPetForm: FC<AddPetProps> = ({
     setImgUrl("");
     reset();
     navigate("/profile");
+
+    if (error) {
+      toast.error(error as string);
+    }
   };
 
   const isNameValid = !errors.name && getValues("name");

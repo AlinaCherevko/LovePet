@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Select from "react-select";
 import style from "./SelectType.module.scss";
 import { ISelect, Option } from "./types";
@@ -10,17 +10,17 @@ const SelectEl: FC<ISelect> = ({
   value,
   selectStyles,
 }) => {
-  const [isClearable, setIsClearable] = useState(true);
+  const changedOptions = [{ value: "all", label: "Show all" }, ...options];
 
   const onSelectChange = (newValue: unknown) => {
-    setIsClearable(!isClearable);
-    console.log(newValue);
-
     if (newValue && typeof newValue === "object" && "value" in newValue) {
       const selectedOption = newValue as Option;
-      onChange(selectedOption.value);
-    } else {
-      onChange("");
+
+      if (selectedOption.value === "all") {
+        onChange("");
+      } else {
+        onChange(selectedOption.value);
+      }
     }
   };
 
@@ -28,13 +28,12 @@ const SelectEl: FC<ISelect> = ({
     <div className={style.filters}>
       <Select
         className={style.selector}
-        classNamePrefix="selector"
+        isClearable
         onChange={onSelectChange}
         name="type"
-        options={options}
+        options={changedOptions}
         placeholder={placeholder}
         styles={selectStyles}
-        isClearable={isClearable}
         value={options.find((option) => option.value === value) || null}
       />
     </div>

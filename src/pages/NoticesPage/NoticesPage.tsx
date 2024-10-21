@@ -27,7 +27,7 @@ const NoticesPage: FC = () => {
 
   const { results, totalPages } = useSelector(noticesSelector);
 
-  console.log(results);
+  //console.log(results);
 
   useEffect(() => {
     dispatch(

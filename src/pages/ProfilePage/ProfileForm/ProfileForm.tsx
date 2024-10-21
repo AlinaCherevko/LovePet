@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import classNames from "classnames";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../../redux/auth/authSelectors";
+import { selectError, selectUser } from "../../../redux/auth/authSelectors";
 import { AppDispatch } from "../../../redux/store";
 import { uploadToCloudinary } from "../../../services/services";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
@@ -15,11 +15,13 @@ import { ProfileFormProps } from "./types";
 import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
 import { IUpdateReq } from "../../../redux/auth/types";
 import { updateProfile } from "../../../redux/auth/authOperations";
+import { toast } from "react-toastify";
 
 const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
   const [file, setFile] = useState<File | null>(null);
   const dispatch: AppDispatch = useDispatch();
   const user = useSelector(selectUser);
+  const error = useSelector(selectError);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -48,12 +50,11 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
 
       setFile(selectedFile);
       const url: string | null = await uploadToCloudinary(selectedFile);
-      console.log(url);
       if (url) {
         setValue("avatar", url);
         trigger("avatar");
       } else {
-        console.error("Failed attempt to load file");
+        toast.error("Failed attempt to load file");
       }
     }
   };
@@ -85,6 +86,9 @@ const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
 
       reset();
       onClose();
+    }
+    if (error) {
+      toast.error(error as string);
     }
   };
 
