@@ -9,3 +9,7 @@ export type AddResItemPet = {
   updatedAt: string;
   _id: string;
 };
+
+export type AddItemProps = {
+  item: AddResItemPet;
+};

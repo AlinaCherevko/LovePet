@@ -8,11 +8,11 @@ import Modal from "../../components/Modal/Modal";
 import UserModal from "../../components/Modal/UserModal/UserModal";
 import { AvatarSizes } from "./Avatar/types";
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon";
-import { ColorTheme } from "../../components/Navigation/NavigationLink/NavigationLink";
 import { BtnIconSizes } from "../../components/ButtonIcon/types";
 import Icon from "../../components/Icon/Icon";
 import FavoriteTabs from "./Favorite/Favorite";
 import style from "./ProfilePage.module.scss";
+import { ColorTheme } from "../../components/Navigation/NavigationLink/types";
 
 const ProfilePage: FC = () => {
   const user = useSelector(selectUser);

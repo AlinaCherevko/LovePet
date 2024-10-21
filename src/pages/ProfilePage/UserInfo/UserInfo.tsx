@@ -5,7 +5,6 @@ import style from "./UserInfo.module.scss";
 
 const UserInfo: FC = () => {
   const user = useSelector(selectUser);
-  //console.log(user);
 
   return (
     <div className={style.info}>

@@ -5,13 +5,13 @@ import UserNav from "../UserNav/UserNav";
 import AuthNav from "../AuthNav/AuthNav";
 import MobMenu from "../MobMenu/MobMenu";
 import BurgerBtn from "../MobMenu/BurgerBtn/BurgerBtn";
-import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectIsAuth, selectUser } from "../../redux/auth/authSelectors";
 import Avatar from "../../pages/ProfilePage/Avatar/Avatar";
 import { AvatarSizes } from "../../pages/ProfilePage/Avatar/types";
 import style from "./Header.module.scss";
+import { ColorTheme } from "../Navigation/NavigationLink/types";
 
 const Header: FC = () => {
   const isAuth = useSelector(selectIsAuth);

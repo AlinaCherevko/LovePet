@@ -1,15 +1,8 @@
 import { useEffect, type FC } from "react";
 import Icon from "../../../components/Icon/Icon";
-import { AvatarSizes } from "./types";
 import classNames from "classnames";
 import style from "./Avatar.module.scss";
-
-export type AvatarProps = {
-  id: string;
-  size: AvatarSizes;
-  url?: string;
-  onClick?: () => void;
-};
+import { AvatarProps } from "./types";
 
 const Avatar: FC<AvatarProps> = ({ id, size, url, onClick }) => {
   useEffect(() => {}, []);

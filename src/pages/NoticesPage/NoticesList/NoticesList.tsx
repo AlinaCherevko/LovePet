@@ -1,16 +1,9 @@
 import type { FC } from "react";
 import NoticesItem from "../NoticesItem/NoticesItem";
-import { INotices } from "../../../redux/notices/types";
-import { SizeItem } from "../types";
-import classNames from "classnames";
-import style from "./NoticesList.module.scss";
 
-export interface INoticesProps {
-  notices: INotices[];
-  type: SizeItem;
-  isNoticesPage?: boolean;
-  isViewedPage?: boolean;
-}
+import style from "./NoticesList.module.scss";
+import { INoticesProps } from "./types";
+import classNames from "classnames";
 
 const NoticesList: FC<INoticesProps> = ({
   notices,

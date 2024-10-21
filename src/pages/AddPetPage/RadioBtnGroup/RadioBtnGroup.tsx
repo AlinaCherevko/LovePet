@@ -2,12 +2,7 @@ import { type FC } from "react";
 import Icon from "../../../components/Icon/Icon";
 import classNames from "classnames";
 import style from "./RadioBtnGroup.module.scss";
-
-export type RadioBtnGroupProps = {
-  onFakeMaleClick: () => void;
-  onFakeFemaleClick: () => void;
-  onFakeOthersClick: () => void;
-};
+import { RadioBtnGroupProps } from "./types";
 
 const RadioBtnGroup: FC<RadioBtnGroupProps> = ({
   onFakeMaleClick,

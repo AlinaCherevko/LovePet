@@ -1,7 +1,8 @@
 import type { FC } from "react";
 import Icon from "../../Icon/Icon";
-import { MenuProps } from "../MobMenu";
+
 import style from "./CloseBtn.module.scss";
+import { MenuProps } from "../types";
 
 const CloseBtn: FC<MenuProps> = ({ onClose }) => {
   return (

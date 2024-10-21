@@ -7,6 +7,8 @@ import {
   IRefreshFull,
   IRegData,
   ISignup,
+  IUpdate,
+  IUpdateReq,
 } from "./types";
 import { RootState } from "../store";
 
@@ -120,22 +122,6 @@ export const refreshUser = createAsyncThunk<
     }
   }
 });
-
-interface IUpdate {
-  _id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  phone: string;
-  token: string;
-}
-
-export interface IUpdateReq {
-  name?: string | null;
-  email?: string | null;
-  avatar?: string | null;
-  phone?: string | null;
-}
 
 //update
 export const updateProfile = createAsyncThunk<

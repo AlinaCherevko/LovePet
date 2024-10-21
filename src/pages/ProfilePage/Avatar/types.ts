@@ -4,3 +4,9 @@ export enum AvatarSizes {
   Tiny = "tiny",
   Big = "big",
 }
+export type AvatarProps = {
+  id: string;
+  size: AvatarSizes;
+  url?: string;
+  onClick?: () => void;
+};

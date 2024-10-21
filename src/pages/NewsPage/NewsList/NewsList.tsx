@@ -1,11 +1,7 @@
 import type { FC } from "react";
-import { INews } from "../../../redux/news/types";
 import NewsItem from "../NewsItem/NewsItem";
 import style from "./NewsList.module.scss";
-
-export interface INewsProps {
-  news: INews[];
-}
+import { INewsProps } from "./types";
 
 const NewsList: FC<INewsProps> = ({ news }) => {
   return (

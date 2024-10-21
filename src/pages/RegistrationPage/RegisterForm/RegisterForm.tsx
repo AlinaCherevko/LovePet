@@ -33,7 +33,7 @@ const RegisterForm: FC = () => {
         toast.error(error as string);
       }
     }
-  }, [error, navigate, isAuth]);
+  }, [error, navigate, isAuth, isFirstRender]);
 
   const {
     register,

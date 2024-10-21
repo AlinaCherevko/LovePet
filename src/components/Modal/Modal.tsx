@@ -1,14 +1,10 @@
-import { FC, ReactNode, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import style from "./Modal.module.scss";
+import { ModalProps } from "./types";
 
 const rootModal = document.querySelector("#modal-root");
-
-type ModalProps = {
-  onClose: () => void;
-  children: ReactNode;
-};
 
 const Modal: FC<ModalProps> = ({ onClose, children }) => {
   useEffect(() => {

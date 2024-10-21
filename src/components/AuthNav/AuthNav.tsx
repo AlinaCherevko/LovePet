@@ -1,4 +1,4 @@
-import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
+import { ColorTheme } from "../Navigation/NavigationLink/types";
 import AuthLink from "./AuthLink/AuthLink";
 import style from "./AuthNav.module.scss";
 

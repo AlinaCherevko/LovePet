@@ -1,6 +1,5 @@
 import { useState, type FC } from "react";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
-import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import Modal from "../../../components/Modal/Modal";
 import LogOutModal from "../../../components/Modal/LogOutModal/LogOutModal";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
@@ -8,6 +7,7 @@ import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 import { useNavigate } from "react-router-dom";
 import AddPetList from "../../AddPetPage/AddPetList/AddPetList";
 import style from "./MyPets.module.scss";
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
 
 const MyPets: FC = () => {
   const navigate = useNavigate();

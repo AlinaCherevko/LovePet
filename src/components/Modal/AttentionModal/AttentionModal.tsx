@@ -1,7 +1,8 @@
 import { type FC } from "react";
 import AuthLink from "../../AuthNav/AuthLink/AuthLink";
-import { ColorTheme } from "../../Navigation/NavigationLink/NavigationLink";
+
 import style from "./AttentionModal.module.scss";
+import { ColorTheme } from "../../Navigation/NavigationLink/types";
 
 const AttentionModal: FC = () => {
   return (

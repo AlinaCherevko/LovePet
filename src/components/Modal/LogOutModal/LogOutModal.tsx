@@ -6,10 +6,7 @@ import { logOut } from "../../../redux/auth/authOperations";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import style from "./LogOutModal.module.scss";
-
-export type LogBtnProps = {
-  onClose: () => void;
-};
+import { LogBtnProps } from "./types";
 
 const LogOutModal: FC<LogBtnProps> = ({ onClose }) => {
   const navigate = useNavigate();

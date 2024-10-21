@@ -1,12 +1,7 @@
 import type { FC } from "react";
 import Icon from "../../Icon/Icon";
-
+import { BurgerBtnProps } from "./types";
 import style from "./BurgerBtn.module.scss";
-
-export type BurgerBtnProps = {
-  onOpen: () => void;
-  isHomePage: boolean;
-};
 
 const BurgerBtn: FC<BurgerBtnProps> = ({ onOpen, isHomePage }) => {
   return (

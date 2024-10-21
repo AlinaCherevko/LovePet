@@ -6,10 +6,7 @@ import style from "./UserModal.module.scss";
 import { AvatarSizes } from "../../../pages/ProfilePage/Avatar/types";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../redux/auth/authSelectors";
-
-export type LogBtnProps = {
-  onClose: () => void;
-};
+import { LogBtnProps } from "./types";
 
 const UserModal: FC<LogBtnProps> = ({ onClose }) => {
   const user = useSelector(selectUser);

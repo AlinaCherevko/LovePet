@@ -1,19 +1,8 @@
 import { type FC } from "react";
-import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import classNames from "classnames";
 import style from "./ButtonIcon.module.scss";
 import sprite from "/symbol-defs.svg";
-import { BtnIconSizes } from "./types";
-
-export type ButtonIconProps = {
-  text?: string;
-  onClick?: () => void;
-  type: ColorTheme;
-  id?: string;
-  width?: string;
-  height?: string;
-  size?: BtnIconSizes;
-};
+import { ButtonIconProps } from "./types";
 
 const ButtonIcon: FC<ButtonIconProps> = ({
   text,

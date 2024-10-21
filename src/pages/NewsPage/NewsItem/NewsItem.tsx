@@ -1,10 +1,6 @@
 import { FC } from "react";
 import style from "./NewsItem.module.scss";
-import { INews } from "../../../redux/news/types";
-
-type NewsProps = {
-  item: INews;
-};
+import { NewsProps } from "./types";
 
 const NewsItem: FC<NewsProps> = ({ item }) => {
   return (

@@ -2,11 +2,7 @@ import { type FC } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { selectIsAuth } from "../../redux/auth/authSelectors";
-
-export type Route = {
-  children: React.ReactNode;
-  redirectTo?: string;
-};
+import { Route } from "./types";
 
 const RestrictedRoute: FC<Route> = ({ redirectTo = "/", children }) => {
   const isAuth = useSelector(selectIsAuth);

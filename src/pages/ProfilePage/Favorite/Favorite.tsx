@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import { useDispatch, useSelector } from "react-redux";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
 import NoticesList from "../../NoticesPage/NoticesList/NoticesList";
@@ -10,6 +9,7 @@ import ButtonForm from "../../../components/Button/ButtonForm";
 import style from "./Favorite.module.scss";
 import { removeViewed } from "../../../redux/notices/noticesSlise";
 import { AppDispatch } from "../../../redux/store";
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
 
 const FavoriteTabs: FC = () => {
   const [activeTab, setActiveTab] = useState("favorite");

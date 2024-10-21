@@ -66,3 +66,19 @@ export interface IRefresh {
   phone: string;
   noticesFavorites: INotices[];
 }
+
+export interface IUpdate {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  phone: string;
+  token: string;
+}
+
+export interface IUpdateReq {
+  name?: string | null;
+  email?: string | null;
+  avatar?: string | null;
+  phone?: string | null;
+}

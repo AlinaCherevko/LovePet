@@ -1,14 +1,10 @@
 import { type FC } from "react";
-import { AddResItemPet } from "./types";
+import { AddItemProps } from "./types";
 import style from "./AddPetItem.module.scss";
 import Icon from "../../../components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { deletePet } from "../../../redux/auth/authOperations";
-
-type AddItemProps = {
-  item: AddResItemPet;
-};
 
 const AddPetItem: FC<AddItemProps> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();

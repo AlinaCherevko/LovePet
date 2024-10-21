@@ -9,17 +9,7 @@ import SelectEl from "../../../components/Selects/Select";
 
 import style from "./NoticesSearch.module.scss";
 import { useSelectStyles } from "../../../hooks/hooks";
-
-export interface INoticesSearchProps {
-  inputValue: string;
-  onChange: (prop: string) => void;
-  setSpeciesValue: (value: string) => void;
-  setCategoryValue: (value: string) => void;
-}
-export interface IOptions {
-  value: string;
-  label: string;
-}
+import { INoticesSearchProps, IOptions } from "./types";
 
 const NoticesSearch: FC<INoticesSearchProps> = ({
   onChange,
@@ -40,14 +30,6 @@ const NoticesSearch: FC<INoticesSearchProps> = ({
     value: item,
     label: item.charAt(0).toUpperCase() + item.slice(1),
   }));
-  // const locationOptions = useMemo(
-  //   () =>
-  //     locations.map(({ cityEn, stateEn }) => ({
-  //       value: cityEn,
-  //       label: `${cityEn}, ${stateEn}`,
-  //     })),
-  //   [locations]
-  // );
 
   return (
     <div className={style.search}>
@@ -70,11 +52,6 @@ const NoticesSearch: FC<INoticesSearchProps> = ({
         onChange={setSpeciesValue}
         selectStyles={selectStyles}
       />
-      {/* <SelectEl
-        options={locationOptions}
-        placeholder="By Location"
-        onChange={setLocationValue}
-      /> */}
     </div>
   );
 };

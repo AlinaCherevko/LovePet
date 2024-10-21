@@ -1,12 +1,8 @@
 import type { FC } from "react";
-import ReactPaginate, { ReactPaginateProps } from "react-paginate";
+import ReactPaginate from "react-paginate";
 import style from "./Pagination.module.scss";
+import { IPagination } from "./types";
 
-export interface IPagination {
-  handlePageClick: ReactPaginateProps["onPageChange"];
-  totalPages: number;
-  page?: number;
-}
 const Pagination: FC<IPagination> = ({ handlePageClick, totalPages, page }) => {
   return (
     <ReactPaginate

@@ -2,13 +2,7 @@ import { type ChangeEvent, type FC } from "react";
 import Icon from "../Icon/Icon";
 import style from "./SearchInput.module.scss";
 import classNames from "classnames";
-
-export interface IInput {
-  type?: string;
-  value: string;
-  onChange: (prop: string) => void;
-  placeholder: string;
-}
+import { IInput } from "./types";
 
 const SearchInput: FC<IInput> = ({ type, value, onChange, placeholder }) => {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {

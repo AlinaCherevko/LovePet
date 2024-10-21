@@ -1,8 +1,6 @@
 import { useState, type FC } from "react";
 import AuthLink from "../AuthNav/AuthLink/AuthLink";
-import NavigationLink, {
-  ColorTheme,
-} from "../Navigation/NavigationLink/NavigationLink";
+import NavigationLink from "../Navigation/NavigationLink/NavigationLink";
 import CloseBtn from "./CloseBtn/CloseBtn";
 import classNames from "classnames";
 import { selectIsAuth } from "../../redux/auth/authSelectors";
@@ -10,11 +8,9 @@ import { useSelector } from "react-redux";
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
 import Modal from "../Modal/Modal";
 import style from "./MobMenu.module.scss";
+import { MenuProps } from "./types";
+import { ColorTheme } from "../Navigation/NavigationLink/types";
 
-export type MenuProps = {
-  onClose: () => void;
-  type?: string;
-};
 const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
   const isAuth = useSelector(selectIsAuth);
   const [isVisibleLogOutModal, setIsVisibleLogOutModal] = useState(false);

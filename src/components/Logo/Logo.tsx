@@ -2,10 +2,7 @@ import type { FC } from "react";
 import logo from "/img/logo/logo-min.svg";
 import logoWhite from "/img/logo/logo-white.svg";
 import style from "./Logo.module.scss";
-
-type LogoProps = {
-  isHomePage: boolean;
-};
+import { LogoProps } from "./types";
 
 const Logo: FC<LogoProps> = ({ isHomePage }) => {
   return (

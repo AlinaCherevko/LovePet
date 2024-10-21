@@ -1,10 +1,8 @@
 import type { FC } from "react";
 import style from "./Navigation.module.scss";
-import NavigationLink, { ColorTheme } from "./NavigationLink/NavigationLink";
-
-type NavProps = {
-  isHomePage: boolean;
-};
+import NavigationLink from "./NavigationLink/NavigationLink";
+import { ColorTheme } from "./NavigationLink/types";
+import { NavProps } from "./types";
 
 const Navigation: FC<NavProps> = ({ isHomePage }) => {
   return (

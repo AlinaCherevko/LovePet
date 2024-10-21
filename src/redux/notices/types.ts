@@ -3,8 +3,6 @@ export interface INoticesParams {
   inputValue: string;
   categoryValue: string;
   speciesValue: string;
-  //locationValue: string;
-  //genderValue: string;
 }
 
 export interface INotices {
@@ -28,7 +26,6 @@ export interface INotices {
 export interface INoticesResults {
   results: INotices[];
   totalPages: number;
-  //perPage: number;
 }
 
 export interface ILocation {
@@ -47,7 +44,6 @@ export interface INoticesState {
   locations: ILocation[];
   favorites: string[];
   viewed: INotices[];
-  //favorites: INotices[];
   isLoading: boolean;
   isError: boolean;
 }

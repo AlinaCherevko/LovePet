@@ -1,11 +1,6 @@
 import type { FC } from "react";
 import style from "./ButtonForm.module.scss";
-
-export type ButtonProps = {
-  text: string;
-  type: "button" | "submit" | "reset";
-  onClick?: () => void;
-};
+import { ButtonProps } from "./types";
 
 const ButtonForm: FC<ButtonProps> = ({ text, onClick, type }) => {
   return (

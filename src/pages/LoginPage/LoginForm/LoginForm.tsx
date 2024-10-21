@@ -14,11 +14,7 @@ import style from "./LoginForm.module.scss";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaLog } from "../../../shemas/shemas";
-
-interface IFormInput {
-  email: string;
-  password: string;
-}
+import { IFormInput } from "./types";
 
 const LoginForm: FC = () => {
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
@@ -37,7 +33,7 @@ const LoginForm: FC = () => {
         toast.error(error as string);
       }
     }
-  }, [error, navigate, isAuth]);
+  }, [error, navigate, isAuth, isFirstRender]);
 
   const {
     register,

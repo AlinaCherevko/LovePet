@@ -1,6 +1,5 @@
 import { useState, type FC } from "react";
 import AuthLink from "../AuthNav/AuthLink/AuthLink";
-import { ColorTheme } from "../Navigation/NavigationLink/NavigationLink";
 import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import LogOutModal from "../Modal/LogOutModal/LogOutModal";
@@ -9,10 +8,8 @@ import { selectUser } from "../../redux/auth/authSelectors";
 import Avatar from "../../pages/ProfilePage/Avatar/Avatar";
 import { AvatarSizes } from "../../pages/ProfilePage/Avatar/types";
 import style from "./UserNav.module.scss";
-
-export type UserNavProps = {
-  isHomePage?: boolean;
-};
+import { UserNavProps } from "./types";
+import { ColorTheme } from "../Navigation/NavigationLink/types";
 
 const UserNav: FC<UserNavProps> = ({ isHomePage }) => {
   const user = useSelector(selectUser);

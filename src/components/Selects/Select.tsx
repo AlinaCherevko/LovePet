@@ -1,16 +1,7 @@
 import { FC, useState } from "react";
-import Select, { StylesConfig } from "react-select";
+import Select from "react-select";
 import style from "./SelectType.module.scss";
-
-type Option = { value: string; label: string };
-
-type ISelect = {
-  options: Array<Option>;
-  placeholder: string;
-  onChange: (value: string) => void;
-  value?: string;
-  selectStyles?: StylesConfig;
-};
+import { ISelect, Option } from "./types";
 
 const SelectEl: FC<ISelect> = ({
   options,

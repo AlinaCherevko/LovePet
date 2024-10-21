@@ -1,19 +1,12 @@
 import { type FC } from "react";
 import Avatar from "../../ProfilePage/Avatar/Avatar";
 import { AvatarSizes } from "../../ProfilePage/Avatar/types";
-import { INotices } from "../../../redux/notices/types";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
-import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 
 import style from "./NoticesModal.module.scss";
-
-export type LogBtnProps = {
-  onClose?: () => void;
-  item: INotices;
-  inFavorite: boolean;
-  toggleFavorite: () => void;
-};
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
+import { LogBtnProps } from "./types";
 
 const NoticesModal: FC<LogBtnProps> = ({
   item,

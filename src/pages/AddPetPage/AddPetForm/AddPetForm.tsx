@@ -3,7 +3,6 @@ import Title from "../../../components/Section/Title/Title";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import classNames from "classnames";
 import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
-import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,31 +13,15 @@ import Avatar from "../../ProfilePage/Avatar/Avatar";
 import { AvatarSizes } from "../../ProfilePage/Avatar/types";
 import SelectEl from "../../../components/Selects/Select";
 import { speciesSelector } from "../../../redux/notices/noticesSelectors";
-import { IOptions } from "../../NoticesPage/NoticesSearch/NoticesSearch";
 import { addPet } from "../../../redux/auth/authOperations";
 import style from "./AddPetForm.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RadioBtnGroup from "../RadioBtnGroup/RadioBtnGroup";
 import { useSelectStyles } from "../../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-
-export interface IAddPet {
-  name: string;
-  title: string;
-  species: string;
-  sex: string;
-  imageUrl?: string | null;
-  birthday: string;
-}
-
-export type AddPetProps = {
-  maleBtnRef: React.RefObject<HTMLInputElement>;
-  femaleBtnRef: React.RefObject<HTMLInputElement>;
-  othersBtnRef: React.RefObject<HTMLInputElement>;
-  onFakeMaleClick: () => void;
-  onFakeFemaleClick: () => void;
-  onFakeOthersClick: () => void;
-};
+import { AddPetProps, IAddPet } from "./types";
+import { IOptions } from "../../NoticesPage/NoticesSearch/types";
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
 
 const AddPetForm: FC<AddPetProps> = ({
   maleBtnRef,

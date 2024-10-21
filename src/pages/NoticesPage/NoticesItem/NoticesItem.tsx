@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-import { INotices } from "../../../redux/notices/types";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import Icon from "../../../components/Icon/Icon";
 import Modal from "../../../components/Modal/Modal";
@@ -16,18 +15,11 @@ import {
   favoritesSelector,
   viewedSelector,
 } from "../../../redux/notices/noticesSelectors";
-import { SizeItem } from "../types";
 import classNames from "classnames";
 import style from "./NoticesItem.module.scss";
 import AttentionModal from "../../../components/Modal/AttentionModal/AttentionModal";
 import { addToViewed } from "../../../redux/notices/noticesSlise";
-
-type NoticesProps = {
-  item: INotices;
-  type: SizeItem;
-  isNoticesPage?: boolean;
-  isViewedPage?: boolean;
-};
+import { NoticesProps } from "./types";
 
 const NoticesItem: FC<NoticesProps> = ({
   item,

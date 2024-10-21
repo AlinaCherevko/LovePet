@@ -8,16 +8,13 @@ import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/auth/authSelectors";
 import { AppDispatch } from "../../../redux/store";
-import { IUpdateReq, updateProfile } from "../../../redux/auth/authOperations";
 import { uploadToCloudinary } from "../../../services/services";
-import { ColorTheme } from "../../../components/Navigation/NavigationLink/NavigationLink";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 import style from "./ProfileForm.module.scss";
-
-type ProfileFormProps = {
-  setFile?: (file: File) => void;
-  onClose: () => void;
-};
+import { ProfileFormProps } from "./types";
+import { ColorTheme } from "../../../components/Navigation/NavigationLink/types";
+import { IUpdateReq } from "../../../redux/auth/types";
+import { updateProfile } from "../../../redux/auth/authOperations";
 
 const ProfileForm: FC<ProfileFormProps> = ({ onClose }) => {
   const [file, setFile] = useState<File | null>(null);
