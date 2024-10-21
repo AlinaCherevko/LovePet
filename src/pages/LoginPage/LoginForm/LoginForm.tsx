@@ -1,5 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { motion } from "framer-motion";
 import Title from "../../../components/Section/Title/Title";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonForm from "../../../components/Button/ButtonForm";
@@ -59,52 +60,58 @@ const LoginForm: FC = () => {
   return (
     <div className={style.formWrapper}>
       <Title text="Log in" />
-      <p className={style.formWrapper__text}>
-        Welcome! Please enter your credentials to login to the platform:
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-        <div className={style.form__wrapper}>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.email,
-                [style.form__inputSuccess]: isEmailValid && !isValidating,
-              })}
-              placeholder="Email"
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className={style.form__error}>{errors.email?.message}</p>
-            )}
-            {isEmailValid && !isValidating && (
-              <p className={style.form__success}>Valid email format</p>
-            )}
+      <motion.div
+        initial={{ y: "100vh" }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.3, duration: 1.5 }}
+      >
+        <p className={style.formWrapper__text}>
+          Welcome! Please enter your credentials to login to the platform:
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+          <div className={style.form__wrapper}>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.email,
+                  [style.form__inputSuccess]: isEmailValid && !isValidating,
+                })}
+                placeholder="Email"
+                {...register("email")}
+              />
+              {errors.email && (
+                <p className={style.form__error}>{errors.email?.message}</p>
+              )}
+              {isEmailValid && !isValidating && (
+                <p className={style.form__success}>Valid email format</p>
+              )}
+            </div>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.password,
+                  [style.form__inputSuccess]: isPasswordValid && !isValidating,
+                })}
+                placeholder="Password"
+                {...register("password")}
+              />
+              {errors.password && (
+                <p className={style.form__error}>{errors.password?.message}</p>
+              )}
+              {isPasswordValid && !isValidating && (
+                <p className={style.form__success}>Password is secure</p>
+              )}
+            </div>
           </div>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.password,
-                [style.form__inputSuccess]: isPasswordValid && !isValidating,
-              })}
-              placeholder="Password"
-              {...register("password")}
-            />
-            {errors.password && (
-              <p className={style.form__error}>{errors.password?.message}</p>
-            )}
-            {isPasswordValid && !isValidating && (
-              <p className={style.form__success}>Password is secure</p>
-            )}
-          </div>
+          <ButtonForm text="LOG IN" type="submit" />
+        </form>
+        <div className={style.linkWrapper}>
+          <p className={style.linkWrapper__text}>Don’t have an account?</p>
+          <Link className={style.linkWrapper__link} to={"/register"}>
+            Register
+          </Link>
         </div>
-        <ButtonForm text="LOG IN" type="submit" />
-      </form>
-      <div className={style.linkWrapper}>
-        <p className={style.linkWrapper__text}>Don’t have an account?</p>
-        <Link className={style.linkWrapper__link} to={"/register"}>
-          Register
-        </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };

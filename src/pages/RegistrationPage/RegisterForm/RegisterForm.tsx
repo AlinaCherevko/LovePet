@@ -2,6 +2,7 @@ import { useEffect, useState, type FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Title from "../../../components/Section/Title/Title";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import { useDispatch } from "react-redux";
@@ -63,84 +64,92 @@ const RegisterForm: FC = () => {
   return (
     <div className={style.formWrapper}>
       <Title text="Registration" />
-      <p className={style.formWrapper__text}>
-        Thank you for your interest in our platform.
-      </p>
-      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-        <div className={style.form__wrapper}>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.name,
-                [style.form__inputSuccess]: isNameValid && !isValidating,
-              })}
-              placeholder="Name"
-              {...register("name")}
-            />
-            {errors.name && (
-              <p className={style.form__error}>{errors.name?.message}</p>
-            )}
+      <motion.div
+        initial={{ y: "100vh" }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.3, duration: 1.5 }}
+      >
+        <p className={style.formWrapper__text}>
+          Thank you for your interest in our platform.
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+          <div className={style.form__wrapper}>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.name,
+                  [style.form__inputSuccess]: isNameValid && !isValidating,
+                })}
+                placeholder="Name"
+                {...register("name")}
+              />
+              {errors.name && (
+                <p className={style.form__error}>{errors.name?.message}</p>
+              )}
+            </div>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.email,
+                  [style.form__inputSuccess]: isEmailValid && !isValidating,
+                })}
+                placeholder="Email"
+                {...register("email")}
+              />
+              {errors.email && (
+                <p className={style.form__error}>{errors.email?.message}</p>
+              )}
+              {isEmailValid && !isValidating && (
+                <p className={style.form__success}>Valid email format</p>
+              )}
+            </div>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.password,
+                  [style.form__inputSuccess]: isPasswordValid && !isValidating,
+                })}
+                placeholder="Password"
+                {...register("password")}
+              />
+              {errors.password && (
+                <p className={style.form__error}>{errors.password?.message}</p>
+              )}
+              {isPasswordValid && !isValidating && (
+                <p className={style.form__success}>Password is secure</p>
+              )}
+            </div>
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.confirmedPassword,
+                  [style.form__inputSuccess]:
+                    isConfirmedPasswordValid && !isValidating,
+                })}
+                placeholder="Confirm password"
+                {...register("confirmedPassword")}
+              />
+              {errors.confirmedPassword && (
+                <p className={style.form__error}>
+                  {errors.confirmedPassword?.message}
+                </p>
+              )}
+              {isConfirmedPasswordValid && !isValidating && (
+                <p className={style.form__success}>
+                  Confirmed password is match
+                </p>
+              )}
+            </div>
           </div>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.email,
-                [style.form__inputSuccess]: isEmailValid && !isValidating,
-              })}
-              placeholder="Email"
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className={style.form__error}>{errors.email?.message}</p>
-            )}
-            {isEmailValid && !isValidating && (
-              <p className={style.form__success}>Valid email format</p>
-            )}
-          </div>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.password,
-                [style.form__inputSuccess]: isPasswordValid && !isValidating,
-              })}
-              placeholder="Password"
-              {...register("password")}
-            />
-            {errors.password && (
-              <p className={style.form__error}>{errors.password?.message}</p>
-            )}
-            {isPasswordValid && !isValidating && (
-              <p className={style.form__success}>Password is secure</p>
-            )}
-          </div>
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.confirmedPassword,
-                [style.form__inputSuccess]:
-                  isConfirmedPasswordValid && !isValidating,
-              })}
-              placeholder="Confirm password"
-              {...register("confirmedPassword")}
-            />
-            {errors.confirmedPassword && (
-              <p className={style.form__error}>
-                {errors.confirmedPassword?.message}
-              </p>
-            )}
-            {isConfirmedPasswordValid && !isValidating && (
-              <p className={style.form__success}>Confirmed password is match</p>
-            )}
-          </div>
+          <ButtonForm text="REGISTRATION" type="submit" />
+        </form>
+        <div className={style.linkWrapper}>
+          <p className={style.linkWrapper__text}>Already have an account?</p>
+          <Link className={style.linkWrapper__link} to={"/login"}>
+            Log in
+          </Link>
         </div>
-        <ButtonForm text="REGISTRATION" type="submit" />
-      </form>
-      <div className={style.linkWrapper}>
-        <p className={style.linkWrapper__text}>Already have an account?</p>
-        <Link className={style.linkWrapper__link} to={"/login"}>
-          Log in
-        </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import ButtonIcon from "../../../components/ButtonIcon/ButtonIcon";
 import { BtnIconSizes } from "../../../components/ButtonIcon/types";
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { schemaPet } from "../../../shemas/shemas";
 import { uploadToCloudinary } from "../../../services/services";
@@ -144,159 +145,171 @@ const AddPetForm: FC<AddPetProps> = ({
   return (
     <div className={style.formWrapper}>
       <Title text="Add my pet" />
-      <RadioBtnGroup
-        onFakeMaleClick={onFakeMaleClick}
-        onFakeFemaleClick={onFakeFemaleClick}
-        onFakeOthersClick={onFakeOthersClick}
-      />
-      {errors.sex && (
-        <p className={style.form__errorGender}>{errors.sex?.message}</p>
-      )}
-      <Avatar id="icon-footprint" size={AvatarSizes.Small} url={imgUrl} />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={style.form__wrapper}>
-          <div className={style.form__inputRadioWrapper}>
-            <input
-              type="radio"
-              {...register("sex")}
-              ref={femaleBtnRef}
-              value="female"
-              onChange={onFemaleBtnChange}
-            />
-            <input
-              type="radio"
-              {...register("sex")}
-              value="male"
-              ref={maleBtnRef}
-              onChange={onMaleBtnChange}
-            />
-            <input
-              type="radio"
-              {...register("sex")}
-              ref={othersBtnRef}
-              value="multiple"
-              onChange={onOthersBtnChange}
-            />
-          </div>
-
-          <div className={style.form__avatarWrapper}>
-            <div className={style.form__inputWrapper}>
+      <motion.div
+        initial={{ y: "100vh" }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.3, duration: 1.5 }}
+      >
+        <RadioBtnGroup
+          onFakeMaleClick={onFakeMaleClick}
+          onFakeFemaleClick={onFakeFemaleClick}
+          onFakeOthersClick={onFakeOthersClick}
+        />
+        {errors.sex && (
+          <p className={style.form__errorGender}>{errors.sex?.message}</p>
+        )}
+        <Avatar id="icon-footprint" size={AvatarSizes.Small} url={imgUrl} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.form__wrapper}>
+            <div className={style.form__inputRadioWrapper}>
               <input
-                className={classNames(style.form__input, {
-                  [style.form__inputError]: errors.imageUrl,
-                  [style.form__inputSuccess]: isImageUrlValid && !isValidating,
-                })}
-                placeholder="ImageUrl"
-                {...register("imageUrl")}
+                type="radio"
+                {...register("sex")}
+                ref={femaleBtnRef}
+                value="female"
+                onChange={onFemaleBtnChange}
               />
-              {errors.imageUrl && (
-                <p className={style.form__error}>{errors.imageUrl?.message}</p>
-              )}
-              {isImageUrlValid && !isValidating && (
-                <p className={style.form__success}>Valid url for avatar</p>
-              )}
-            </div>
-
-            <div className={style.form__inputWrapper}>
               <input
-                type="file"
-                className={style.form__input_none}
-                ref={fileInputRef}
-                onChange={handleFileChange}
+                type="radio"
+                {...register("sex")}
+                value="male"
+                ref={maleBtnRef}
+                onChange={onMaleBtnChange}
+              />
+              <input
+                type="radio"
+                {...register("sex")}
+                ref={othersBtnRef}
+                value="multiple"
+                onChange={onOthersBtnChange}
               />
             </div>
-            <div className={style.form__inputWrapper}>
-              <ButtonIcon
-                id="icon-cloud-upload"
-                width="18px"
-                height="18px"
-                type={ColorTheme.White}
-                text="Upload photo"
-                onClick={onFakeInputClick}
-                size={BtnIconSizes.Medium}
-              ></ButtonIcon>
-            </div>
-          </div>
 
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.name,
-                [style.form__inputSuccess]: isNameValid && !isValidating,
-              })}
-              placeholder="Name"
-              {...register("name")}
-            />
-            {errors.name && (
-              <p className={style.form__error}>{errors.name?.message}</p>
-            )}
-            {isNameValid && !isValidating && (
-              <p className={style.form__success}>Valid name format</p>
-            )}
-          </div>
-
-          <div className={style.form__inputWrapper}>
-            <input
-              className={classNames(style.form__input, {
-                [style.form__inputError]: errors.title,
-                [style.form__inputSuccess]: isTitleValid && !isValidating,
-              })}
-              placeholder="Title"
-              {...register("title")}
-            />
-            {errors.title && (
-              <p className={style.form__error}>{errors.title?.message}</p>
-            )}
-            {isTitleValid && !isValidating && (
-              <p className={style.form__success}>Valid title</p>
-            )}
-          </div>
-
-          <div className={style.form__selectWrap}>
-            <div className={style.form__inputWrapper}>
-              <input
-                className={classNames(style.form__input, {
-                  [style.form__inputError]: errors.birthday,
-                  [style.form__inputSuccess]: isBirthdayValid && !isValidating,
-                })}
-                {...register("birthday")}
-                type="text"
-                placeholder="0000-00-00"
-              />
-              <svg className={style.form__icon} height="18px" width="18px">
-                <use href="/public/symbol-defs.svg#icon-calendar"></use>
-              </svg>
-              {errors.birthday && (
-                <p className={style.form__error}>{errors.birthday?.message}</p>
-              )}
-              {isBirthdayValid && !isValidating && (
-                <p className={style.form__success}>Date is valid</p>
-              )}
-            </div>
-
-            <div className={style.form__inputWrapper}>
-              <Controller
-                name="species"
-                control={control}
-                render={({ field }) => (
-                  <SelectEl
-                    {...field}
-                    options={speciesOptions}
-                    placeholder="Type of pet"
-                    onChange={field.onChange}
-                    value={field.value}
-                    selectStyles={selectStyles}
-                  />
+            <div className={style.form__avatarWrapper}>
+              <div className={style.form__inputWrapper}>
+                <input
+                  className={classNames(style.form__input, {
+                    [style.form__inputError]: errors.imageUrl,
+                    [style.form__inputSuccess]:
+                      isImageUrlValid && !isValidating,
+                  })}
+                  placeholder="ImageUrl"
+                  {...register("imageUrl")}
+                />
+                {errors.imageUrl && (
+                  <p className={style.form__error}>
+                    {errors.imageUrl?.message}
+                  </p>
                 )}
+                {isImageUrlValid && !isValidating && (
+                  <p className={style.form__success}>Valid url for avatar</p>
+                )}
+              </div>
+
+              <div className={style.form__inputWrapper}>
+                <input
+                  type="file"
+                  className={style.form__input_none}
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className={style.form__inputWrapper}>
+                <ButtonIcon
+                  id="icon-cloud-upload"
+                  width="18px"
+                  height="18px"
+                  type={ColorTheme.White}
+                  text="Upload photo"
+                  onClick={onFakeInputClick}
+                  size={BtnIconSizes.Medium}
+                ></ButtonIcon>
+              </div>
+            </div>
+
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.name,
+                  [style.form__inputSuccess]: isNameValid && !isValidating,
+                })}
+                placeholder="Name"
+                {...register("name")}
               />
-              {errors.species && (
-                <p className={style.form__error}>{errors.species?.message}</p>
+              {errors.name && (
+                <p className={style.form__error}>{errors.name?.message}</p>
+              )}
+              {isNameValid && !isValidating && (
+                <p className={style.form__success}>Valid name format</p>
               )}
             </div>
+
+            <div className={style.form__inputWrapper}>
+              <input
+                className={classNames(style.form__input, {
+                  [style.form__inputError]: errors.title,
+                  [style.form__inputSuccess]: isTitleValid && !isValidating,
+                })}
+                placeholder="Title"
+                {...register("title")}
+              />
+              {errors.title && (
+                <p className={style.form__error}>{errors.title?.message}</p>
+              )}
+              {isTitleValid && !isValidating && (
+                <p className={style.form__success}>Valid title</p>
+              )}
+            </div>
+
+            <div className={style.form__selectWrap}>
+              <div className={style.form__inputWrapper}>
+                <input
+                  className={classNames(style.form__input, {
+                    [style.form__inputError]: errors.birthday,
+                    [style.form__inputSuccess]:
+                      isBirthdayValid && !isValidating,
+                  })}
+                  {...register("birthday")}
+                  type="text"
+                  placeholder="0000-00-00"
+                />
+                <svg className={style.form__icon} height="18px" width="18px">
+                  <use href="/public/symbol-defs.svg#icon-calendar"></use>
+                </svg>
+                {errors.birthday && (
+                  <p className={style.form__error}>
+                    {errors.birthday?.message}
+                  </p>
+                )}
+                {isBirthdayValid && !isValidating && (
+                  <p className={style.form__success}>Date is valid</p>
+                )}
+              </div>
+
+              <div className={style.form__inputWrapper}>
+                <Controller
+                  name="species"
+                  control={control}
+                  render={({ field }) => (
+                    <SelectEl
+                      {...field}
+                      options={speciesOptions}
+                      placeholder="Type of pet"
+                      onChange={field.onChange}
+                      value={field.value}
+                      selectStyles={selectStyles}
+                    />
+                  )}
+                />
+                {errors.species && (
+                  <p className={style.form__error}>{errors.species?.message}</p>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-        <ButtonForm text="Save" type="submit" />
-      </form>
+          <ButtonForm text="Save" type="submit" />
+        </form>
+      </motion.div>
     </div>
   );
 };

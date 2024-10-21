@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import NoticesItem from "../NoticesItem/NoticesItem";
-
+import { motion } from "framer-motion";
 import style from "./NoticesList.module.scss";
 import { INoticesProps } from "./types";
 import classNames from "classnames";
@@ -12,7 +12,10 @@ const NoticesList: FC<INoticesProps> = ({
   isViewedPage,
 }) => {
   return (
-    <ul
+    <motion.ul
+      initial={{ y: "100vh" }}
+      animate={{ y: 0 }}
+      transition={{ delay: 0.3, duration: 1.5 }}
       className={classNames(style.noticesList, style[`noticesList--${type}`])}
     >
       {notices &&
@@ -25,7 +28,7 @@ const NoticesList: FC<INoticesProps> = ({
             isViewedPage={isViewedPage}
           />
         ))}
-    </ul>
+    </motion.ul>
   );
 };
 

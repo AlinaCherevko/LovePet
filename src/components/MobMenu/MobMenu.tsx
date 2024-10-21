@@ -2,6 +2,7 @@ import { useState, type FC } from "react";
 import AuthLink from "../AuthNav/AuthLink/AuthLink";
 import NavigationLink from "../Navigation/NavigationLink/NavigationLink";
 import CloseBtn from "./CloseBtn/CloseBtn";
+import { motion } from "framer-motion";
 import classNames from "classnames";
 import { selectIsAuth } from "../../redux/auth/authSelectors";
 import { useSelector } from "react-redux";
@@ -35,7 +36,12 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
   );
   return (
     <>
-      <div className={className}>
+      <motion.div
+        className={className}
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ delay: 0, duration: 1 }}
+      >
         <CloseBtn onClose={onClose} />
         <div className={style.menu__wrapper}>
           <div className={style.menu__navigation}>
@@ -79,7 +85,7 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
       {isVisibleLogOutModal && (
         <Modal onClose={onCloseLogOutModal}>
           <LogOutModal onClose={onCloseLogOutModal} />
