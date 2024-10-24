@@ -1,18 +1,21 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import Icon from "../../../components/Icon/Icon";
 import Modal from "../../../components/Modal/Modal";
 import NoticesModal from "../NoticesModal/NoticesModal";
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth } from "../../../redux/auth/authSelectors";
+import {
+  selectFavorites,
+  selectIsAuth,
+} from "../../../redux/auth/authSelectors";
 import {
   addNotice,
   removeNotice,
 } from "../../../redux/notices/noticesOperations";
 import { toast } from "react-toastify";
 import {
-  favoritesSelector,
+  //favoritesSelector,
   viewedSelector,
 } from "../../../redux/notices/noticesSelectors";
 import classNames from "classnames";
@@ -28,15 +31,22 @@ const NoticesItem: FC<NoticesProps> = ({
   isViewedPage,
 }) => {
   const [isVisibleUserModal, setIsVisibleUserModal] = useState(false);
+  const [isInFavorite, setIsInFavorite] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-  const favorites = useSelector(favoritesSelector);
+  const favorites = useSelector(selectFavorites);
   const viewed = useSelector(viewedSelector);
 
-  const inFavorite =
-    favorites &&
-    favorites.length > 0 &&
-    favorites.some((favorite) => favorite === item._id);
+  useEffect(() => {
+    if (isAuth && favorites && favorites.length > 0) {
+      setIsInFavorite(favorites.some((favorite) => favorite._id === item._id));
+    }
+  }, [favorites, item._id, isAuth]);
+
+  // const inFavorite =
+  //   favorites &&
+  //   favorites.length > 0 &&
+  //   favorites.some((favorite) => favorite === item._id);
 
   const isViewed =
     viewed && viewed.length > 0 && viewed.some((el) => el._id === item._id);
@@ -59,7 +69,7 @@ const NoticesItem: FC<NoticesProps> = ({
   const toggleFavorite = () => {
     if (!isAuth) {
       toast.error("You are not authorized to access this functionality");
-    } else if (inFavorite) {
+    } else if (isInFavorite) {
       dispatch(removeNotice(item._id));
     } else {
       dispatch(addNotice(item._id));
@@ -123,7 +133,7 @@ const NoticesItem: FC<NoticesProps> = ({
                 <Icon
                   id={
                     isNoticesPage
-                      ? inFavorite
+                      ? isInFavorite
                         ? "icon-trash"
                         : "icon-heart"
                       : "icon-trash"
@@ -144,7 +154,7 @@ const NoticesItem: FC<NoticesProps> = ({
             <NoticesModal
               onClose={onClose}
               item={item}
-              inFavorite={inFavorite}
+              inFavorite={isInFavorite}
               toggleFavorite={toggleFavorite}
             />
           ) : (

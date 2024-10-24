@@ -73,6 +73,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = initialState.isLoggedIn;
       state.isAuthLoading = initialState.isAuthLoading;
       state.error = initialState.error;
+      state.noticesFavorites = initialState.noticesFavorites;
     });
 
     //current full
