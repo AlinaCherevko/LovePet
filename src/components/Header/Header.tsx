@@ -55,14 +55,16 @@ const Header: FC = () => {
             <Navigation isHomePage={isHomePage} />
             <div className={style.header__mobWrapper}>
               {isAuth ? <UserNav isHomePage={isHomePage} /> : <AuthNav />}
-              <div className={style.header__avatar}>
-                <Avatar
-                  size={AvatarSizes.Tiny}
-                  id="icon-user"
-                  url={user.avatar}
-                  onClick={handleClickNavigate}
-                />
-              </div>
+              {isAuth && (
+                <div className={style.header__avatar}>
+                  <Avatar
+                    size={AvatarSizes.Tiny}
+                    id="icon-user"
+                    url={user.avatar}
+                    onClick={handleClickNavigate}
+                  />
+                </div>
+              )}
               <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
             </div>
           </div>
@@ -72,14 +74,16 @@ const Header: FC = () => {
             <Navigation isHomePage={isHomePage} />
             <div className={style.header__mobWrapper}>
               {isAuth ? <UserNav /> : <AuthNav />}
-              <div className={style.header__avatar}>
-                <Avatar
-                  size={AvatarSizes.Tiny}
-                  id="icon-user"
-                  url={user.avatar}
-                  onClick={handleClickNavigate}
-                />
-              </div>
+              {isAuth && (
+                <div className={style.header__avatar}>
+                  <Avatar
+                    size={AvatarSizes.Tiny}
+                    id="icon-user"
+                    url={user.avatar}
+                    onClick={handleClickNavigate}
+                  />
+                </div>
+              )}
               <BurgerBtn onOpen={onOpen} isHomePage={isHomePage} />
             </div>
           </div>

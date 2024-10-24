@@ -9,7 +9,7 @@ const AuthLink: FC<NavProps> = ({ type, to, text, onClick, href }) => {
   return (
     <>
       {to ? (
-        <NavLink to={to} className={className}>
+        <NavLink to={to} className={className} onClick={onClick}>
           {text}
         </NavLink>
       ) : (

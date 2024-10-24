@@ -26,6 +26,7 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
     setTimeout(() => {
       setIsVisibleLogOutModal(false);
     }, 500);
+
     onClose();
   };
 
@@ -49,16 +50,19 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
               type={ColorTheme.White}
               to={"/news"}
               text="News"
+              onClick={onClose}
             ></NavigationLink>
             <NavigationLink
               type={ColorTheme.White}
               to={"/notices"}
               text="Find pet"
+              onClick={onClose}
             ></NavigationLink>
             <NavigationLink
               type={ColorTheme.White}
               to={"/friends"}
               text="Our friends"
+              onClick={onClose}
             ></NavigationLink>
           </div>
 
@@ -68,7 +72,7 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
                 onClick={handleLogOutClick}
                 type={ColorTheme.White}
                 text="LOG OUT"
-              ></AuthLink>
+              />
             </div>
           ) : (
             <div className={style.menu__auth}>
@@ -76,12 +80,14 @@ const MobMenu: FC<MenuProps> = ({ onClose, type }) => {
                 to={"/login"}
                 text="LOG IN"
                 type={ColorTheme.White}
-              ></AuthLink>
+                onClick={onClose}
+              />
               <AuthLink
                 to={"/register"}
                 text="REGISTRATION"
                 type={ColorTheme.White}
-              ></AuthLink>
+                onClick={onClose}
+              />
             </div>
           )}
         </div>

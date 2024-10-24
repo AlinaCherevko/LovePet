@@ -7,6 +7,7 @@ import { IInput } from "./types";
 const SearchInput: FC<IInput> = ({ type, value, onChange, placeholder }) => {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value;
+
     onChange(inputValue);
   };
 

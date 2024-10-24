@@ -22,22 +22,28 @@ const NoticesPage: FC = () => {
   const [page, setPage] = useState<number>(1);
   const dispatch: AppDispatch = useDispatch();
 
+  console.log(inputValue);
+
   const isNoticesPage = true;
   const isViewedPage = false;
 
   const { results, totalPages } = useSelector(noticesSelector);
 
-  //console.log(results);
-
   useEffect(() => {
-    dispatch(
-      getNotices({
-        page,
-        inputValue,
-        speciesValue,
-        categoryValue,
-      })
-    );
+    const timeOutId = setTimeout(() => {
+      dispatch(
+        getNotices({
+          page,
+          inputValue,
+          speciesValue,
+          categoryValue,
+        })
+      );
+    }, 350);
+
+    return () => {
+      clearTimeout(timeOutId);
+    };
   }, [dispatch, page, inputValue, speciesValue, categoryValue]);
 
   useEffect(() => {
@@ -60,6 +66,10 @@ const NoticesPage: FC = () => {
       behavior: "smooth",
     });
   };
+
+  // const onChange = debounce((value: string) => {
+  //   setInputValue(value);
+  // }, 200);
 
   const onChange = (value: string) => {
     setInputValue(value);
