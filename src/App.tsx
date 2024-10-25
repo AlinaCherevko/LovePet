@@ -1,16 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import MainLayout from "./components/MainLayout/MainLayout";
-import HomePage from "./pages/HomePage/HomePage";
-import NewsPage from "./pages/NewsPage/NewsPage";
-import NoticesPage from "./pages/NoticesPage/NoticesPage";
-import FriendsPage from "./pages/FriendsPage/FriendsPage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import AddPetPage from "./pages/AddPetPage/AddPetPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "./redux/store";
 import { refreshUser, refreshUserFull } from "./redux/auth/authOperations";
@@ -18,16 +9,24 @@ import { selectIsAuth, selectRefreshing } from "./redux/auth/authSelectors";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
-import {
-  favoritesSelector,
-  //viewedSelector,
-} from "./redux/notices/noticesSelectors";
+import { favoritesSelector } from "./redux/notices/noticesSelectors";
+
+const RegistrationPage = lazy(
+  () => import("./pages/RegistrationPage/RegistrationPage")
+);
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const FriendsPage = lazy(() => import("./pages/FriendsPage/FriendsPage"));
+const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
+const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage"));
+const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectRefreshing);
   const dispatch: AppDispatch = useDispatch();
-  //const viewed = useSelector(viewedSelector);
   const favoritesArr = useSelector(favoritesSelector);
 
   useEffect(() => {
