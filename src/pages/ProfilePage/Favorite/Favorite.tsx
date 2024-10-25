@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AuthLink from "../../../components/AuthNav/AuthLink/AuthLink";
 import NoticesList from "../../NoticesPage/NoticesList/NoticesList";
 import { SizeItem } from "../../NoticesPage/types";
-import { selectFavorites } from "../../../redux/auth/authSelectors";
+import { selectFavorites, selectUser } from "../../../redux/auth/authSelectors";
 import { viewedSelector } from "../../../redux/notices/noticesSelectors";
 import ButtonForm from "../../../components/Button/ButtonForm";
 import style from "./Favorite.module.scss";
@@ -13,13 +13,13 @@ import { ColorTheme } from "../../../components/Navigation/NavigationLink/types"
 
 const FavoriteTabs: FC = () => {
   const [activeTab, setActiveTab] = useState("favorite");
-
+  const user = useSelector(selectUser);
   const favorites = useSelector(selectFavorites);
   const viewed = useSelector(viewedSelector);
   const dispatch: AppDispatch = useDispatch();
 
   const handleRemoveViewed = () => {
-    dispatch(removeViewed());
+    dispatch(removeViewed(user._id));
   };
 
   return (

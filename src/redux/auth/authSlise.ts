@@ -12,7 +12,7 @@ import {
 } from "./authOperations";
 
 const initialState: IState = {
-  user: { name: "", email: "", phone: "", avatar: "" },
+  user: { name: "", email: "", phone: "", avatar: "", _id: "" },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -78,6 +78,7 @@ export const authSlice = createSlice({
 
     //current full
     builder.addCase(refreshUserFull.fulfilled, (state, { payload }) => {
+      state.user._id = payload._id;
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;
@@ -98,6 +99,7 @@ export const authSlice = createSlice({
       state.isRefreshing = true;
     });
     builder.addCase(refreshUser.fulfilled, (state, { payload }) => {
+      state.user._id = payload._id;
       state.user.name = payload.name;
       state.user.email = payload.email;
       state.user.avatar = payload.avatar;

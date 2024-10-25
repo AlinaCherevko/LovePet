@@ -24,7 +24,7 @@ const authPersistConfig = {
 const noticesPersistConfig = {
   key: "notices",
   storage,
-  whitelist: ["favorites", "viewed"],
+  whitelist: ["favorites"],
 };
 
 const rootReducer = combineReducers({

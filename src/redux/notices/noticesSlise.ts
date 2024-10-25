@@ -9,13 +9,21 @@ import {
   getOneNotice,
   removeNotice,
 } from "./noticesOperations";
-import { INoticesState } from "./types";
+import { INotices, INoticesState } from "./types";
+
+const loadViewedFromLocalStorage = (userId: string) => {
+  const savedViewed = localStorage.getItem(`viewed_${userId}`);
+  return savedViewed ? JSON.parse(savedViewed) : [];
+};
+
+const saveViewedToLocalStorage = (userId: string, viewedItems: INotices[]) => {
+  localStorage.setItem(`viewed_${userId}`, JSON.stringify(viewedItems));
+};
 
 const initialState: INoticesState = {
   notices: {
     results: [],
     totalPages: 0,
-    //perPage: 0,
   },
   notice: null,
   species: [],
@@ -37,16 +45,22 @@ const isRejected = (state: INoticesState) => {
   state.isError = true;
   state.isLoading = false;
 };
+
 export const noticesSlice = createSlice({
   name: "notices",
   initialState,
 
   reducers: {
     addToViewed(state, { payload }) {
-      state.viewed.push(payload);
+      state.viewed.push(payload.item);
+      saveViewedToLocalStorage(payload.userId, state.viewed);
     },
-    removeViewed(state) {
+    removeViewed(state, { payload }) {
       state.viewed = [];
+      saveViewedToLocalStorage(payload, []);
+    },
+    initializeViewed(state, { payload }) {
+      state.viewed = loadViewedFromLocalStorage(payload);
     },
   },
   extraReducers(builder) {
@@ -123,4 +137,5 @@ export const noticesSlice = createSlice({
 
 export default noticesSlice.reducer;
 
-export const { addToViewed, removeViewed } = noticesSlice.actions;
+export const { addToViewed, removeViewed, initializeViewed } =
+  noticesSlice.actions;

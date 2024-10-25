@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectFavorites,
   selectIsAuth,
+  selectUser,
 } from "../../../redux/auth/authSelectors";
 import {
   addNotice,
@@ -21,7 +22,10 @@ import {
 import classNames from "classnames";
 import style from "./NoticesItem.module.scss";
 import AttentionModal from "../../../components/Modal/AttentionModal/AttentionModal";
-import { addToViewed } from "../../../redux/notices/noticesSlise";
+import {
+  addToViewed,
+  initializeViewed,
+} from "../../../redux/notices/noticesSlise";
 import { NoticesProps } from "./types";
 
 const NoticesItem: FC<NoticesProps> = ({
@@ -34,6 +38,7 @@ const NoticesItem: FC<NoticesProps> = ({
   const [isInFavorite, setIsInFavorite] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const user = useSelector(selectUser);
   const favorites = useSelector(selectFavorites);
   const viewed = useSelector(viewedSelector);
 
@@ -43,10 +48,11 @@ const NoticesItem: FC<NoticesProps> = ({
     }
   }, [favorites, item._id, isAuth]);
 
-  // const inFavorite =
-  //   favorites &&
-  //   favorites.length > 0 &&
-  //   favorites.some((favorite) => favorite === item._id);
+  useEffect(() => {
+    if (user && user._id) {
+      dispatch(initializeViewed(user._id));
+    }
+  }, [dispatch, user]);
 
   const isViewed =
     viewed && viewed.length > 0 && viewed.some((el) => el._id === item._id);
@@ -56,7 +62,7 @@ const NoticesItem: FC<NoticesProps> = ({
       setIsVisibleUserModal(true);
     }, 300);
     if (!isViewed) {
-      dispatch(addToViewed(item));
+      dispatch(addToViewed({ userId: user._id, item }));
     }
   };
 

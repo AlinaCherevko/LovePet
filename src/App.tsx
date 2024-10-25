@@ -18,12 +18,16 @@ import { selectIsAuth, selectRefreshing } from "./redux/auth/authSelectors";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
-import { favoritesSelector } from "./redux/notices/noticesSelectors";
+import {
+  favoritesSelector,
+  //viewedSelector,
+} from "./redux/notices/noticesSelectors";
 
 function App() {
   const isAuth = useSelector(selectIsAuth);
   const isRefreshing = useSelector(selectRefreshing);
   const dispatch: AppDispatch = useDispatch();
+  //const viewed = useSelector(viewedSelector);
   const favoritesArr = useSelector(favoritesSelector);
 
   useEffect(() => {
